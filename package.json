@@ -9,11 +9,6 @@
     "lint": "next lint",
     "preinstall": "npx -y only-allow pnpm"
   },
-  "packageManager": "pnpm@8.12.0",
-  "engines": {
-    "node": "20",
-    "pnpm": "8.12"
-  },
   "dependencies": {
     "@keystatic/core": "^0.2.7",
     "@keystatic/next": "^2.0.1",
