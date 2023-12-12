@@ -4,7 +4,7 @@ xip: 3
 author: Jumbo (@jamest0), Spinxho (@spinxho), Tannutuva2 (@tannutuva2)
 type: integration-upgrade
 network: Base
-status: Draft
+status: Approved
 created: '2023-11-22'
 updated: '2023-11-22'
 ---
@@ -90,7 +90,7 @@ A key distinction of Infinex's approach versus typical centralized exchanges lie
 
 Since Synthetix has no concept of positions in the Perps V3 contracts, in order to provide the UI/UX traders are familiar with, Infinex will aggregate on-chain data to calculate the corresponding position data.
 
-![Positions=Positions.png](/assets/xips/xip3-perps/xip3-1.png)
+![Positions=Positions.png](/assets/xips/xip-3-perps/xip-3-1.png)
 
 *Value*
 
@@ -132,7 +132,7 @@ Hence, we can solve for the index price in order to calculate the liquidation pr
 
 Infinex will offer all markets that the Synthetix Perps V3 contracts support. In order to ensure pricing consistency with the Synthetix Perps V3 contracts, pricing data for all markets is read from Pyth Network, a blockchain oracle for market data.
 
-![Layout=Grid-2.png](/assets/xips/xip3-perps/xip3-2.png)
+![Layout=Grid-2.png](/assets/xips/xip-3-perps/xip-3-2.png)
 
 ### Depth Chart
 
@@ -140,7 +140,7 @@ Infinex's depth chart will be tailored to the unique structure of an automated m
 
 The platform will incorporate Synthetix's skew-balancing mechanism. For instance, in a market leaning towards long positions, short trades will be rewarded, and the opposite is true for a short-skewed market. This mechanism can result in an artificial liquidity imbalance, resulting in a variance in available volume that can be executed at different price points between the buy and sell sides.
 
-![Type=Depth Chart, Rollover=No, Min amount=not set.svg](/assets/xips/xip3-perps/xip3-3.svg)
+![Type=Depth Chart, Rollover=No, Min amount=not set.svg](/assets/xips/xip-3-perps/xip-3-3.svg)
 
 The provided hypothetical depth chart illustrates what a pronounced disparity in liquidity favoring the buy-side relative to the sell-side would look like. This is indicative of a short-skewed market, so short positions would incur a greater slippage and less favorable fill price compared to entering a long position where ample liquidity would mitigate such concerns.
 
@@ -162,7 +162,7 @@ Decentralized keepers will be tasked with monitoring the blockchain for valid co
 
 The sequential progression of these trade stages is depicted in the accompanying illustration. Initially, committed trades display only the optimistic price. Subsequently, the pre-wormhole price is attached to the trade, and finally the trade reaches settlement, which will be marked by the corresponding block time.
 
-![Depth 1.png](/assets/xips/xip3-perps/xip3-4.png)
+![Depth 1.png](/assets/xips/xip-3-perps/xip-3-4.png)
 
 ### Account info
 
