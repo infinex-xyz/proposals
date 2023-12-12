@@ -1,12 +1,16 @@
 import { Header } from '@/components/Header';
+import { PageContainer, PageIntro, PageTitle } from '@/components/UI';
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <div className="flex w-full max-w-4xl flex-col">
-        <Header currentPage="XIPs" />
-        <p>Coming Soon</p>
-      </div>
-    </main>
+    <PageContainer>
+      <Header currentPage="XIPs" />
+      <PageTitle>Infinex Improvement Proposals</PageTitle>
+      <PageIntro>
+        XIPs are the primary mechanism for suggesting new features, collecting
+        community input on an issue, documenting design decisions for changes to
+        Infinex, and making adjustments to system parameters.
+      </PageIntro>
+    </PageContainer>
   );
 }
