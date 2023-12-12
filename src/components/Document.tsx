@@ -2,6 +2,7 @@ import {
   DocumentRenderer,
   DocumentRendererProps,
 } from '@keystatic/core/renderer';
+import { getStatusColors } from '@/lib/util';
 
 export function Renderer({
   document,
@@ -34,5 +35,24 @@ export function Properties({ fields, data }: { fields: string[]; data: any }) {
         })}
       </tbody>
     </table>
+  );
+}
+
+export function ID({
+  children,
+  status,
+}: {
+  children: React.ReactNode;
+  status: string;
+}) {
+  const colors = getStatusColors(status);
+  return (
+    <div className="mb-4">
+      <div
+        className={`inline-block rounded-md border px-4 py-1 text-sm font-bold ${colors.border} ${colors.text}`}
+      >
+        {children}
+      </div>
+    </div>
   );
 }

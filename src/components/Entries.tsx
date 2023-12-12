@@ -1,3 +1,5 @@
+import { getStatusColors } from '@/lib/util';
+
 export function Status({
   status,
   count,
@@ -5,12 +7,13 @@ export function Status({
   status: { label: string; value: string };
   count: number;
 }) {
+  const colors = getStatusColors(status.value);
   return (
-    <h2 className="flex gap-2">
+    <h2 className="flex items-center gap-2">
       <div className="text-base font-semibold text-slate-200">
         {status.label}
       </div>
-      <div className="text-slate-400">({count})</div>
+      <div className={`text-sm font-semibold ${colors.text}`}>({count})</div>
     </h2>
   );
 }
@@ -34,17 +37,23 @@ export function Entry({
   id,
   path,
 }: {
-  data: { slug: string; entry: { title: string; author: string } };
+  data: {
+    slug: string;
+    entry: { title: string; author: string; status: string };
+  };
   id: string;
   path: string;
 }) {
+  const colors = getStatusColors(data.entry.status);
   return (
     <li className="my-2">
       <a
         href={`${path}${data.slug}`}
         className="group -mx-1 my-2 block rounded-lg p-1 hover:bg-slate-900"
       >
-        <span className="mr-2 inline-block rounded border border-slate-800 bg-slate-900 px-2 py-1 text-sm font-bold group-hover:border-slate-600">
+        <span
+          className={`mr-2 inline-block w-14 rounded border bg-slate-900 py-1 text-center text-sm font-bold ${colors.border} ${colors.text}`}
+        >
           {id}
         </span>{' '}
         <strong className="mr-1 font-semibold">{data.entry.title}</strong>{' '}

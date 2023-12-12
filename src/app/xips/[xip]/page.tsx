@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
-import { Properties, Renderer } from '@/components/Document';
+import { ID, Properties, Renderer } from '@/components/Document';
 import { Header } from '@/components/Header';
 import { Back, PageContainer, PageTitle } from '@/components/UI';
 import { reader } from '@/lib/reader';
-import { number } from '@/lib/util';
+import { getStatusColors, number } from '@/lib/util';
 import keystatic from '@/../keystatic.config';
 
 type Params = {
@@ -26,6 +26,7 @@ export default async function Page({ params }: { params: Params }) {
   });
 
   if (!xip) return notFound();
+  const colors = getStatusColors(xip.status);
 
   return (
     <PageContainer>
@@ -33,11 +34,7 @@ export default async function Page({ params }: { params: Params }) {
       <div className="my-8 flex border-t border-slate-800">
         <Back href="/">Back to all XIPs</Back>
       </div>
-      <div className="mb-4">
-        <div className="inline-block rounded-md border border-slate-700 px-4 py-1 text-sm font-bold">
-          XIP-{number(xip.xip!)}
-        </div>
-      </div>
+      <ID status={xip.status}>XIP-{number(xip.xip!)}</ID>
       <PageTitle>{xip.title}</PageTitle>
       <Properties fields={fields} data={xip} />
       <Renderer document={xip.content} />
