@@ -54,9 +54,15 @@ function Nav({ currentPage }: { currentPage: CurrentPage }) {
   );
 }
 
-export function Header({ currentPage }: { currentPage: CurrentPage }) {
+export function Header({
+  currentPage,
+  className,
+}: {
+  currentPage: CurrentPage;
+  className?: string;
+}) {
   return (
-    <div className="mb-16 flex items-center justify-between">
+    <div className={`flex items-center justify-between ${className}`}>
       <div className="flex items-center gap-6">
         <InfinexLogo className="w-36" />
         <div className="text-xl text-slate-600">/</div>

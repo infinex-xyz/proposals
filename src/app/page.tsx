@@ -2,6 +2,7 @@ import { Status, Entry } from '@/components/Entries';
 import { Header } from '@/components/Header';
 import { PageContainer, PageIntro, PageTitle } from '@/components/UI';
 import { reader } from '@/lib/reader';
+import { number } from '@/lib/util';
 import keystatic from '@/../keystatic.config';
 
 const statuses = keystatic.collections.xips.schema.status.options;
@@ -15,7 +16,7 @@ export default async function Home() {
 
   return (
     <PageContainer>
-      <Header currentPage="XIPs" />
+      <Header currentPage="XIPs" className="mb-16" />
       <PageTitle>Infinex Improvement Proposals</PageTitle>
       <PageIntro>
         XIPs are the primary mechanism for suggesting new features, collecting
@@ -35,9 +36,7 @@ export default async function Home() {
                   key={e.slug}
                   data={e}
                   path="/xips/"
-                  id={`XIP-${
-                    [0, 9999].includes(e.entry.xip!) ? 'X' : e.entry.xip
-                  }`}
+                  id={`XIP-${number(e.entry.xip!)}`}
                 />
               ))}
             </ul>

@@ -3,6 +3,7 @@ import { Header } from '@/components/Header';
 import { PageContainer, PageIntro, PageTitle } from '@/components/UI';
 import { reader } from '@/lib/reader';
 import keystatic from '@/../keystatic.config';
+import { number } from '@/lib/util';
 
 const statuses = keystatic.collections.irs.schema.status.options;
 
@@ -15,7 +16,7 @@ export default async function IRs() {
 
   return (
     <PageContainer>
-      <Header currentPage="IRs" />
+      <Header currentPage="IRs" className="mb-16" />
       <PageTitle>Infinex Referendums</PageTitle>
       <PageIntro>
         IRs are the mechanism for how meta-governance changes are made to the
@@ -34,9 +35,7 @@ export default async function IRs() {
                   key={e.slug}
                   data={e}
                   path="/irs/"
-                  id={`IR-${
-                    [0, 9999].includes(e.entry.ir!) ? 'X' : e.entry.ir
-                  }`}
+                  id={`IR-${number(e.entry.ir!)}`}
                 />
               ))}
             </ul>
