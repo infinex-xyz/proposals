@@ -288,62 +288,6 @@ The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled
 
 Since any changes will be automatically pulled, high risk settings such as the Circle bridge address require the user to sign a transaction to pull the new changes to their account. The decision framework used to make this was ensuring that all variables that impact withdrawals require actions on both the user and the council to update. So even if the council votes to increases trading fees to 100%, users can still withdraw their funds without being impacted.
 
-Here are the parameters controlled by the `Infinex Protocol Config Beacon` along with the potential risks if they are changed maliciously:
-
-{% table %}
-- Parameter
-- Description
-- Risks
----
-- trustedForwarder
-- The address of the trusted forwarder for ERC2771
-- A malicious trusted forwarder could spoof any transactions requiring an active browser key.
----
-- latestAccountImplementation
-- The address of the latest implementation for the trading account
-- A malicious account implementation can trick users into giving up their funds. This requires users to actively opt in and approve an upgrade to the malicious implementation.
----
-- initialProxyImplementation
-- The address of the initial proxy implementation when an account is first created.
-- Could be a vector of attack if it contains malicious code.
----
-- revenuePool
-- The address where revenue from withdrawal fees and Synthetix referral fees are sent. This should be a multisig.
-- If hijacked, would receive the non trading fee revenue from the protocol.
----
-- tradingFeePool
-- The address where trading fees are sent.
-- If hijacked would receive all trading fees.
----
-- defaultTradingFees
-- A mapping of trading fees that are standard across all users. It sets maker and taker fees for each synthetix market. Fees are measured in bps.
-- This could be changed to be extremely high, making trades cost up to near infinitely more.
----
-- userSpecificTradingFees
-- A mapping of trading fees that are specific to individual users.
-- This could be changed to be extremely high, making trades cost up to near infinitely more.
----
-- userSpecificTradingFeesSet
-- A mapping of boolean flags for whether a user has non-default trading fees.
-- This could be changed to be extremely high, making trades cost up to near infinitely more.
----
-- withdrawalFee
-- The withdrawal fee amount processed on every withdrawal to both L1 and L2. This is given in 18 decimals.
-- There is a max limit of $50 hard coded into the trading account so that is the max it could be set to.
----
-- circleBridge
-- The address of the circle bridge on this chain.
-- If this points to a malicious contract, customers funds would be stolen on each withdrawal
----
-- circleBridgeDestinationDomain
-- The chain domain ID for each supported target chain for bridging
-- If this is changed to an invalid domain, withdrawals to L1 can't be processed
----
-- circleBridgeUSDCTokenAddress
-- The USDC address for the local chain.
-- If this is changed to a different address, withdrawals to L1 can't be processed
-{% /table %}
-
 # Copyright
 
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
