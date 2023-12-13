@@ -67,6 +67,7 @@ export default config({
             { label: 'Rejected', value: 'Rejected' },
             { label: 'Feasibility', value: 'Feasibility' },
             { label: 'IC Review Pending', value: 'IC Review Pending' },
+            { label: 'Vote Pending', value: 'Vote Pending' },
           ],
         }),
         created: fields.date({ label: 'Created' }),
