@@ -1,3 +1,14 @@
+const authorRegExp = /(.+)\(@([\w\-]+)\)/;
+
+export function splitAuthors(authors: string) {
+  return authors.split(',').map((author) => {
+    const parts = authorRegExp.exec(author);
+    return parts
+      ? { name: parts[1].trim(), handle: parts[2].trim() }
+      : { name: author.trim() };
+  });
+}
+
 export function number(num: number) {
   return [0, 9999].includes(num) ? 'X' : num;
 }

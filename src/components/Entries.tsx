@@ -1,4 +1,4 @@
-import { getStatusColors } from '@/lib/util';
+import { getStatusColors, splitAuthors } from '@/lib/util';
 
 export function Status({
   status,
@@ -19,13 +19,11 @@ export function Status({
 }
 
 function Authors({ authors }: { authors: string }) {
-  const list = [...authors.matchAll(/(\w+)\s*\((@\w+)\)/g)].filter(
-    (i) => i.length === 3,
-  );
-  return list.map(([, name], i) => {
+  const list = splitAuthors(authors);
+  return list.map((author, i) => {
     return (
       <span key={i}>
-        <span className="text-slate-400">{name}</span>
+        <span className="text-slate-400">{author.name}</span>
         {i < list.length - 1 ? ', ' : ''}
       </span>
     );

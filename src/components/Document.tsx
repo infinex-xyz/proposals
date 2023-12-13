@@ -2,7 +2,7 @@ import {
   DocumentRenderer,
   DocumentRendererProps,
 } from '@keystatic/core/renderer';
-import { getStatusColors } from '@/lib/util';
+import { getStatusColors, splitAuthors } from '@/lib/util';
 
 export function Renderer({
   document,
@@ -15,6 +15,28 @@ export function Renderer({
 }
 
 const hiddenFields = ['content', 'title', 'xip', 'ir'];
+
+function Authors({ authors }: { authors: string }) {
+  const list = splitAuthors(authors);
+  return list.map((author, i) => {
+    return (
+      <span key={i}>
+        {author.handle ? (
+          <a
+            href={`https://github.com/${author.handle}`}
+            className="text-slate-200 underline hover:text-slate-50"
+            target="_blank"
+          >
+            {author.name}
+          </a>
+        ) : (
+          <span className="text-slate-200">{author.name}</span>
+        )}
+        {i < list.length - 1 ? ', ' : ''}
+      </span>
+    );
+  });
+}
 
 export function Properties({ fields, data }: { fields: string[]; data: any }) {
   return (
@@ -29,7 +51,9 @@ export function Properties({ fields, data }: { fields: string[]; data: any }) {
               className="border-t border-t-slate-800 text-sm first:border-t-0"
             >
               <td className="py-2 capitalize text-slate-400">{key}</td>
-              <td className="py-2 text-slate-100">{value}</td>
+              <td className="py-2 text-slate-200">
+                {key === 'author' ? <Authors authors={value} /> : value}
+              </td>
             </tr>
           );
         })}
