@@ -1,0 +1,68 @@
+---
+title: Upgradable Proxy Architecture
+xip: 8
+author: ClΞm (0xclem), Ray Zhu (@rayzhudev)
+type: core-upgrade
+network: Ethereum & Base
+status: Draft
+created: '2023-12-13'
+updated: '2023-12-13'
+---
+# Proposal Summary
+
+This XIP proposes an upgradable proxy architecture for upgradable Infinex smart contracts.
+
+# Specification
+
+## Rationale
+
+Upgradable contracts are necessary in order to keep adding new functionality to the existing Infinex accounts. However, making contracts upgradable loses some of the security of immutable contracts. This proxy architecture aims to strike a good balance between the two, allowing contracts to be upgraded but also giving users the choice to not upgrade.
+
+## Technical Specification
+
+### Proxy Architecture
+
+The proxy architecture of Infinex requires that the user has complete control over their accounts and funds. To achieve this, this XIP proposes an architecture where the factories can be upgraded, but the accounts themselves are not upgradable without explicit approval from the user via their browser key signature (for context on browser keys, see XIP-2).
+
+![](/assets/xips/xip-8/XIP%20Proxy.png)
+
+**Context and requirements**
+
+There are two types of accounts a factory can create:
+
+- Deposit account - on L1, for a user to deposit funds, which are then bridged over to L2.
+- Trading account - on L2, the wallet which receives the bridged funds, and interacts with Synthetix to deposit margin, place trades…etc.
+
+In order to have a better UX, both accounts need to have the same addresses on L1 and L2. This can only be done using CREATE2 to have deployments using pre-deterministic addresses, and if some specific rules are respected:
+
+- The deployers (the factories) should have the same address.
+- The account contracts created by the factories should be identical (same bytecode).
+
+On top of these requirements, both factory and account contracts should be sitting behind a proxy so their implementation logic can be upgraded by either the owner or the browser key holder.
+
+**Account Factory contracts**
+
+The contract **`AccountFactory.sol`** is used on both networks and is controlled through a Synthetix proxy called **`UUPSProxyOwned.sol`**. This proxy combines features from the *UUPS* and *OwnableUpgradeable* systems by OpenZeppelin.
+
+The contract has a special rule: it requires any implementation it uses to have an **`upgradeTo(address)`** function. This is important for making sure the contract can be updated when needed. Whenever **`upgradeTo`** is used, a test is run to ensure this function is present and works correctly. This helps prevent problems with the contract's ability to update due to a faulty **`upgradeTo`** function.
+
+Both factory contracts and their proxies are deployed using *CREATE2* to ensure their address is identical on both chains.
+
+**Account Implementation contracts**
+
+Both Trading and Deposit account contracts inherit from the same **`AccountImplementationBase.sol`**. This contract implements most of the logic related to security and bridging. Since both these implementations are quite different, they don’t have the same bytecode. Deploying them using *CREATE2* won’t work unless they use proxies with identical addresses.
+
+The Synthetix’ *UUPS* proxy is used here, which works the same as **`UUPSProxyOwned.sol`**, except it’s not owned. Only the user (*browser key* holder) will be able to call the **`upgradeTo(address)`** function, leaving the choice to wallet owners to upgrade their wallet implementation logic or not.
+
+When a factory contract creates an account, a few steps are involved:
+
+1. *CREATE2* is called to create the proxy of an account, passing a blank implementation **`InitialProxyImplementation.sol`** in the constructor first. This step is necessary to ensure the call is identical on both chains so the generated addresses are identical.
+1. Once created, the proxy’s implementation is instantly swapped with the account’s implementation.
+1. The account implementation’s **`initialize`** function is called.
+1. The account is created and ready to use.
+
+***Note:*** Both account implementations use a custom version of **`UUPSImplementation`**, named **`UUPSProxyImplementation`**, which modifies the **`_upgradeTo`** internal function. The key change here is eliminating the simulation step that typically tests a new implementation's upgrade function. This change is crucial because running this function on an implementation that hasn't been initialized yet causes issues – any modifiers and checks in an account's **`upgradeTo`** function will fail. Therefore, creating this custom version was essential to bypass these complications.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
