@@ -1,11 +1,21 @@
 import Link from 'next/link';
 
-import { ArrowLeftIcon } from './Icons';
+import { ArrowLeftIcon, GitHubOutlineIcon } from './Icons';
 
 export function PageContainer({ children }: { children: React.ReactNode }) {
   return (
     <main className="flex min-h-screen flex-col items-center p-12">
       <div className="flex w-full max-w-4xl flex-col">{children}</div>
+      <div className="mt-8 flex w-full max-w-4xl justify-around border-t border-t-slate-800 py-8">
+        <a
+          className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-50"
+          href="https://github.com/infinex-io/proposals"
+          target="_blank"
+        >
+          <GitHubOutlineIcon />
+          Contribute to Proposals on GitHub
+        </a>
+      </div>
     </main>
   );
 }
