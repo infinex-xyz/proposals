@@ -1,0 +1,349 @@
+---
+title: Infinex Accounts
+xip: 7
+author: Ray Zhu (@rayzhudev)
+type: core-upgrade
+network: Ethereum & Base
+status: Draft
+created: '2023-12-13'
+updated: '2023-12-13'
+---
+# Proposal Summary
+
+XIP-7 outlines the proposed implementation for Infinex accounts on L1 and L2. If passed, the code will be approved to deploy for the alpha launch.
+
+# Specification
+
+## Overview
+
+XIP-7 proposes the following:
+
+1. The introduction of deposit and trading accounts
+1. Relayer mechanism
+1. The security key permissions
+1. The mechanism for taking trading fees
+1. The mechanism for taking withdrawal fees
+1. The global configuration beacon
+
+*Note*: For the purposes of this XIP, L1 refers to Ethereum mainnet, and L2 refers to Base.
+
+The specification for the upgradable proxy architecture will be detailed in a future XIP.
+
+## Rationale
+
+Infinex aims to combine the ease of use of centralised exchanges with the composability and security of Defi. To achieve this, several features are required:
+
+- Gasless transactions
+- Security requirements for different types of transactions
+- Ability to trade using Synthetix V3
+- Extensibility to add new features
+
+Since the smart accounts are intended to be deployed for the Infinex alpha launch, the scope has been kept narrow. Future upgrades to the smart accounts will require new XIPs to be created.
+
+## Technical Specification
+
+### Deposit and Trading accounts
+
+There are two different types of on-chain accounts an Infinex user will need to use Infinex: deposit accounts and trading accounts. This proposal suggests deposit accounts are deployed on Ethereum, and trading accounts are deployed on Base.
+
+The combination of a deposit account and a trading account controlled by a single user make up an *Infinex Account.*
+
+***Deposit accounts***
+
+On mainnet Ethereum, a user will have a deposit account through which they can deposit funds that will be bridged to their trading account on Base. The cross-chain bridging mechanism is outlined in XIP-4.
+
+***Trading accounts***
+
+On Base, users will have a trading account through which they can trade perpetual futures on Synthetix V3.
+
+***Account creation***
+
+Both deposit and trading accounts will share the same address on L1 and L2, giving the user a single, chain-agnostic address tied to their Infinex Account. Addresses for accounts are predicted using `create2`, and are only created once a user deposits funds into them.
+
+When an account is created, it is initialised with three security keys: a browser key, an MFA key, and a recovery key. These keys can all be standard Ethereum wallets. The accounts will store the public key of the wallet. The private key is stored in the respective location mentioned in XIP-2, and will be used to sign transactions to execute account functions (like trading, and withdrawing)
+
+### Relayer mechanism
+
+In order to allow transactions to be sent by the user without paying for gas, a relayer is used. The relayer passes transactions through to a `ERC2771Forwarder` contract which allows transactions to be made to the Infinex accounts. The relayer can be run by anyone and will pay for the gas of users transactions. To authenticate the user, the relayed messages must be signed by one or more of the users' keys, to be validated in their trading account contract.
+
+The `ERC2771Forwarder` contract follows the [ERC2771 standard](https://eips.ethereum.org/EIPS/eip-2771) which allows for third parties to act as relayers for transactions as well. This standard was adhered to closely to allow for third party relayers as a feature or by user choice.
+
+### Account actions and security requirements
+
+The following tables specify the actions which require security keys in the Infinex accounts, and for exclusively the trading account.
+
+**Infinex Accounts**
+
+{% table %}
+- Function Name
+- Description
+- Required Permissions
+---
+- Upgrade to
+- Upgrades to a new implementation
+- Active browser key
+---
+- Add browser key
+- Adds an active browser
+- Recovery key + active browser key
+---
+- Add browser key with delay
+- Recovers the account by adding a new browser key after a 7 day delay period
+- Recovery key
+---
+- Remove browser key
+- Removes an active browser key. Can be called on self in cases of compromised keys.
+- Active Browser key
+---
+- Activate browser key
+- Activates an inactive browser key and removes it from inactive browser keys
+- Active browser key
+---
+- Reject recover browser key
+- Removes an inactive browser key
+- Active Browser key
+---
+- Set MFA key status with MFA key
+- Add or remove an mfa key. Can’t remove the last remaining key
+- MFA key + active browser key
+---
+- Set MFA key status with recovery key
+- Add or remove an mfa key. Can’t remove the last remaining key
+- Recovery key + active browser key
+---
+- Set recovery key status with MFA key
+- Add or remove a recovery key. Can’t remove the last remaining key
+- MFA key + active browser key
+---
+- Set recovery key status with recovery key
+- Add or remove a recovery key. Can’t remove the last remaining key
+- Recovery key + active browser key
+---
+- Set emergency withdrawal address
+- Adds or removes a withdrawal address that can only be used to withdraw to itself
+- MFA key + active browser key
+---
+- Set allowlisted withdrawal address
+- Adds or removes an address to the allow list
+- MFA key + active browser key
+---
+- Update circle bridge params
+- Pulls the latest information required for bridging via circle from the protocol config beacon
+- Active browser key
+{% /table %}
+
+**Trading account**
+
+{% table %}
+- Function name
+- Description
+- Required Permissions
+---
+- Withdraw (Regular)
+- Withdraws to the target address
+- MFA key + active browser key
+---
+- Withdraw (Emergency)
+- Withdraws to the msg sender if they are a valid emergency wallet
+- Signature from emergency wallet
+---
+- Withdraw (Allowlisted)
+- Withdraws to an existing allow listed address
+- Active Browser key
+---
+- Withdraw to L1 (Regular)
+- Withdraws to the target address
+- MFA key + active browser key
+---
+- Withdraw to L1 (Emergency)
+- Withdraws to the msg sender if they are a valid emergency wallet
+- Signature from emergency wallet
+---
+- Withdraw funds (Allowlisted)
+- Withdraws to an existing allow listed address
+- Active Browser key
+---
+- Modify collateral
+- Add or remove margin to use in Synthetix
+- Active or Inactive Browser key
+---
+- Execute trade
+- Execute a perps trade in Synthetix V3
+- Active or Inactive Browser key
+{% /table %}
+
+As per XIP-2, the `recoveryDelay` period has been set to 7 days. This is hardcoded and requires an account upgrade to be changed. Active browser keys are all browser keys that are in use. Inactive browser keys are browser keys that are currently going through the recovery delay period. An inactive browser key shouldn’t be able to do anything besides trade and modify collateral.
+
+### Trading fees
+
+The trading account provides the option to take trading fees on top of the fees that Synthetix V3 already takes. Fees will be controlled by the Infinex council multisig via a separate contract called `InfinexProtocolConfigBeacon`. The details of how they're controlled is specified in Here's an example of how the fees would be calculated.
+
+Suppose that the Synthetix fee structure looks like this.
+
+{% table %}
+- Market
+- SNX maker fee (bps)
+- SNX taker fee (bps)
+---
+- BTC
+- 2
+- 6
+---
+- ETH
+- 2
+- 6
+---
+- ATOM
+- 4
+- 8
+{% /table %}
+
+Infinex can charge incremental fees on top of these. For example:
+
+{% table %}
+- Market
+- Maker fee (bps)
+- Taker fee (bps)
+- Incremental maker fee
+- Incremental taker fee
+- Total maker fee paid by user
+- Total taker fee paid by user
+---
+- BTC
+- 2
+- 6
+- 5
+- 1
+- 7 (2 + 5)
+- 7 (6 + 1)
+---
+- ETH
+- 2
+- 6
+- 5
+- 1
+- 7 (2 + 5)
+- 7 (6 + 1)
+---
+- ATOM
+- 4
+- 8
+- 6
+- 2
+- 10 (4 + 6)
+- 10 (8 + 2)
+{% /table %}
+
+They need to be set out in a global fee structure that will look something like this:
+
+{% table %}
+- Market
+- Incremental maker fee
+- Incremental taker fee
+---
+- BTC
+- 5
+- 1
+---
+- ETH
+- 5
+- 1
+---
+- ATOM
+- 6
+- 2
+{% /table %}
+
+***Non-default fees for VIP users***
+
+The Infinex council will have the ability to change this ‘feeType’ for certain VIP users to incentivise volume. For example:
+
+{% table %}
+- Market
+- Incremental maker fee
+- Incremental taker fee
+---
+- BTC
+- 0
+- 0
+---
+- ETH
+- 0
+- 0
+---
+- ATOM
+- 0
+- 0
+{% /table %}
+
+### Withdrawal fees
+
+Fees are taken on all withdrawals to both L1 and L2 addresses. Withdrawals to an L2 address can only take place on the same chain. Fees are taken at the moment of withdrawal, resulting in the amount withdrawn equalling the amount minus the withdrawal fee. Withdrawal fees are a flat fee denominated in USD.
+
+Withdrawal fees are immutably capped at a max of $50 in the trading account to prevent the council from increasing fees to an unreasonable amount and locking users funds.
+
+### Infinex Protocol Config Beacon
+
+The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled by the Infinex Council. Changing existing variables don't require the contract to be upgraded, and any upgrades will be automatically pulled by the Infinex accounts.
+
+Since any changes will be automatically pulled, high risk settings such as the Circle bridge address require the user to sign a transaction to pull the new changes to their account. The decision framework used to make this was ensuring that all variables that impact withdrawals require actions on both the user and the council to update. So even if the council votes to increases trading fees to 100%, users can still withdraw their funds without being impacted.
+
+Here are the parameters controlled by the `Infinex Protocol Config Beacon` along with the potential risks if they are changed maliciously:
+
+{% table %}
+- Parameter
+- Description
+- Risks
+---
+- trustedForwarder
+- The address of the trusted forwarder for ERC2771
+- A malicious trusted forwarder could spoof any transactions requiring an active browser key.
+---
+- latestAccountImplementation
+- The address of the latest implementation for the trading account
+- A malicious account implementation can trick users into giving up their funds. This requires users to actively opt in and approve an upgrade to the malicious implementation.
+---
+- initialProxyImplementation
+- The address of the initial proxy implementation when an account is first created.
+- Could be a vector of attack if it contains malicious code.
+---
+- revenuePool
+- The address where revenue from withdrawal fees and Synthetix referral fees are sent. This should be a multisig.
+- If hijacked, would receive the non trading fee revenue from the protocol.
+---
+- tradingFeePool
+- The address where trading fees are sent.
+- If hijacked would receive all trading fees.
+---
+- defaultTradingFees
+- A mapping of trading fees that are standard across all users. It sets maker and taker fees for each synthetix market. Fees are measured in bps.
+- This could be changed to be extremely high, making trades cost up to near infinitely more.
+---
+- userSpecificTradingFees
+- A mapping of trading fees that are specific to individual users.
+- This could be changed to be extremely high, making trades cost up to near infinitely more.
+---
+- userSpecificTradingFeesSet
+- A mapping of boolean flags for whether a user has non-default trading fees.
+- This could be changed to be extremely high, making trades cost up to near infinitely more.
+---
+- withdrawalFee
+- The withdrawal fee amount processed on every withdrawal to both L1 and L2. This is given in 18 decimals.
+- There is a max limit of $50 hard coded into the trading account so that is the max it could be set to.
+---
+- circleBridge
+- The address of the circle bridge on this chain.
+- If this points to a malicious contract, customers funds would be stolen on each withdrawal
+---
+- circleBridgeDestinationDomain
+- The chain domain ID for each supported target chain for bridging
+- If this is changed to an invalid domain, withdrawals to L1 can't be processed
+---
+- circleBridgeUSDCTokenAddress
+- The USDC address for the local chain.
+- If this is changed to a different address, withdrawals to L1 can't be processed
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
