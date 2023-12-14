@@ -46,7 +46,7 @@ Since the smart accounts are intended to be deployed for the Infinex alpha launc
 
 There are two different types of on-chain accounts an Infinex user will need to use Infinex: deposit accounts and trading accounts. This proposal suggests deposit accounts are deployed on Ethereum, and trading accounts are deployed on Base.
 
-The combination of a deposit account and a trading account controlled by a single user make up an *Infinex Account.*
+The combination of a deposit account and a trading account controlled by a single user make up an *Infinex Account*.
 
 ***Deposit accounts***
 
@@ -284,9 +284,76 @@ Withdrawal fees are immutably capped at a max of $50 in the trading account to p
 
 ### Infinex Protocol Config Beacon
 
-The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled by the Infinex Council. Changing existing variables don't require the contract to be upgraded, and any upgrades will be automatically pulled by the Infinex accounts.
+The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled by the Infinex Council. Changing existing variables don't require the contract to be upgraded, and any upgrades will be automatically pulled by the Infinex accounts.  Every variable can only be changed through a council vote, leaving users vulnerable to malicious upgrades by the council, or if a majority of the council's keys are compromised. 
 
-Since any changes will be automatically pulled, high risk settings such as the Circle bridge address require the user to sign a transaction to pull the new changes to their account. The decision framework used to make this was ensuring that all variables that impact withdrawals require actions on both the user and the council to update. So even if the council votes to increases trading fees to 100%, users can still withdraw their funds without being impacted.
+Changes to critical settings require user opt-in in addition to council approval. This ensures that users still have a safe guard from malicious changes. In this case, critical settings are those impacting withdrawals. Settings like trading fees can be controlled without an individual user's approval, but the option to withdraw is always available to the individual. 
+
+Here are the variables set by the `Infinex Protocol Config Beacon` along with the potential risks if they are changed maliciously:
+The exact values of each variable will be determined in a future XIP.
+
+{% table %}
+- Parameter
+- Description
+- Requires user opt in
+- Risks
+---
+- latestAccountImplementation
+- The address of the latest implementation for the trading account
+- Yes
+- This variable is usually set to the latest version of the trading accounts in order to release new features to users. If set to an account implementation that has malicious code, it can extract funds from users. This requires users to sign a transaction with their browser key to upgrade to the malicious implementation.
+---
+- initialProxyImplementation
+- The address of the initial proxy implementation when an account is first created.
+- N/A (user doesn't have an account at this point)
+- If this is set to a malicious contract, all new accounts could be created with a malicious account implementation. Resulting in users losing their funds with any action they take. This will not impact existing accounts.
+---
+- revenuePool
+- The address where revenue from withdrawal fees and Synthetix referral fees are sent. This should be a multisig.
+- No
+- If this variable is changed, an attacker could set the revenue pool address to their own and receive all non trading fee revenue from the protocol. 
+---
+- tradingFeePool
+- The address where trading fees are sent.
+- No
+- If this variable is changed, an attacker could set the trading fee pool address to their own and receive all Infinex trading fees.
+---
+- defaultTradingFees
+- A mapping of trading fees that are standard across all users. It sets maker and taker fees for each synthetix market. Fees are measured in bps.
+- No
+- This could be changed to be extremely high, making trades cost up to near infinitely more, effectively resulting in losing the total margin when placing a trade.
+---
+- userSpecificTradingFees
+- A mapping of trading fees that are specific to individual users.
+- No
+- This could be changed to be extremely high, making trades cost up to near infinitely more, effectively resulting in losing the total margin when placing a trade.
+---
+- userSpecificTradingFeesSet
+- A mapping of boolean flags for whether a user has non-default trading fees.
+- No
+- This could be changed to be extremely high, making trades cost up to near infinitely more, effectively resulting in losing the total margin when placing a trade.
+---
+- withdrawalFee
+- The withdrawal fee amount processed on every withdrawal to both L1 and L2. This is given in 18 decimals.
+- Yes
+- There is a max limit of $50 hard coded into the trading account so that is the max it could be set to. The council can make any changes to the withdrawal fee up until the cap. It would require the user to upgrade their account to an implementation that removes this hard cap in order to take exorbitant fees.
+---
+- circleBridge
+- The address of the circle bridge on this chain.
+- Yes
+- The account contract approves spending by the circleBridge contract, if this is pointed to a malicious wallet or contract, it could steal user funds that are deposited, and steal user funds when a withdraw is attempted.
+---
+- circleBridgeDestinationDomain
+- The chain domain ID for each supported target chain for bridging
+- Yes
+- This controls which target chains funds are redeemable on. If this is changed to an invalid domain, several things could happen depending on the value. Either withdrawals won't be able to processed, or funds will get sent to a different chain. If sent to an EVM chain, the user still has access to those funds but they'll just be on a different chain than intended e.g. Optimism instead of L1. If sent to a non-EVM chain, the withdrawal won't be processed.
+---
+- circleBridgeUSDCTokenAddress
+- The USDC address for the local chain.
+- Yes
+- If this is changed to a different address, withdrawals to L1 can't be processed
+{% /table %}
+
+To summarise, the `Infinex Protocol Config Beacon` has access to sensitive variables which the council has control over. If the council approves changes to the beacon either by going rogue or through having their keys stolen, significant damage can be done to the Infinex protocol. Any new actions that take place after the config beacon has been taken over can result in the loss of some or all of a user's funds. It is fairly safe to assume that an attacker will be able to take all of a users' funds if they are able to control the config beacon. What is assured is that no funds can be stolen unless the user performs an action. They will always be able to withdraw the full amount of their funds (-$50) if malicious actions are taken by the council. 
 
 # Copyright
 
