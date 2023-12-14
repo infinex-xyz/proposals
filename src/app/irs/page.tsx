@@ -35,7 +35,7 @@ export default async function IRs() {
                   key={e.slug}
                   data={e}
                   path="/irs/"
-                  id={`IR-${number(e.entry.ir!)}`}
+                  id={`IR-${number(e.entry.id!)}`}
                 />
               ))}
             </ul>

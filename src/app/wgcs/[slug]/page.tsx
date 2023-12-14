@@ -29,9 +29,9 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <PageContainer>
-      <Header currentPage="XIPs" />
+      <Header currentPage="WGCs" />
       <div className="my-8 flex border-t border-slate-800">
-        <Back href="/entrys">Back to all WGCs</Back>
+        <Back href="/wgcs">Back to all WGCs</Back>
       </div>
       <ID status={entry.status}>WGC-{number(entry.id!)}</ID>
       <PageTitle>{entry.title}</PageTitle>

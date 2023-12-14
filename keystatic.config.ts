@@ -25,8 +25,9 @@ export default config({
           label: 'Filename',
           validation: { length: { min: 1 } },
         }),
-        xip: fields.integer({
+        id: fields.integer({
           label: 'XIP Number',
+          description: 'The ID of this proposal',
         }),
         author: fields.text({
           label: 'Author(s)',
@@ -100,8 +101,9 @@ export default config({
           label: 'Filename',
           validation: { length: { min: 1 } },
         }),
-        ir: fields.integer({
+        id: fields.integer({
           label: 'IR Number',
+          description: 'The ID of this proposal',
         }),
         author: fields.text({
           label: 'Author(s)',

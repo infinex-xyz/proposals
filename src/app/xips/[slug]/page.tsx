@@ -7,7 +7,7 @@ import { getStatusColors, number } from '@/lib/util';
 import keystatic from '@/../keystatic.config';
 
 type Params = {
-  xip: string;
+  slug: string;
 };
 
 const schema = keystatic.collections.xips.schema;
@@ -16,12 +16,12 @@ const fields = Object.keys(schema);
 export async function generateStaticParams(): Promise<Params[]> {
   const topics = await reader.collections.xips.all();
   return topics.map((xip) => ({
-    xip: xip.slug,
+    slug: xip.slug,
   }));
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const xip = await reader.collections.xips.read(params.xip, {
+  const xip = await reader.collections.xips.read(params.slug, {
     resolveLinkedFiles: true,
   });
 
@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: Params }) {
       <div className="my-8 flex border-t border-slate-800">
         <Back href="/">Back to all XIPs</Back>
       </div>
-      <ID status={xip.status}>XIP-{number(xip.xip!)}</ID>
+      <ID status={xip.status}>XIP-{number(xip.id!)}</ID>
       <PageTitle>{xip.title}</PageTitle>
       <Properties fields={fields} data={xip} />
       <Renderer document={xip.content} />
