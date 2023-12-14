@@ -5,10 +5,10 @@ import { reader } from '@/lib/reader';
 import keystatic from '@/../keystatic.config';
 import { number } from '@/lib/util';
 
-const statuses = keystatic.collections.wgcs.schema.status.options;
+const statuses = keystatic.collections.rcs.schema.status.options;
 
 export default async function Page() {
-  const entries = await reader.collections.wgcs.all();
+  const entries = await reader.collections.rcs.all();
   const byStatus = statuses.map((status) => {
     const matches = entries.filter((i) => i?.entry.status === status.value);
     return matches.length ? { status, entries: matches } : null;
@@ -16,12 +16,11 @@ export default async function Page() {
 
   return (
     <PageContainer>
-      <Header currentPage="WGCs" className="mb-16" />
-      <PageTitle>Working Group Charters</PageTitle>
+      <Header currentPage="RCs" className="mb-16" />
+      <PageTitle>Release Candidates</PageTitle>
       <PageIntro>
-        WGCs are a documentation type that outlines the establishment of a
-        working group, defines its outcomes, and aligns expectations between the
-        working group and the council.
+        RCs are an alternative method in which only approved working groups are
+        able to bundle proposed changes for approval by the council.
       </PageIntro>
 
       {byStatus.map((i) => {
@@ -35,8 +34,8 @@ export default async function Page() {
                 <Entry
                   key={e.slug}
                   data={e}
-                  path="/wgcs/"
-                  id={`WGC-${number(e.entry.id!)}`}
+                  path="/rcs/"
+                  id={`RC-${number(e.entry.id!)}`}
                 />
               ))}
             </ul>

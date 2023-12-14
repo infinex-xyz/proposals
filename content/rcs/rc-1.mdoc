@@ -1,0 +1,143 @@
+---
+title: RC Purpose & Guidelines
+id: 1
+author: kmao (@kmaox), Jed (@jedwatson), Kain (@kaiynne)
+status: Draft
+released: '2023-12-15'
+---
+## What is a Release Candidate?
+
+A Release Candidate (RC) is a document that outlines a bundle of proposed changes for approval by the Infinex Council. An RC can only be written by an established Working Group (WG), and each WG has a set cadence of RCs they need to follow.
+
+## RC Rationale
+
+Infinex's initial governance structure was forked from Synthetix and thus established XIPs as the sole method to approve and implement changes to the protocol. After further developments, various issues have arisen. These are:
+
+- The lack of independence granted to WGs, and additional cumbersome processes for the council.
+- Governance overhead and inefficiencies with XIPs, especially for smaller upgrades.
+- The wide and consistent range of protocol updates makes it impossible to document effectively with XIPs.
+
+In addition to the protocol (which refers to the smart contracts of Infinex), the scope of Infinex also includes the app (front-end code that runs in the user's browser) and platform (back-end code and databases) which have subtly different requirements and processes for release, migration, and rollback.
+
+The introduction of RCs is designed to resolve these issues, allowing for easier approval processes for upgrades and changes to Infinex, while ensuring that the Infinex Council is the sole decision-making body for all protocol, app and platform code changes.
+
+The following implementations are proposed:
+
+1. The introduction of Release Candidates as an alternative approval process for less critical items that do not require a XIP. Release candidates can only be written by WGs.
+1. The need for RCs by WGs on a timely basis, with their cadence specified by the WG's Charter.
+1. The ability to post emergency RCs, which can be voted on outside the specified cadence of RCs, at the discretion of the council and the working groups.
+
+## RC Workflow
+
+Only a member of an established Working Group can submit a Release Candidate. Release candidates will be posted publicly via the Infinex Proposals website, but do not require a public presentation within the community before the council can approve them. It is up to the council and WG's discretion to communicate the proposed changes internally for approval by the council.
+
+The RC workflow comprises three main stages.
+
+###### 1. Draft
+
+Every RC will begin as a `Draft`. It must then meet specific formatting criteria (largely, correct metadata in the header and structure), and be approved by the Proposals Editor before it can be proposed to the Infinex Council.
+
+###### 2. Voting
+
+Once a `Draft` is believed to be mature enough and ready to progress, it will move into `Vote Pending`.
+
+###### 3. Approval
+
+RCs will be voted on by the Infinex Council (`Vote Pending`) for five days and will be passed with a majority vote. Approved RCs are then moved to `Approved` and then `Implemented` once Implemented. Otherwise, it is `Rejected`.
+
+## RC status terms
+
+- **Draft** – The initial state of a new RC before the Infinex Council has formally assessed it.
+- **Vote Pending** – an RC that is awaiting a vote.
+- **Approved** – an RC that has successfully reached a majority Infinex Council vote in favour.
+- **Rejected** – an RC that has failed to reach a majority Infinex Council vote in favour.
+- **Implemented** – an RC has been implemented.
+
+## What belongs in a successful RC?
+
+Each RC should have the following parts:
+
+- **Overview** - The overview should aim to describe a summary and motivation for the changes proposed in the RC.
+- **Outcome** - The goals which, when achieved, mean the RC has been implemented successfully.
+- **Proposed Changes** – Description of proposed changes and/or upgrades expected to achieve the outcome. These should be tagged with the areas they involve, including:
+  - **Frontend changes** (e.g. deploying a new route or developing components)
+  - **Backend changes** (e.g. updating APIs or database structure)
+  - **Smart contract changes** (e.g. smart accounts)*
+  - **Design and branding changes** (e.g. font change)
+  - **Marketing changes** (e.g. new marketing campaign)
+  - **Maintenance**, including bug fixes, optimisations, or dependency upgrades (e.g updating the version of a library)
+  - **Operational changes**, i.e. anything related to the operational processes of Infinex and its contributors
+- **Appendices and Supporting Documents** (if applicable) – Any additional documents or data supporting the RC.
+
+\*Smart contract changes are expected to be included in XIPs primarily.
+
+A relevant concern around this model is the ambiguity surrounding which changes require a XIP, or instead can be bundled in RCs. As such, the criteria for determining whether the proposed change requires a XIP would be as follows:
+
+1. The change does not interact with the user's smart account.
+1. The change does not restrict a user's access to the platform.
+1. The change does not directly involve user funds.
+1. The change is not a parameter change.
+
+If all the above statements are true, then the change may be bundled in an RC.
+
+Here are hypothetical examples of features that would require an XIP versus those that would not:
+
+{% table %}
+- **Requires a XIP**
+- **Can be bundled in an RC**
+---
+- Spot trading implementation
+- Twitter integration
+---
+- Aave lending integration
+- Adding desktop notification functionality
+---
+- Upgrading a user's smart account
+- Changing the global font of Infinex to Comic Sans
+---
+- Changing a parameter within the Infinex Accounts smart contract
+- Updating the wallet interface
+---
+- Changing how user accounts are stored or handled
+- Changing the onboarding flow based on user feedback
+{% /table %}
+
+## RC Header Preamble
+
+`title:`
+
+`id:` <the number associated with RC, each RC will have a unique number>
+
+`wg:` <the associated WG that has released this RC>
+
+`author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s)>
+
+`status:` <Draft | Vote Pending | Approved | Rejected | Executed>
+
+`released:` <yyyy-mm-dd>
+
+`implemented:` <yyyy-mm-dd>
+
+## Proposals Editor Responsibilities
+
+As clarified in [**XIP-4**](https://proposals.infinex.io/xips/xip-4-update-to-proposals), the Proposals Editor will manage future proposal templates. The Proposals Editor also has additional responsibilities for RCs.
+
+During the drafting stage of the process, the Proposals Editor is responsible for working with the RC author to:
+
+- Ensure the title accurately describes the content.
+- Read the RC to check if it is ready: sound and complete. The ideas must make technical sense, even if they don't seem likely to get to final status.
+- Check the RC for language (spelling, grammar, sentence structure, etc.), markup (Markdoc), and code style.
+
+If the RC isn't ready, the editor will send it back to the author for revision, with specific instructions.
+
+Once the RC is ready for the repository, the Proposals Editor will:
+
+- Assign an RC number (generally the PR number or, if preferred by the author, the Issue # if there was discussion in the Issues section of this repository about this RC).
+- Merge the corresponding pull request.
+- Send a message back to the RC author with the next step.
+
+The Proposals Editor does not pass judgment on RCs. They merely hold an administrative and editorial role.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
