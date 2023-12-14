@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Infinex Proposals',
-  description: 'Infinex Governance Proposals (XIPs, IRs)',
+  description: 'Infinex Governance Proposals (XIPs, IRs, WGCs, RCs)',
 };
 
 export default function RootLayout({
