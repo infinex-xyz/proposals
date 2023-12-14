@@ -14,7 +14,7 @@ export function Renderer({
   );
 }
 
-const hiddenFields = ['content', 'title', 'xip', 'ir'];
+const hiddenFields = ['content', 'title', 'xip', 'ir', 'id'];
 
 function Authors({ authors }: { authors: string }) {
   const list = splitAuthors(authors);

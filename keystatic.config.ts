@@ -136,5 +136,78 @@ export default config({
         }),
       },
     }),
+    wgcs: collection({
+      label: 'WGCs',
+      slugField: 'filename',
+      path: 'content/wgcs/*',
+      format: { contentField: 'content' },
+      entryLayout: 'content',
+      schema: {
+        filename: fields.text({
+          label: 'Filename',
+          validation: { length: { min: 1 } },
+        }),
+        id: fields.integer({
+          label: 'WGC Number',
+          description: 'The ID of this proposal',
+        }),
+        title: fields.text({
+          label: 'Title',
+          validation: { length: { min: 1 } },
+        }),
+        wgName: fields.text({
+          label: 'WG Name',
+          description: 'Name of the working group',
+        }),
+        wgLead: fields.text({
+          label: 'WG Lead',
+          description: 'e.g name (@github)',
+        }),
+        author: fields.text({
+          label: 'Author(s)',
+          description: 'e.g name (@github), name (@github)',
+          validation: { length: { min: 1 } },
+        }),
+        status: fields.select({
+          label: 'Status',
+          defaultValue: 'Draft',
+          options: [
+            { label: 'Draft', value: 'Draft' },
+            { label: 'Vote Pending', value: 'Vote Pending' },
+            { label: 'Approved', value: 'Approved' },
+            { label: 'Rejected', value: 'Rejected' },
+            { label: 'Implemented', value: 'Implemented' },
+            { label: 'Dissolved', value: 'Dissolved' },
+          ],
+        }),
+        budget: fields.text({
+          label: 'Budget',
+          description: 'Value (eg, 40,000 SUSD)',
+        }),
+        budgetCadence: fields.text({
+          label: 'Budget Cadence',
+          description: 'Cadence (eg, monthly)',
+        }),
+        timeline: fields.text({
+          label: 'Timeline',
+          description:
+            'Length of the working group (eg, 4 months, indefinetly, etc)',
+        }),
+        created: fields.date({ label: 'Created' }),
+        updated: fields.date({ label: 'Updated' }),
+        established: fields.date({ label: 'Established' }),
+        content: fields.document({
+          label: 'Content',
+          formatting: true,
+          dividers: true,
+          links: true,
+          tables: true,
+          images: {
+            directory: 'public/assets/wgcs',
+            publicPath: '/assets/wgcs/',
+          },
+        }),
+      },
+    }),
   },
 });

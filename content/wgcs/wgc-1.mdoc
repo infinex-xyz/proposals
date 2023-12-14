@@ -1,0 +1,162 @@
+---
+title: WGC Purpose & Guidelines
+id: 1
+author: kmao (@kmaox), Kain (@kaiynne)
+status: Draft
+created: '2023-12-14'
+updated: '2023-12-14'
+---
+## What is a Working Group Charter?
+
+A Working Group Charter (WGC) is an Infinex Proposal Document as defined by XIP-4, it outlines the establishment of a Working Group (WG), defines its outcomes, and aligns expectations between the WG and the Council.
+
+## WGC Rationale
+
+Infinex's initial governance structure was forked from Synthetix and thus established the core contributors as the primary pathway to contribute to the platform. After further developments, various issues have arisen. These are:
+
+- The lack of delegation processes between the Council and the Contributors.
+- The inefficiencies introduced by a 1-1 relationship between the council and core contributors.
+- The lack of a formal methodology and accountability framework in implementing council-directed decisions and prioritisation.
+
+The introduction of WGs is designed to resolve these issues, streamlining how contributions to the protocol are coordinated.
+
+The following implementations are proposed:
+
+1. Introduction of 'Working Groups' and 'Working Group Leads'.
+1. Deprecation of the 'Core Contributor' role.
+1. Introduction of the Working Group Charter (WGC).
+
+### Working Groups
+
+Rather than having individual core contributors directly engage with the Council, Working Groups are proposed — clusters of contributors who collectively coordinate with the Council via a WG Lead.
+
+The functioning of each WG is guided by budgetary frameworks and timelines, negotiated between the Treasury Seat, Core Contributor Seat and the WG Lead. A Working Group is ratified via a council vote on their respective WGC.
+
+### Working Group Lead
+
+Each WG will have a Working Group Lead who is responsible for:
+
+- Managing the Working Group.
+- Collaborating with the Core Contributor Seat and Treasury Seat to set budget and timelines.
+- Conducting retrospectives with the Council.
+- Managing the assigned budget to execute WG outcomes.
+- Drafting relevant Release Candidates (RCs)* for approval by the Council.
+
+\*RCs are a new form of Infinex Proposal Documentation that will be introduced in RC-1 (the passage of RC-1 is a dependency for this Infinex Proposal to pass , RCs aim to be a changelog of protocol upgrades to be easily approved by the Council.
+
+## WGC Workflow
+
+Anyone within the Infinex community is welcome to submit a WGC. However, to foster a collaborative environment, it is strongly encouraged that authors engage in discussions within the Infinex Discord community and directly negotiate with the Treasury and Core Contributor Seats before formally submitting their charters. This preliminary discourse allows for the exchange of ideas, feedback, and refinement of concepts, ultimately leading to more robust and well-considered WGCs.
+
+The WGC workflow comprises three main stages:
+
+1.Creation
+
+Every WGC will begin as a `Draft`. It must then meet specific formatting criteria (largely, correct metadata in the header), and be approved by the WGC editor for further community discussion and consideration. Once ready, the draft will be merged into the proposals website.
+
+The author of the WGC is responsible for building consensus within the community and council, whilst documenting dissenting opinions. A Discord AMA presentation must then be held during this drafting phase, which can be arranged in coordination with the WGC editor.
+
+2.Voting
+
+Once a `Draft` is believed to be mature enough and ready to progress, it will move into `Vote Pending`.
+
+3.Approval
+
+WGCs will be voted on by the Infinex Council (`Vote Pending`) for five days and will be passed only if the Treasury Seat, Core Contributor Seat and two other seats vote for it.  Approved WGCs are then moved to `Approved` and then `Established` once executed. Otherwise, it is `Rejected`.
+
+4.Dissolution
+
+If a WG is to be dissolved, the Core Contributor Seat must present to the council their rationale behind dissolving the WG. After this internal presentation, the council will vote on the WG's dissolution for five days. A WG can only be dissolved if the Treasury Seat, Core Contributor Seat and two other seats vote for it. Working Groups are also automatically dissolved and require no council vote once the timeline outlined in the WGC has elapsed.
+
+## WGC status terms
+
+- **Draft** – The initial state of a new WGC before the Infinex Council has formally assessed it.
+- **Vote Pending** – a WGC that is awaiting a vote.
+- **Approved** – a WG that has successfully reached a majority Infinex Council vote in favour.
+- **Rejected** – a WGC that has failed to reach a majority Infinex Council vote in favour.
+- **Established** – A WG has been established.
+- **Dissolved** - A WG has been dissolved.
+
+## **What belongs in a successful WGC**
+
+Each WGC should have the following parts:
+
+- **Working Group name** – Clearly state the official name of the WG, which should reflect its primary function or area of focus.
+- **Working Group lead** – Provide the name of the WG lead.
+- **Outcomes** – Specify the desired outcomes or goals that the WG lead aims to achieve by creating their Working Group.
+- **Budget** – Propose a budget to facilitate the operational costs of the WG, and the cadence at which this is provided. This should be designed to prevent outlandish expenditure of resources (time and money). A rationale should be included.
+  - The WG's payment address should also be included in the budget.
+- **Timeline** – Offer a timeline for achieving the set outcomes with the proposed budget frameworks in mind. A rationale should be included.
+- **Release Candidate frequency** (*optional) – Describe the frequency (weekly/fortnightly/monthly/custom of RCs that should be drafted for approval by the Council.
+- **Dissolution Rationale**- This should be left empty until the WG is dissolved. Once dissolved, the WGC editor needs to update the WGC with the rationale behind the dissolution of the Working Group.
+
+Working Groups can also renegotiate their budget, and timeline and release candidate frequency with the Treasury Seat and Core Contributor Seat. Changes will only be approved if the Treasury Seat, Core Contributor Seat and two other seats vote for it. Once a change is approved, the WG lead and WGC author add these additional sections.
+
+- **Updated Budget\***-The updated budget, and cadence at which this is provided.
+- **Updated Timelines\* -** The updated timeline, for achieving the set outcomes with the updated budget.
+- **Updated Release Candidate Frequency\* -** The updated frequency of RCs, if any changes were made.
+- **Update Rationale**- Rationale behind these approved changes.
+- **Changelog** - A changelog of changes made to the specific WGC. This will be consistently updated whenever a WGC is updated.
+- **Resolution** - Link to the off-chain vote that approved these changes
+
+\*only required if changes were made from the last WGC.
+
+## WGC Formats and Templates
+
+WGCs should be written in [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) format. Image files should be included in a subdirectory of the assets folder for that WGC as follows: assets/wgc-X (for wgc X). When linking to an image in the WGC, use relative links such as ../assets/wgc-X/image.png.
+
+## WGC Header Preamble
+
+Each WGC must begin with an [RFC 822](https://www.ietf.org/rfc/rfc822.txt) style header preamble, preceded and followed by three hyphens (`---`). This header is also termed ["front matter" by Jekyll](https://jekyllrb.com/docs/front-matter/). The headers must appear in the following order.
+
+`title:`
+
+`type:` <Establishment | Dissolution>
+
+`WG name:` <the official name of the WG>
+
+`WG lead:` <the WG Lead's name and/or username>
+
+`author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s)>
+
+`status:` <Draft | Vote Pending | Approved | Rejected | Established | Dissolved>
+
+`budget:` <the budget assigned to the WG to achieve their outcome, i.e. 40,000 USDC>
+
+`budget cadence:` <the frequency at which the budget is provided to the WG i.e. weekly, monthly, etc >
+
+`timeline:` <length of the Working Group i.e. 4 months, 12 months, indefinite>
+
+`created:` <yyyy-mm-dd>
+
+`established:` <yyyy-mm-dd>
+
+## WGC Editors
+
+The current XIP editors will take on the additional role of editing WGCs. The current XIP editors are:
+
+- kmao (@kmaox)
+
+## WGC Editor Responsibilities
+
+For every WGC submitted, the WGC editor will operate as an editor of the WGC. During the drafting stage of the process, the editor will work closely with the author to:
+
+- Ensure the title accurately describes the content.
+- Read the WGC to check if it is ready: sound and complete. The ideas must make technical sense, even if they don't seem likely to get to final status.
+- Check the WGC for language (spelling, grammar, sentence structure, etc.), markup (Github-flavored Markdown), and code style.
+
+If the WGC isn't ready, the editor will send it back to the author for revision, with specific instructions.
+
+Once the WGC is ready for the repository, the WGC editor will:
+
+- Assign a WGC number (generally the PR number or, if preferred by the author, the Issue # if there was discussion in the Issues section of this repository about this WGC).
+- Merge the corresponding pull request.
+- Send a message back to the WGC author with the next step.
+
+The WGC editor has the discretion to update and improve the WGC template structure, as stipulated in [XIP-4](https://proposals.infinex.io/xips/xip-4-update-to-proposals).
+
+The editors do not pass judgment on WGCs. They merely hold an administrative and editorial role.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
