@@ -211,5 +211,59 @@ export default config({
         }),
       },
     }),
+    rcs: collection({
+      label: 'RCs',
+      slugField: 'filename',
+      path: 'content/rcs/*',
+      format: { contentField: 'content' },
+      entryLayout: 'content',
+      schema: {
+        filename: fields.text({
+          label: 'Filename',
+          validation: { length: { min: 1 } },
+        }),
+        title: fields.text({
+          label: 'Title',
+          validation: { length: { min: 1 } },
+        }),
+        id: fields.integer({
+          label: 'RC Number',
+          description: 'The ID of this proposal',
+        }),
+        wg: fields.text({
+          label: 'WG',
+          description: 'Associated WG, eg TULIP',
+        }),
+        author: fields.text({
+          label: 'Author(s)',
+          description: 'e.g name (@github), name (@github)',
+          validation: { length: { min: 1 } },
+        }),
+        status: fields.select({
+          label: 'Status',
+          defaultValue: 'Draft',
+          options: [
+            { label: 'Draft', value: 'Draft' },
+            { label: 'Vote Pending', value: 'Vote Pending' },
+            { label: 'Approved', value: 'Approved' },
+            { label: 'Rejected', value: 'Rejected' },
+            { label: 'Implemented', value: 'Implemented' },
+          ],
+        }),
+        released: fields.date({ label: 'Released' }),
+        implemented: fields.date({ label: 'Implemented' }),
+        content: fields.document({
+          label: 'Content',
+          formatting: true,
+          dividers: true,
+          links: true,
+          tables: true,
+          images: {
+            directory: 'public/assets/rcs',
+            publicPath: '/assets/rcs/',
+          },
+        }),
+      },
+    }),
   },
 });
