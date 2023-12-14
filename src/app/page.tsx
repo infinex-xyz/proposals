@@ -36,7 +36,7 @@ export default async function Home() {
                   key={e.slug}
                   data={e}
                   path="/xips/"
-                  id={`XIP-${number(e.entry.xip!)}`}
+                  id={`XIP-${number(e.entry.id!)}`}
                 />
               ))}
             </ul>

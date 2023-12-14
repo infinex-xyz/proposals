@@ -7,7 +7,7 @@ import { number } from '@/lib/util';
 import keystatic from '@/../keystatic.config';
 
 type Params = {
-  ir: string;
+  slug: string;
 };
 
 const schema = keystatic.collections.irs.schema;
@@ -16,12 +16,12 @@ const fields = Object.keys(schema);
 export async function generateStaticParams(): Promise<Params[]> {
   const topics = await reader.collections.irs.all();
   return topics.map((ir) => ({
-    ir: ir.slug,
+    slug: ir.slug,
   }));
 }
 
 export default async function Page({ params }: { params: Params }) {
-  const ir = await reader.collections.irs.read(params.ir, {
+  const ir = await reader.collections.irs.read(params.slug, {
     resolveLinkedFiles: true,
   });
 
@@ -29,11 +29,11 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <PageContainer>
-      <Header currentPage="XIPs" />
+      <Header currentPage="IRs" />
       <div className="my-8 flex border-t border-slate-800">
         <Back href="/irs">Back to all IRs</Back>
       </div>
-      <ID status={ir.status}>IR-{number(ir.ir!)}</ID>
+      <ID status={ir.status}>IR-{number(ir.id!)}</ID>
       <PageTitle>{ir.title}</PageTitle>
       <Properties fields={fields} data={ir} />
       <Renderer document={ir.content} />
