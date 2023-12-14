@@ -34,6 +34,7 @@ function PageNavItem({
 const pages = [
   { href: '/', label: 'XIPs' },
   { href: '/irs', label: 'IRs' },
+  { href: '/wgcs', label: 'WGCs' },
 ] as const;
 
 type CurrentPage = (typeof pages)[number]['label'];
