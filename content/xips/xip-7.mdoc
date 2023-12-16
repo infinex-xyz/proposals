@@ -176,7 +176,7 @@ As per XIP-2, the `recoveryDelay` period has been set to 7 days. This is hardcod
 
 ### Trading fees
 
-The trading account provides the option to take trading fees on top of the fees that Synthetix V3 already takes. Fees will be controlled by the Infinex council multisig via a separate contract called `InfinexProtocolConfigBeacon`. The details of how they're controlled is specified in Here's an example of how the fees would be calculated.
+The trading account provides the option to take trading fees on top of the fees that Synthetix V3 already takes. Fees will be controlled by the Infinex council multisig via a separate contract called `InfinexProtocolConfigBeacon`. Trading fees are immutably capped at 50 bps for both maker and taker fees so the `InfinexProtocolConfigBeacon` can't set the value above that. The details of how they're controlled is specified in [Infinex Protocol Config Beacon](#Infinex-Protocol-Config-Beacon). Here's an example of how the fees would be calculated.
 
 Suppose that the Synthetix fee structure looks like this.
 
@@ -284,7 +284,7 @@ Withdrawal fees are immutably capped at a max of $50 in the trading account to p
 
 ### Infinex Protocol Config Beacon
 
-The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled by the Infinex Council. Changing existing variables don't require the contract to be upgraded, and any upgrades will be automatically pulled by the Infinex accounts.  Every variable can only be changed through a council vote, leaving users vulnerable to malicious upgrades by the council, or if a majority of the council's keys are compromised. 
+The `InfinexProtocolConfigBeacon` is a global variable setter that is controlled by the Infinex Council. Changing existing variables don't require the contract to be upgraded, and any upgrades will be automatically pulled by the Infinex accounts. Every variable can only be changed through a council vote, leaving users vulnerable to malicious upgrades by the council, or if a majority of the council's keys are compromised. For new variables to be added, a new contract must be deployed and the Infinex council must approve it. Additionally, each user will need to opt in to the new upgrade.
 
 Changes to critical settings require user opt-in in addition to council approval. This ensures that users still have a safe guard from malicious changes. In this case, critical settings are those impacting withdrawals. Settings like trading fees can be controlled without an individual user's approval, but the option to withdraw is always available to the individual. 
 
@@ -302,10 +302,10 @@ The exact values of each variable will be determined in a future XIP.
 - Yes
 - This variable is usually set to the latest version of the trading accounts in order to release new features to users. If set to an account implementation that has malicious code, it can extract funds from users. This requires users to sign a transaction with their browser key to upgrade to the malicious implementation.
 ---
-- initialProxyImplementation
-- The address of the initial proxy implementation when an account is first created.
-- N/A (user doesn't have an account at this point)
-- If this is set to a malicious contract, all new accounts could be created with a malicious account implementation. Resulting in users losing their funds with any action they take. This will not impact existing accounts.
+- latestConfigBeacon
+- The address of the latest Infinex Protocol Config Beacon for the trading account
+- Yes
+- This variable will be set to the latest version of the Infinex Protocol Config Beacon when one is made available. If this is changed to a malicious config beacon, any Infinex accounts that upgraded to it will be permanently lost. If an account is upgraded to a malicious beacon, all trades, and withdrawals can be frozen.
 ---
 - revenuePool
 - The address where revenue from withdrawal fees and Synthetix referral fees are sent. This should be a multisig.
@@ -320,12 +320,12 @@ The exact values of each variable will be determined in a future XIP.
 - defaultTradingFees
 - A mapping of trading fees that are standard across all users. It sets maker and taker fees for each synthetix market. Fees are measured in bps.
 - No
-- This could be changed to be extremely high, making trades cost up to near infinitely more, effectively resulting in losing the total margin when placing a trade.
+- This could be changed to be extremely high but there is a maximum of 50 bps hard coded in the trading account on both maker and taker fees which can't be changed without the individual user opting in to that change.
 ---
 - userSpecificTradingFees
 - A mapping of trading fees that are specific to individual users.
 - No
-- This could be changed to be extremely high, making trades cost up to near infinitely more, effectively resulting in losing the total margin when placing a trade.
+- This could be changed to be extremely high but there is a maximum of 50 bps hard coded in the trading account on both maker and taker fees which can't be changed without the individual user opting in to that change.
 ---
 - userSpecificTradingFeesSet
 - A mapping of boolean flags for whether a user has non-default trading fees.
@@ -334,7 +334,7 @@ The exact values of each variable will be determined in a future XIP.
 ---
 - withdrawalFee
 - The withdrawal fee amount processed on every withdrawal to both L1 and L2. This is given in 18 decimals.
-- Yes
+- No
 - There is a max limit of $50 hard coded into the trading account so that is the max it could be set to. The council can make any changes to the withdrawal fee up until the cap. It would require the user to upgrade their account to an implementation that removes this hard cap in order to take exorbitant fees.
 ---
 - circleBridge
@@ -353,7 +353,7 @@ The exact values of each variable will be determined in a future XIP.
 - If this is changed to a different address, withdrawals to L1 can't be processed
 {% /table %}
 
-To summarise, the `Infinex Protocol Config Beacon` has access to sensitive variables which the council has control over. If the council approves changes to the beacon either by going rogue or through having their keys stolen, significant damage can be done to the Infinex protocol. Any new actions that take place after the config beacon has been taken over can result in the loss of some or all of a user's funds. It is fairly safe to assume that an attacker will be able to take all of a users' funds if they are able to control the config beacon. What is assured is that no funds can be stolen unless the user performs an action. They will always be able to withdraw the full amount of their funds (-$50) if malicious actions are taken by the council. 
+To summarise, the `Infinex Protocol Config Beacon` has access to sensitive variables which the council has control over. If the council approves changes to the beacon either by going rogue or through having their keys stolen, significant damage can be done to the Infinex protocol. Any new actions that take place after the config beacon has been taken over can result in the loss of some or all of a user's funds. It is fairly safe to assume that an attacker will be able to take all of a users' funds if they are able to control the config beacon and the user accepts the update. What is assured is that no funds can be stolen unless the user performs an action. They will always be able to withdraw the full amount of their funds (-$50) if malicious actions are taken by the council. 
 
 # Copyright
 
