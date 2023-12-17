@@ -1,0 +1,66 @@
+---
+title: Establish an Infrastructure WG
+wg_name: Infrastructure
+wgc: 3
+author: Bilby (@bilb-y)
+status: Draft
+timeline: Indefinetly
+created: '2023-12-18'
+---
+### Working Group Name
+
+Infrastructure Working Group
+
+### Working Group Lead
+
+Discord - *TODO*
+
+Github - *TODO*
+
+### Outcomes
+
+In order to offer an application that can compete with centralized exchanges, Infinex will need to host off-chain infrastructure, including databases, servers, serverless functions, relayers, and keepers.
+
+The Infrastructure Working Group (Infra WG) are responsible for deploying and hosting this infrastructure for the Infinex DAO, which will execute code from any council-approved release candidates that need off-chain hosting.
+
+Importantly, any off-chain infrastructure run by the working group should serve the purpose of improving the user experience without having custody of user funds.
+
+The responsibilities of the Infra WG are:
+
+- Off-chain infrastructure
+  - All databases, servers, and/or serverless functions will be hosted by the Infra WG, and should be outlined in release candidates in their definitions (infrastructure as code, database schemas, etc).
+  - It falls under the mandate of the Infra WG to select the best technology for hosting infrastructure, with the aim of improving the user and developer experience for the Infinex App.
+- Operation of relayer network
+  - As per[ XIP-3](https://proposals.infinex.io/xips/xip-3-perps), the initial implementation of the Infinex contracts will require an off-chain relayer to relay transactions. The Infra WG will ensure that this is running and topped up with gas provided by the Infinex Council.
+- Production deployment CI/CD
+  - It will be the responsibility of the Infra WG to ensure the CI/CD deployment pipeline does not push any code to production that is not approved by the Infinex Council via a release candidate.
+- Operation of keepers
+  - Any public keepers required to operate the protocol can be run by the Infra WG as a backstop for the Infinex app, in case they aren't operated organically by the community at any point.
+- Frontend hosting
+  - The Infra WG will be required to host all frontend code for the Infinex App, with the aim to optimize the user experience via fast download time for users around the world.
+- DNS
+  - The Infra WG should hold the domain name infinex.io and configure any records required to operate the protocol.
+- Infrastructure maintenance
+  - Bug fixes, optimizations and improvements to any piece of the infrastructure stack that work to improve the user and developer experience of the Infinex App.
+
+Any releases or changes to the above must be submitted to the Infinex Council via a Release Candidate, following the guidelines defined in [RC-1](https://proposals.infinex.io/rcs/rc-1).
+
+# Budget
+
+### Budget Rationale
+
+The Infinex protocol has not launched and so it is difficult to estimate variable infrastructure costs up-front. The Infra WG have agreed to front the cost of operating until a budget has been defined, at which point this charter shall be amended.
+
+5 ETH should be sent to the Infra WG safe to bootstrap the relayer gas tank.
+
+# Timeline
+
+### Timeline Rationale
+
+The Infra WG will operate indefinitely or until they are replaced by other working groups for the purposes of furthering decentralization of the protocol.
+
+### Release Candidate Frequency
+
+The release candidate frequency of infrastructure changes will be ad-hoc.
+
+### **Dissolution Rationale**
