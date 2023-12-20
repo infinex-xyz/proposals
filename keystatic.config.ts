@@ -232,8 +232,8 @@ export default config({
           description: 'The ID of this proposal',
         }),
         wg: fields.text({
-          label: 'WG',
-          description: 'Associated WG, eg TULIP',
+          label: 'Associated WG',
+          description: 'WG which implemented these changes',
         }),
         author: fields.text({
           label: 'Author(s)',
