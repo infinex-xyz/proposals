@@ -25,6 +25,10 @@ export const statusColors: StatusColors = {
     border: 'border-emerald-700',
     text: 'text-emerald-400',
   },
+  Implemented: {
+    border: 'border-cyan-700',
+    text: 'text-cyan-400',
+  },
   DEFAULT: {
     border: 'border-slate-700',
     text: 'text-slate-400',
