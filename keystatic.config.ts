@@ -41,6 +41,7 @@ export default config({
             { label: 'Core Upgrade', value: 'core-upgrade' },
             { label: 'Integration Upgrade', value: 'integration-upgrade' },
             { label: 'Governance', value: 'governance' },
+            { label: 'Parameter Change', value: 'parameter-change' },
           ],
         }),
         network: fields.select({
