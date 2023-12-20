@@ -21,27 +21,23 @@ Github - [Rocketfish0007](https://github.com/Rocketfish0007)
 
 In order to offer an application that can compete with centralized exchanges, Infinex will need to host off-chain infrastructure, including databases, servers, serverless functions, relayers, and keepers.
 
-The Infrastructure Working Group (Infra WG) are responsible for deploying and hosting this infrastructure for the Infinex DAO, which will execute code from any council-approved release candidates that need off-chain hosting.
-
-Importantly, any off-chain infrastructure run by the working group should serve the purpose of improving the user experience without having custody of user funds.
+The Infrastructure Working Group (Infra WG) are responsible for deploying and hosting this infrastructure for the Infinex DAO. Importantly, any off-chain infrastructure run by the working group should serve the purpose of improving the user experience without custodying user funds.
 
 The responsibilities of the Infra WG are:
 
 - Off-chain infrastructure
-  - All databases, servers, and/or serverless functions will be hosted by the Infra WG, and should be outlined in release candidates in their definitions (infrastructure as code, database schemas, etc).
-  - It falls under the mandate of the Infra WG to select the best technology for hosting infrastructure, with the aim of improving the user and developer experience for the Infinex App.
+  - All databases, servers, and/or serverless functions will be hosted by the Infra WG.
+  - It falls under the mandate of the Infra WG to ensure that output of a release candidate from the Core Working Group is delpoyed as specified.
 - Operation of relayer network
   - As per [XIP-3](https://proposals.infinex.io/xips/xip-3-perps), the initial implementation of the Infinex contracts will require an off-chain relayer to relay transactions. The Infra WG will ensure that this is running and topped up with gas provided by the Infinex Council.
-- Production deployment CI/CD
-  - It will be the responsibility of the Infra WG to ensure the CI/CD deployment pipeline does not push any code to production that is not approved by the Infinex Council via a release candidate.
 - Operation of keepers
-  - Any public keepers required to operate the protocol can be run by the Infra WG as a backstop for the Infinex app, in case they aren't operated organically by the community at any point.
+  - Any public keepers required to operate the protocol can be run by the Infra WG as a backstop for the Infinex App, in case they aren't operated organically by the community at any point.
 - Frontend hosting
-  - The Infra WG will be required to host all frontend code for the Infinex App, with the aim to optimize the user experience via fast download time for users around the world.
+  - The Infra WG will be required to host all frontend code for the Infinex App as specified in Core Working Group release candidates.
 - DNS
   - The Infra WG should hold the domain name infinex.io and configure any records required to operate the protocol.
 - Infrastructure maintenance
-  - Bug fixes, optimizations and improvements to any piece of the infrastructure stack that work to improve the user and developer experience of the Infinex App.
+  - Bug fixes, optimizations and improvements to any piece of the infrastructure stack specified in a Core Working Group release candidate.
 
 Any releases or changes to the above must be submitted to the Infinex Council via a Release Candidate, following the guidelines defined in [RC-1](https://proposals.infinex.io/rcs/rc-1).
 
@@ -50,8 +46,6 @@ Any releases or changes to the above must be submitted to the Infinex Council vi
 ### Budget Rationale
 
 The Infinex protocol has not launched and so it is difficult to estimate variable infrastructure costs up-front. The Infra WG have agreed to front the cost of operating until a budget has been defined, at which point this charter shall be amended.
-
-5 ETH should be sent to the Infra WG safe to bootstrap the relayer gas tank.
 
 Budget should be sent to the following address:
 eth:0x78CEE97C23560279909c0215e084dB293F036774
