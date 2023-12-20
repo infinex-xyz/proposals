@@ -1,11 +1,12 @@
 ---
-title: RC Purpose & Guidelines
+title: RC-1 Purpose & Guidelines
 id: 1
 author: kmao (@kmaox), Jed (@jedwatson), Kain (@kaiynne)
-status: Implemented
+status: Draft
 released: '2023-12-15'
+updated: '2023-12-20'
 ---
-## What is a Release Candidate?
+## What is a Release Candidate??
 
 A Release Candidate (RC) is a document that outlines a bundle of proposed changes for approval by the Infinex Council. An RC can only be written by an established Working Group (WG), and each WG has a set cadence of RCs they need to follow.
 
@@ -31,17 +32,23 @@ The following implementations are proposed:
 
 Only a member of an established Working Group can submit a Release Candidate. Release candidates will be posted publicly via the Infinex Proposals website, but do not require a public presentation within the community before the council can approve them. It is up to the council and WG's discretion to communicate the proposed changes internally for approval by the council.
 
+An RC's workflow will differ from the XIP's workflow as an RC seeks approval to deploy work that has already been done. This work may be work that the WG has found on their own (bug fixes, upgrades), or work that has been delegated from an approved XIP. XIPs, will instead seek approval to begin work or implementation of a specific spec.
+
 The RC workflow comprises three main stages.
 
-###### 1. Draft
+###### 1. Pre-Draft
 
-Every RC will begin as a `Draft`. It must then meet specific formatting criteria (largely, correct metadata in the header and structure), and be approved by the Proposals Editor before it can be proposed to the Infinex Council.
+Prior to the draft, the associated WG will develop a variety of changes, which they will bundle in an RC
 
-###### 2. Voting
+###### 2. Draft
 
-Once a `Draft` is believed to be mature enough and ready to progress, it will move into `Vote Pending`.
+After the WG is ready to deploy their changes, they will post an RC marked as a `Draft`. It must then meet specific formatting criteria (largely, correct metadata in the header and structure), and be approved by the Proposals Editor before it can be proposed to the Infinex Council.
 
-###### 3. Approval
+###### 3. Voting
+
+Once a `Draft` is believed to be mature enough and ready to progress, it will move into `Vote Pending`. This stage will usually involve internal discussions between the WG and the council to correct the RC (if required).
+
+###### 4. Approval
 
 RCs will be voted on by the Infinex Council (`Vote Pending`) for five days and will be passed with a majority vote. Approved RCs are then moved to `Approved` and then `Implemented` once Implemented. Otherwise, it is `Rejected`.
 

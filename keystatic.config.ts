@@ -252,6 +252,7 @@ export default config({
           ],
         }),
         released: fields.date({ label: 'Released' }),
+        updated: fields.date({ label: 'Updated' }),
         implemented: fields.date({ label: 'Implemented' }),
         content: fields.document({
           label: 'Content',
