@@ -1,0 +1,53 @@
+---
+title: Synthetix PerpsV3 API
+id: 9
+author: bilby (@bilb-y)
+type: core-upgrade
+network: Base
+status: Draft
+created: '2023-12-20'
+updated: '2023-12-20'
+---
+# Proposal Summary
+
+The proposal outlines the development of a bespoke backend API for the Infinex App, which will ingest the Synthetix PerpsV3 smart contract events and deliver them to the client via REST and Websocket endpoints. The purpose of this API is to enhance the speed and reliability of the Infinex app. The API will focus on read operations, providing real-time market data, storing order events, and offering access to historical trading data. The decision to build a custom API, rather than using a decentralized service like The Graph, is motivated by the need for the fastest and most robust solution to compete with centralized exchanges.
+
+# Specification
+
+## Overview
+
+This XIP proposes the development of a backend API wrapping around the Synthetix Perps V3 contract events that can be ingested by Infinex as an alternative to a decentralized subgraph. The API will focus on read operations, providing real-time market data, capturing and storing all order events, and offering access to historical trading data that can be directly ingested by the client web app. This API will enable the PerpsV3 integration on the Infinex app to be more accessible, reliable, and fast experience.
+
+## Rationale
+
+The rationale behind building a bespoke data API to wrap around the Synthetix PerpsV3 smart contract events, rather than using a decentralized service like The Graph, is that the Infinex App will need the fastest, most robust solution as possible in order to compete with centralized exchanges.
+
+Since the API is reading blockchain data only, the API can be open sourced and run by any willing to help the Infinex DAO, as there is no sensitive user data or interaction with user funds. This leans on Infinex' strategic advantage with a willingness centralize parts of the stack that improve the user experience without compromising users' sole control over their Infinex Account contracts.
+
+## Technical Specification
+
+### Technical Stack
+
+1. **Base (and base Goerli) Blockchain**: The Base blockchain will be the platform where the PerpsV3 Andromeda contracts are deployed. The system will interact with these contracts for trading functions and to access trade events.
+1. **ScyllaDB**: ScyllaDB, a high-performance NoSQL database, will be used to store and query historical data. It's well-suited for handling large amounts of data and providing high availability.
+1. **PostgreSQL**: PostgreSQL, a powerful, open-source object-relational database system, will be used to store other data that doesn't require the high write and read loads that ScyllaDB can handle.
+1. **Go**: Go will be the main programming language for the project. It's efficient, easy to work with, and has strong support for concurrent programming, making it a good fit for a high-performance trading API.
+1. **Ethereum-Go**: Ethereum-Go (go-ethereum) will be used as the Ethereum client. It provides a robust and efficient interface to the Ethereum network and can interact with smart contracts on the Ethereum blockchain.
+1. **Swagger**: Swagger will be used to design the API and generate backend code. This will help ensure that the API is well-documented and consistent.
+1. **Go-Swagger**: Go-Swagger will be used for the API-gateway microservice. It's a powerful tool for building APIs in Go using Swagger, and can generate server and client code from Swagger 2.0 specifications.
+1. **Redis**: Redis, an in-memory data structure store, will be used to manage temporary tokens for authentication, providing fast access and management of authentication sessions.
+1. **Websockets**: Websockets will be used to handle real-time communication, providing updates and feeds such as price updates and contract events.
+
+### Architecture
+
+The architecture of the API will be designed around a microservices architecture. This approach ensures high performance, scalability, and reliability by allowing individual components to be developed, deployed, and scaled independently. By providing a modular and flexible structure, the architecture is tailored to efficiently capture, process, and store all order events, as well as offer fast access to PerpsV3 Contracts on Base and Base Goerli.
+
+![](/assets/xips/xip-9/architecture.jpg)
+
+## Test Cases
+
+`Test cases for an implementation are mandatory for XIPs but can be included with the implementation.`
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
