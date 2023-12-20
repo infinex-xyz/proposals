@@ -16,6 +16,14 @@ export function Renderer({
 
 const hiddenFields = ['content', 'title', 'xip', 'ir', 'id'];
 
+const fieldLabels: Record<string, string> = {
+  wg: 'Associated WG',
+};
+
+function getFieldLabel(key: string) {
+  return fieldLabels[key] || key;
+}
+
 function Authors({ authors }: { authors: string }) {
   const list = splitAuthors(authors);
   return list.map((author, i) => {
@@ -50,7 +58,9 @@ export function Properties({ fields, data }: { fields: string[]; data: any }) {
               key={key}
               className="border-t border-t-slate-800 text-sm first:border-t-0"
             >
-              <td className="py-2 capitalize text-slate-400">{key}</td>
+              <td className="py-2 capitalize text-slate-400">
+                {getFieldLabel(key)}
+              </td>
               <td className="py-2 text-slate-200">
                 {key === 'author' ? <Authors authors={value} /> : value}
               </td>
