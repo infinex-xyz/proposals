@@ -6,17 +6,14 @@ settings:
 
 dependencies:
   '@keystatic/core':
-    specifier: ^0.2.7
-    version: 0.2.7(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^0.2.9
+    version: 0.2.9(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
   '@keystatic/next':
     specifier: ^2.0.1
-    version: 2.0.1(@keystatic/core@0.2.7)(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
+    version: 2.0.1(@keystatic/core@0.2.9)(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
-  iron-session:
-    specifier: ^8.0.1
-    version: 8.0.1
   next:
     specifier: 14.0.3
     version: 14.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -510,8 +507,8 @@ packages:
       react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@keystatic/core@0.2.7(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-+fFif98nqa6VNjrp8lq8flNqUjhwc78UniU61BiZ+tBOg4uO8cTIG7WzlkiiwzKzCVcmDpU3oQfNrh7pCIybrQ==}
+  /@keystatic/core@0.2.9(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-kYe6j9ywFiIW/jOmeb00j/J5NfdWzBmQ2Xx6a8zgirOLL1NNWhN0SEj7EP1InDY/sxeCUApZA/jWR5aE5smgbg==}
     peerDependencies:
       react: ^18.2.0
       react-dom: ^18.2.0
@@ -585,7 +582,7 @@ packages:
       - supports-color
     dev: false
 
-  /@keystatic/next@2.0.1(@keystatic/core@0.2.7)(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
+  /@keystatic/next@2.0.1(@keystatic/core@0.2.9)(next@14.0.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-IpN8TlH0CMFcoil4pDJBbjkMXJttEfnLRMPxgl6yxhH/hgGcDQ2vLo4P6fMXm2JCyE0iIm4xIxO6UwoeDNH0kw==}
     peerDependencies:
       '@keystatic/core': '*'
@@ -594,7 +591,7 @@ packages:
       react-dom: ^18.2.0
     dependencies:
       '@babel/runtime': 7.23.6
-      '@keystatic/core': 0.2.7(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
+      '@keystatic/core': 0.2.9(next@14.0.3)(react-dom@18.2.0)(react@18.2.0)
       '@types/react': 18.2.43
       chokidar: 3.5.3
       next: 14.0.3(react-dom@18.2.0)(react@18.2.0)
@@ -2604,11 +2601,6 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
-  /cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
-    dev: false
-
   /cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
     engines: {node: '>=10'}
@@ -3476,20 +3468,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /iron-session@8.0.1:
-    resolution: {integrity: sha512-ZQKazQRn/J5YaXY+CQ69V9lx9boh4swl+BgnNC1knxyZgBjhiXuGpY60URRntMPib9QdrsN9qAOTqdMFMbGYXg==}
-    dependencies:
-      cookie: 0.6.0
-      iron-webcrypto: 1.0.0
-      uncrypto: 0.1.3
-    dev: false
-
   /iron-webcrypto@0.10.1:
     resolution: {integrity: sha512-QGOS8MRMnj/UiOa+aMIgfyHcvkhqNUsUxb1XzskENvbo+rEfp6TOwqd1KPuDzXC4OnGHcMSVxDGRoilqB8ViqA==}
-    dev: false
-
-  /iron-webcrypto@1.0.0:
-    resolution: {integrity: sha512-anOK1Mktt8U1Xi7fCM3RELTuYbnFikQY5VtrDj7kPgpejV7d43tWKhzgioO0zpkazLEL/j/iayRqnJhrGfqUsg==}
     dev: false
 
   /is-alphabetical@1.0.4:
@@ -4980,10 +4960,6 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
     dev: true
-
-  /uncrypto@0.1.3:
-    resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
-    dev: false
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
