@@ -9,6 +9,7 @@ const statuses = keystatic.collections.rcs.schema.status.options;
 
 export default async function Page() {
   const entries = await reader.collections.rcs.all();
+  entries.sort((a, b) => (a.entry.id || 0) - (b.entry.id || 0));
   const byStatus = statuses.map((status) => {
     const matches = entries.filter((i) => i?.entry.status === status.value);
     return matches.length ? { status, entries: matches } : null;
