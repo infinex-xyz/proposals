@@ -43,91 +43,69 @@ The following tables outline the variables that will be used for the Ethereum Ma
 - Description
 - Value
 ---
-- Trusted forwarder (
+- Trusted forwarder
 
-  `_trustedForwarder`)
+  (`_trustedForwarder`)
 - The address of the ERC2771 forwarder contract which can forward messages to the Infinex accounts.
 - To be determined at deployment. Set to the address of the InfinexERC2771Forwarder contract.
 ---
 - Latest account implementation
 
-  (
-
-  `_latestAccountImplementation`)
+  (`_latestAccountImplementation`)
 - The address of the latest Infinex account implementation contract.
 - To be determined at deployment. Set to the address of the Infinex account implementation contract.
 ---
 - Initial proxy implementation
 
-  (
-
-  `_initialProxyImplementation`)
+  (`_initialProxyImplementation`)
 - The address of the contract the proxy implementation points to initially. See XIP-8 for more details.
 - To be determined at deployment. Set to the address of the Initial Proxy Implementation contract.
 ---
 - Revenue pool
 
-  (
-
-  `_revenuePool`)
+  (`_revenuePool`)
 - The address where non-trading fee revenue is sent to. (This isn't used on L1).
 - [0x979F736d8D5D310f68C938739bC370534De5027A](https://app.safe.global/home?safe=eth:0x979F736d8D5D310f68C938739bC370534De5027A) - the address of the Infinex council safe on Mainnet. This is just a placeholder because it can't be set to the zero address.
 ---
 - Trading fee pool
 
-  (
-
-  `_tradingFeePool`)
+  (`_tradingFeePool`)
 - The address where trading fee revenue is sent to. (This isn't used on L1).
 - [0x979F736d8D5D310f68C938739bC370534De5027A](https://app.safe.global/home?safe=eth:0x979F736d8D5D310f68C938739bC370534De5027A) - the address of the Infinex council safe on mainnet. This is just a placeholder because it can't be set to the zero address.
 ---
 - Default trading fees
 
-  (
-
-  `_defaultTradingFees`)
+  (`_defaultTradingFees`)
 - The global trading fee structure for each perps market. (This isn't used on L1).
 - None
 ---
 - User-specific trading fees
 
-  (
-
-  `_users` &
-
-  `_userSpecificTradingFees`)
+  (`_users` & `_userSpecificTradingFees`)
 - The user-specific fee structure set for each user and perps market. (This isn't used on L1).
 - None
 ---
 - User-specific trading fees set
 
-  (
-
-  `_users` )
+  (`_users` )
 - A list of flags indicating whether a user has a unique fee structure. (This isn't used on L1).
 - None
 ---
 - Withdrawal fee
 
-  (
-
-  `_withdrawalFee`)
+  (`_withdrawalFee`)
 - The fee denominated in USDC taken on withdrawals. (This isn't used on L1).
 - 0
 ---
 - Circle Bridge
 
-  (
-
-  `_circleBridge`)
+  (`_circleBridge`)
 - The address of the Circle CCTP bridge.
 - [0xbd3fa81b58ba92a82136038b25adec7066af3155](https://etherscan.io/address/0xbd3fa81b58ba92a82136038b25adec7066af3155). See [Circle developer docs](https://developers.circle.com/stablecoins/docs/evm-smart-contracts) for reference.
 ---
 - Circle Bridge destination domain
 
-  (
-
-  `_circleBridgeDestinationDomain`)
+  (`_circleBridgeDestinationDomain`)
 - The destination domain of the target chain for cross-chain transfers.
 - 6 (the domain for Base). See [Circle developer docs](https://developers.circle.com/stablecoins/docs/evm-smart-contracts) for reference.
 ---
@@ -149,107 +127,79 @@ The following tables outline the variables that will be used for the Ethereum Ma
 ---
 - Trusted forwarder
 
-  (
-
-  `_trustedForwarder`)
+  (`_trustedForwarder`)
 - The address of the ERC2771 forwarder contract which can forward messages to the Infinex accounts.
 - To be determined at deployment. Set to the address of the InfinexERC2771Forwarder contract.
 ---
 - Latest account implementation
 
-  (
-
-  `_latestAccountImplementation`)
+  (`_latestAccountImplementation`)
 - The address of the latest Infinex account implementation contract.
 - To be determined at deployment. Set to the address of the Infinex account implementation contract.
 ---
 - Initial proxy implementation
 
-  (
-
-  `_initialProxyImplementation`)
+  (`_initialProxyImplementation`)
 - The address of the contract the proxy implementation points to initially. See[ XIP-8](https://proposals.infinex.io/xips/xip-8) for more details.
 - To be determined at deployment. Set to the address of the Initial Proxy Implementation contract.
 ---
 - Revenue pool
 
-  (
-
-  `_revenuePool`)
+  (`_revenuePool`)
 - The address where non-trading fee revenue is sent to.
 - [0x24f5A599a40730dc0475eCE8dD41C4D3A4Ba4Bf3](https://app.safe.global/home?safe=base:0x24f5A599a40730dc0475eCE8dD41C4D3A4Ba4Bf3) - the address of the Infinex council Safe on Base
 ---
 - Trading fee pool
 
-  (
-
-  `_tradingFeePool`)
+  (`_tradingFeePool`)
 - The address where trading fee revenue is sent to.
 - TO BE DETERMINED. This will need to be created.
 ---
 - Default trading fees
 
-  (
-
-  `_defaultTradingFees`)
+  (`_defaultTradingFees`)
 - The global trading fee structure for each perps market.
 - 8 bps for both maker and trader fees on ETH and BTC markets.
 ---
 - User-specific trading fees
 
-  (
-
-  `_users` &
-
-  `_userSpecificTradingFees`)
+  (`_users` & `_userSpecificTradingFees`)
 - The user-specific fee structure is set for each user and perps market.
 - None
 ---
 - User-specific trading fees set
 
-  (
-
-  `_users`)
+  (`_users`)
 - A list of flags indicating whether a user has a unique fee structure.
 - None
 ---
 - Withdrawal fee
 
-  (
-
-  `_withdrawalFee`)
+  (`_withdrawalFee`)
 - The fee denominated in USDC taken on withdrawals.
 - $15
 ---
 - Circle Bridge
 
-  (
-
-  `_circleBridge`)
+  (`_circleBridge`)
 - The address of the Circle CCTP bridge.
 - [0x1682Ae6375C4E4A97e4B583BC394c861A46D8962](https://basescan.org/address/0x1682Ae6375C4E4A97e4B583BC394c861A46D8962). See [Circle Developer Docs](https://developers.circle.com/stablecoins/docs/evm-smart-contracts) for reference.
 ---
 - Circle Bridge destination domain
 
-  (
-
-  `_circleBridgeDestinationDomain`)
+  (`_circleBridgeDestinationDomain`)
 - The destination domain of the target chain for cross-chain transfers.
 - 0 (the domain for Ethereum Mainnet). See [Circle developer docs](https://developers.circle.com/stablecoins/docs/evm-smart-contracts) for reference.
 ---
 - Circle Bridge USDC token address
 
-  (
-
-  `_circleBridgeUSDCTokenAddress`)
+  (`_circleBridgeUSDCTokenAddress`)
 - Upgrades to a new implementation.
 - [0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913](https://basescan.org/token/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913). See [Circle developer docs](https://developers.circle.com/stablecoins/docs/usdc-on-main-networks) for reference.
 ---
 - Latest Synthetix information beacon
 
-  (
-
-  `_latestSynthetixInformationBeacon`)
+  (`_latestSynthetixInformationBeacon`)
 - The address of the latest Synthetix information beacon contract. (This isn't used on L1).
 - N/A
 {% /table %}
