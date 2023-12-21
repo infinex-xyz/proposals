@@ -1,0 +1,38 @@
+---
+title: Update to Alpha Selection
+id: 11
+author: kmao (@kmaox)
+type: integration-upgrade
+network: Ethereum & Base
+status: Draft
+created: '2023-12-21'
+updated: '2023-12-21'
+---
+# Proposal Summary
+
+This XIP proposes a change to the selection criteria for the Infinex Alpha Launch, specifically for the testnet users.
+
+# Specification
+
+## Overview
+
+The initial Testnet deployment was burdened by significant bugs due to Synthetix testnet contract changes. This meant that the Infinex frontend was broken which affected user participation in the trading competition. Funding rates were also affected due to the small user base, which meant that if the majority of users take the same side in a pair, it was always more profitable to take the opposite side, regardless of market action, in order to farm funding.
+
+Based on the above factors, as well as community feedback, the criteria for selection in the Alpha from the Testnet userbase has been re-evaluated.
+
+## Rationale
+
+[XIP-5](https://proposals.infinex.io/xips/xip-5-skinny-alpha-launch) stated that the top 5 traders from Infinex would receive access to the Alpha Launch. However, this no longer correctly incentivises users effectively due to the technical constraints of trading on testnet.
+
+## Technical Specification
+
+This XIP proposes that the selection criteria of the 5 testnet users granted access to the Infinex Alpha be changed to:
+
+- 2 performance-based, ranked by highest PNL
+- 3 feedback-based, decided at the discretion of the CC seat.
+
+Furthermore, profits or losses from the funding rate will not be counted towards a trader's PNL.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
