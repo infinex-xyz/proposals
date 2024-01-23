@@ -36,6 +36,7 @@ const pages = [
   { href: '/irs', label: 'IRs' },
   { href: '/wgcs', label: 'WGCs' },
   { href: '/rcs', label: 'RCs' },
+  { href: '/trfs', label: 'TRFs' },
 ] as const;
 
 type CurrentPage = (typeof pages)[number]['label'];

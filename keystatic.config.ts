@@ -268,5 +268,54 @@ export default config({
         }),
       },
     }),
+    trfs: collection({
+      label: 'TRFs',
+      slugField: 'filename',
+      path: 'content/trfs/*',
+      format: { contentField: 'content' },
+      entryLayout: 'content',
+      schema: {
+        filename: fields.text({
+          label: 'Filename',
+          validation: { length: { min: 1 } },
+        }),
+        id: fields.integer({
+          label: 'TRF Number',
+          description: 'The ID of this proposal',
+        }),
+        title: fields.text({
+          label: 'Title',
+          validation: { length: { min: 1 } },
+        }),
+        author: fields.text({
+          label: 'Author(s)',
+          description: 'e.g name (@github), name (@github)',
+          validation: { length: { min: 1 } },
+        }),
+        status: fields.select({
+          label: 'Status',
+          defaultValue: 'Draft',
+          options: [
+            { label: 'Draft', value: 'Draft' },
+            { label: 'Feedback', value: 'Feedback' },
+            { label: 'Closed', value: 'Closed' },
+            { label: 'Implemented', value: 'Implemented' },
+          ],
+        }),
+        created: fields.date({ label: 'Created' }),
+        updated: fields.date({ label: 'Updated' }),
+        content: fields.document({
+          label: 'Content',
+          formatting: true,
+          dividers: true,
+          links: true,
+          tables: true,
+          images: {
+            directory: 'public/assets/wgcs',
+            publicPath: '/assets/wgcs/',
+          },
+        }),
+      },
+    }),
   },
 });
