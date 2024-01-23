@@ -1,0 +1,51 @@
+---
+title: Patron NFT
+id: 12
+author: Egor (@egorsidelska), kmao (@kmaox)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-01-23'
+updated: '2024-01-23'
+---
+# Proposal Summary
+
+The Patron NFT enables contributions to the Infinex Treasury.
+
+# Specification
+
+## Overview
+
+Following the election of the Treasury Seat, Infinex requires a mechanism for funding the protocol. This XIP details a "Patron NFT" design, which will enable contributions to the Infinex Treasury.
+
+## Rationale
+
+In [Infinex's Governance 1.0](https://vote.infinex.io/#/proposal/0x98619961d046180aedf60cdf7ab237eb0ef1e22ccaf728c05d346d9847c581b0:~:text=The%20Treasury%20seat%20will%20be%20responsible%20for%20managing%20the%20treasury%20and%20will%20use%20funds%20to%20bootstrap%20the%20project%20and%20ensure%20its%20long%2Dterm%20sustainability.), the responsibility of managing the treasury and using said funds to bootstrap the project was granted to the Treasury Seat. In Infinex's Governance 1.1 upgrade, Infinex aimed to elect a Treasury Seat to ensure Infinex has sufficient capital to fund Working Groups and other protocol expenses. The Treasury Seat is primarily responsible for funding Working Groups by maintaining adequate operating capital. Furthermore, additional expenses are covered from Treasury, such as:
+
+- Operational overhead
+- Growth and marketing incentives
+- Contributor alignment
+
+In creating an NFT to represent these contributions, the Council recognises these individuals are Patrons, referencing the name, Patron NFTs.
+
+Given the competitive nature of the DeFi space and the high capital requirements of Infinex development, this XIP will enable the Treasury Seat to enter into agreements before the actual deployment of the Patron NFT to ensure continuity of funding for all Infinex Working Groups. Patron NFTs may also be used as incentives for non-financial contributions to the Infinex Protocol.
+
+The Treasury Seat is expected to collaborate with the Infinex Council to implement the Patron NFT, particularly the Core Contributor Seat, responsible for the deployment of the Patron NFT.
+
+## Technical Specification
+
+**The Patron NFT**
+
+Each Patron NFT will be mintable via a mint pass, the cost to mint each pass will be set at the time of issuance by the Treasury Seat. Patron NFT has no implicit rights. A maximum of 100,000 Patron NFTs can be minted.
+
+Patron NFTs mint passes can be issued over multiple 'rounds', which have the following properties:
+
+- Round supply
+- Mint cost/s
+- Mint token/s
+
+In order to mint a Patron NFT, the holder of a mint pass must pay the minting cost to the Patron NFT contract. Mint passes act as an allowlist for Infinex Patrons and will be distributed by the Treasury Seat. There is no limit to how many mint passes can be created for a single round. Mint fees will be distributed to the Infinex Treasury.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
