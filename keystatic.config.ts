@@ -51,6 +51,7 @@ export default config({
             { label: '', value: '' },
             { label: 'Base', value: 'Base' },
             { label: 'Optimism', value: 'Optimism' },
+            { label: 'Ethereum', value: 'Ethereum' },
             { label: 'Ethereum & Optimism', value: 'Ethereum & Optimism' },
             { label: 'Ethereum & Base', value: 'Ethereum & Base' },
             {
