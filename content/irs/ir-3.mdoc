@@ -1,0 +1,56 @@
+---
+title: Governance v1.2
+id: 3
+author: kmao (@kmaox), Kain (@kaiynne)
+status: Draft
+created: '2024-01-18'
+---
+## Referendum Summary
+
+IR-3 proposes the introduction of the Operations Seat to replace the Core Contributor Seat, and the establishment of the Patron NFT as the voting mechanism for the Treasury Seat.
+
+## Specification
+
+### Overview
+
+The following upgrades are proposed in IR-3:
+
+1. The introduction of an Operations Seat, and the deprecation of the Core Contributor Seat.
+1. The establishment of the Patron NFT as the voting method for the Treasury Seat.
+
+If approved, the changes to the Infinex Governance contracts must be implemented before the end of the current epoch (April 30th 2024). This gives us the flexibility to bundle any further governance changes prior to the start of the next epoch.
+
+### Rationale
+
+Since the launch of Governance v1.1, several potential improvements to Infinex Governance have been identified.
+
+1. The implementation of an constant operational role within The Council.
+1. The implementation of a voting system to elect the Treasury Seat.
+
+### Replacement of the Core Contributor Seat with an Operations Seat
+
+The evolution of Infinex Governance, such as the introduction of working groups and release candidates, has necessitated the creation of an operational role within the council.
+
+Thus, Governance v1.2 proposes the introduction of an Operations Seat to replace the Core Contributor Seat, with the existing Core Contributor Councillor transitioning to the role of Operations Councillor.
+
+Following this transition, the Operations Seat can be dismissed by a unanimous vote of The Council. Any existing member of a Working Group that served for a minimum of six months is able may nominate themselves for the role of Operations Seat by filling out a nomination form in the designated governance platform. Nominations will be open for 2 weeks, following the dismissal of the Operations Seat. The voting mechanism will be via instant run-off process.
+
+The Operations Seat will manage the day-to-day operations of the Council. This will include tasks such as:
+
+- The implementation of XIPs.
+- Onboarding new council members and core contributors.
+- Organising and scheduling Council meetings.
+- Staging contract deployments and updates from the Deployer Safe.
+- Proposal Editor responsibilities.
+
+Furthermore, the Operations Seat will continue to manage the existing Core Contributor Seat responsibilities, outlined in [Governance v1.0](https://vote.infinex.io/#/proposal/0x98619961d046180aedf60cdf7ab237eb0ef1e22ccaf728c05d346d9847c581b0).
+
+### Introducing the Patron NFT as the voting mechanism for the Treasury Seat
+
+The Investor NFT was introduced in [Governance v1.0 ](https://vote.infinex.io/#/proposal/0x98619961d046180aedf60cdf7ab237eb0ef1e22ccaf728c05d346d9847c581b0)as the voting mechanism for the Treasury Seat. However, due to the lack of investors in the protocol, a new mechanism was implemented, referred to as the [Patron NFT](https://proposals.infinex.io/xips/xip-12).
+
+As such, this IR proposes that Patron NFTs become the voting mechanism for the Treasury Seat. Each Patron NFT will count as one vote and 100,000 votes can be cast (max supply of the Patron NFT). The voting process specified in Governance 1.0 remains the same.
+
+# Copyright
+
+Copyright and related rights waived via&nbsp;[CC0](https://creativecommons.org/publicdomain/zero/1.0/).
