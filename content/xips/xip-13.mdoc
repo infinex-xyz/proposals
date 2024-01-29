@@ -1,0 +1,92 @@
+---
+title: Update to Governance Points
+id: 13
+author: kmao (@kmaox)
+type: core-upgrade
+network: Base
+status: Draft
+created: '2024-01-29'
+updated: '2024-01-29'
+---
+# Proposal Summary
+
+This XIP proposes rebasing Governance Points and deploying them onchain.
+
+# Specification
+
+## Overview
+
+Infinex's initial implementation of Governance Points (GPs) was done to facilitate the election of the Trader Seat in the Infinex Elections. Following the protocol's deployment to mainnet, Infinex aims to leverage GPs to incentivise users of Infinex. Governance Points will continue to be used to elect the Trader Seat, as per [Governance v1.0](https://vote.infinex.io/#/proposal/0x98619961d046180aedf60cdf7ab237eb0ef1e22ccaf728c05d346d9847c581b0).
+
+Two changes are proposed:
+
+1. Rebasing Infinex points by a factor of 200.
+1. Migrating Governance Points to a smart contract deployed on Base.
+
+## Rationale
+
+Governance Points are a crucial tool for incentivising user behaviour. These proposed changes will ensure GP is efficiently and transparently distributed to users.
+
+## Technical Specification
+
+A Governance Points contract will be deployed to manage the GPs, storing a mapping with all the addresses and their balances. This contract will allow permissioned mint and burn functionalities that only allow listed contracts to call.  This allow list is controlled by Infinex Governance.
+
+The Governance Points contract will be placed behind a UUPS (Universal Upgradeable Proxy Standard) proxy to ensure its future adaptability. This setup will allow future updates to the contract's logic as necessary while preserving existing balances and avoiding the complexities and risks associated with deploying a new contract and migrating data.
+
+### **Rebasing**
+
+There is a total supply of 17,437,272,988 Governance Points held by 23943 addresses. These points were accumulated throughout Infinex's Governance Farming program. This proposal aims to reduce the total points supply to 87,184,576. Addresses with less than 200 governance points will be rebased to 0.
+
+### **Onchain Deployment**
+
+To facilitate the transition of Governance Points (GPs) onchain, Infinex will implement a Merkle Tree contract. This will enable holders to transfer their GP balance to the `GovernancePoints` contract. Prior to this deployment, the Merkle Tree contract will be allow listed as an authorised minter by the Infinex Council. The migration process will be available via an interface which Infinex will deploy and host.
+
+### **Contract Structure**
+
+The `GovernancePoints` smart contract will have the following variables and functions.
+
+{% table %}
+- Variable
+- Description
+---
+- `balances`
+- This is a mapping of Infinex Account addresses to their balance
+---
+- `totalSupply`
+- The total GPs in existence
+---
+- `authorisedMinters`
+- An array of the addresses that can call the `mint` and `burn` functions
+{% /table %}
+
+{% table %}
+- Function
+- Description
+---
+- `mint()`
+- Increases the balance of a specific user. Only `authorisedMinters` can call this function
+---
+- `burn()`
+- Decreases the balance of a specific user. Only `authorisedMinters` can call this function
+---
+- `addAuthorisedMinter()`
+- Adds a new address to `authorisedMinters`. Can only be called by the council-controlled deployer safe.
+---
+- `removeAuthorisedMinter()`
+- Removes an address from `authorisedMinters`. Can only be called by the council-controlled deployer safe.
+---
+- `balanceOf()`
+- Returns the GPs balance of an account
+---
+- `totalSupply()`
+- Returns the GPs total supply
+---
+- `isAuthorisedMinter()`
+- Returns whether an account is an authorised minter
+{% /table %}
+
+This proposed specification will enable Infinex to develop additional campaigns for distributing Governance Points while ensuring the verifiability of point distribution onchain.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
