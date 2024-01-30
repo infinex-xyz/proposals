@@ -1,0 +1,79 @@
+---
+title: Infrastructure and Services
+id: 14
+author: '@kaiynne'
+type: governance
+network: Ethereum & Base & Optimism
+status: Draft
+created: '2024-01-30'
+---
+# Proposal Summary
+
+`This section provides a short, less than 500-word summary of the proposal. The Proposal Summary should briefly cover what will happen if the proposal passes, why it should pass, and how it will be implemented. The overview should be non-technical and accessible to a casual community member.`
+
+This proposal aims to create a comprehensive process for managing Infinex Infrastructure and Services (IIS). It augments [WGC-3](https://proposals.infinex.io/wgcs/wgc-3) and creates a framework with which to categorise each IIS.
+
+# Specification
+
+`The specification should describe the syntax and semantics of any new feature. There are four sections:`
+
+1. `Overview`
+1. `Rationale`
+1. `Technical Specification`
+1. `Test Cases`
+
+## Overview
+
+`This is a high-level overview of how the XIP will solve the problem. The overview should clearly describe how the new feature will be implemented.`
+
+Each IIS will be assigned a status:
+
+Strategically Valuable | Non-critical | Under Review | Unreviewed
+
+**Strategically Valuable** - This category must be managed directly by the Council or delegated to the Infrastructure Working Group.
+
+**Non-critical** - This category has been reviewed by the Council and determined to not require direct Council ownership and oversight.
+
+**Under Review** - Currently being reviewed by the Council and will be assigned a status of Strategically Valuable or Non-critical.
+
+**Unreviewed** - The Council has been notified but has yet to review.
+
+The Infinex Council will maintain an IIS list; this list will contain a status for each tracked service as well as other meta-data. New IIS may be provisioned as needed by each working group to fulfil their obligations to the Infinex Council. Funding will come from the WG budget. Each working group is required to notify the Council if they are testing or deploying a new IIS so that the Council can update the IIS list and track the usage of this IIS by the WG. Each IIS will be monitored by the Council and their statuses will be updated as required. If an IIS is determined by the Council to be Strategically Valuable the ownership and billing of this service will be transitioned to the Council within fourteen days of the notification of the change of status. The Council may choose to delegate the management of the IIS to the Infrastructure Working Group.
+
+## Rationale
+
+`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
+
+There is currently no comprehensive list of infrastructure and services used by the Council and Working groups. Nor is there a definition or categorisation of services and infrastructure within the Project. Some services are maintained by the Infrastructure Working Group on behalf of the Council, some are provisioned by Working Groups as needed on an ad hoc basis. This unstructured approach reduces the oversight of the Infinex Council over Working Groups. It also reduced the ability for collaboration across Working Groups, as each WG may have different instances of the same IIS.
+
+## Technical Specification
+
+`The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Infinex currently exposes or the creations of new ones.`
+
+The metadata contained in the IIS list is below:
+
+IIS Name
+
+IIS Status (see above for statuses)
+
+Environment (Production or Development)
+
+Billing Account/ Payment Method
+
+Owner/SuperAdmin Account
+
+Monthly Cost
+
+Seats Allocated
+
+Control of all Strategically Valuable IIS will be maintained via a 1password deployment, this 1password deployment will be part of the Strategically Valuable IIS. The owner of this deployment will be the Infinex Council. The Council will delegate one Council Member to manage and oversee the 1password account (the IIS Manager), disaster recovery mechanisms will be designed to enable recovery of the account should the IIS Manager be incapacitated. The IIS Manager will have authority from the Council to assign and revoke seats to each IIS managed at their discretion with input from the rest of the Council.
+
+Deployment and management of IIS that have been designated Production Environments will be restricted to the Council and the Infrastructure Working Group. Production deployment pipelines will be managed via the [RC](https://proposals.infinex.io/rcs/rc-1) process. Core WG will have full access to the development environments.
+
+## Test Cases
+
+`Test cases for an implementation are mandatory for XIPs but can be included with the implementation.`
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
