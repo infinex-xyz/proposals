@@ -20,7 +20,7 @@ export default async function TRFSs() {
       <Header currentPage="TRFs" className="mb-16" />
       <PageTitle>Treasury Requests for Feedback</PageTitle>
       <PageIntro>
-        TRFs outline a proposed initiatives from the Infinex Treasury.
+A TRF is a document written by the Treasury Seat, which outlines a proposed initiative from the Infinex Treasury.
       </PageIntro>
 
       {byStatus.map((i) => {
