@@ -1,0 +1,75 @@
+---
+title: Gas Fee Rebate
+id: 16
+author: Bilby (@bilb-y), Ray Zhu (@rayzhudev)
+type: core-upgrade
+network: Base
+status: Draft
+created: '2024-02-01'
+updated: '2024-02-01'
+---
+# Proposal Summary
+
+This proposal introduces a gas fee rebate for Infinex to pay the gas fees for all Infinex accounts.
+
+# Specification
+
+## Overview
+
+This XIP proposes to add a gas fee rebate to the Infinex accounts.
+
+A gas fee rebate is a variable configurable by the council to determine a percent of gas fees each Infinex user has to pay. To provide a smooth UX, transactions can have their gas fees paid for by Infinex, using the relay mechanism specified in [XIP-7](https://proposals.infinex.io/xips/xip-7).
+
+For every trade and modify collateral, we take `gasFeeRebate`% of the gas fees a user pays out of their sUSD margin, since the gas fees are being paid by the relayer.
+
+The gas fee rebate specifies the amount of gas that the user needs to pay for. A value of 0 means Infinex will pay for all their gas. A value of 1 means a user will have to pay for all their gas. The max value multiple of gas fees it can be set to is 10.
+
+Any gas fees a user has to pay will be deducted from their collateral.
+
+## Rationale
+
+Infinex may wish to pay for some or all of the users' gas fees as a way of incentivising them to use Infinex. Thus a gas fee rebate allows the Infinex council to control how much of a user's gas fees to pay for.
+
+At some point in the future, Infinex may wish to use gas fees as a form of revenue instead of or in addition to trading fees. For instance, on defi integrations which trading fees can't be taken on. Thus the gas fee rebate can be set above a value of 1 to take additional fees.
+
+Infinex may wish to set a different value for individual users, in order to lower the fees of VIP users, similarly to trading fees.
+
+## Technical Specification
+
+At the end of every trade is placed, or collateral modification, the gas fees for that transaction are added to the gas fees owed balance for that account. The gas fees owed are counted and denominated in `wei`. These gas fees are paid every time a trade is placed, or collateral is modified. The fee is calculated in USD based on the spot price of ETH from Synthetix V3 and deducted from the user's account in margin.
+
+The gas fees are sent to the Infinex revenue pool in sUSD.
+
+The `gasFeeRebate` % determines how much of the gas cost the Infinex protocol claws back from the user. The `gasFeeRebate` value is bounded between 0 and 10 (denominated in 18 decimals).
+
+For example, if Infinex pay $0.10 in gas, and gasRebate = 1.0, the contract would deduct
+
+$0.10 * 1 = $0.10 in margin.
+
+If Infinex decided to pay for everyone’s gas, the council could set `gasFeeRebate` = 0, so the trade would take $0.00 ($0.10 * 0)
+
+If Infinex decided to charge a 50% premium on gas, they could set the `gasFeeRebate` number to 1.5, and so on.
+
+This introduces three new variables to the `InfinexProtocolConfigBeacon`.
+
+{% table %}
+- Parameter
+- Description
+- Requires User Opt in
+---
+- defaultGasFeeRebate
+- The gas fee rebate value that is applied to all Infinex accounts excluding those with a specific gas fee rebate value.
+- No
+---
+- userSpecificGasFeeRebates
+- The list of gas fee rebates that are specific for individual users.
+- No
+---
+- userSpecificGasFeeRebatesSet
+- The list of users with a specific gas fee rebate value set. If the userSpecificGasFeeRebate value is set but this flag is not set, the user will pay the default gas fee rebate.
+- No
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
