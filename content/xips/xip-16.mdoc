@@ -10,7 +10,7 @@ updated: '2024-02-01'
 ---
 # Proposal Summary
 
-This proposal introduces a gas fee rebate for Infinex to pay the gas fees for all Infinex accounts.
+This proposal introduces a gas fee rebate for Infinex to pay the gas fees for all Infinex accounts. The rebate will be set to a value of 1 initially.
 
 # Specification
 
@@ -18,13 +18,13 @@ This proposal introduces a gas fee rebate for Infinex to pay the gas fees for al
 
 This XIP proposes to add a gas fee rebate to the Infinex accounts.
 
-A gas fee rebate is a variable configurable by the council to determine a percent of gas fees each Infinex user has to pay. To provide a smooth UX, transactions can have their gas fees paid for by Infinex, using the relay mechanism specified in [XIP-7](https://proposals.infinex.io/xips/xip-7).
+A gas fee rebate is a variable configurable by the council to determine a percent of gas fees each Infinex user has to pay. To provide a smooth UX, transactions can have their gas fees paid for by Infinex, using the relay mechanism specified in [XIP-7](https://proposals.infinex.io/xips/xip-7). 
 
 For every trade and modify collateral, we take `gasFeeRebate`% of the gas fees a user pays out of their sUSD margin, since the gas fees are being paid by the relayer.
 
 The gas fee rebate specifies the amount of gas that the user needs to pay for. A value of 0 means Infinex will pay for all their gas. A value of 1 means a user will have to pay for all their gas. The max value multiple of gas fees it can be set to is 10.
 
-Any gas fees a user has to pay will be deducted from their collateral.
+Initially, the gas fee rebate value would be set to 1, meaning all users will have to pay for 100% of the gas they consume on trading and collateral modification. Any gas fees a user has to pay will be deducted from their margin.
 
 ## Rationale
 
@@ -55,19 +55,19 @@ This introduces three new variables to the `InfinexProtocolConfigBeacon`.
 {% table %}
 - Parameter
 - Description
-- Requires User Opt in
+- Value to be set
 ---
 - defaultGasFeeRebate
 - The gas fee rebate value that is applied to all Infinex accounts excluding those with a specific gas fee rebate value.
-- No
+- 1e18 (the equivalent of 1 denominated in 18 decimals)
 ---
 - userSpecificGasFeeRebates
 - The list of gas fee rebates that are specific for individual users.
-- No
+- N/A. No user specific gas fee rebates set initially
 ---
 - userSpecificGasFeeRebatesSet
 - The list of users with a specific gas fee rebate value set. If the userSpecificGasFeeRebate value is set but this flag is not set, the user will pay the default gas fee rebate.
-- No
+- N/A. No user specific gas fee rebates set initially
 {% /table %}
 
 # Copyright
