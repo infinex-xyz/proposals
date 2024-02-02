@@ -56,18 +56,22 @@ This introduces three new variables to the `InfinexProtocolConfigBeacon`.
 - Parameter
 - Description
 - Value to be set
+- Requires User Opt in
 ---
 - defaultGasFeeRebate
 - The gas fee rebate value that is applied to all Infinex accounts excluding those with a specific gas fee rebate value.
 - 1e18 (the equivalent of 1 denominated in 18 decimals)
+- No
 ---
 - userSpecificGasFeeRebates
 - The list of gas fee rebates that are specific for individual users.
 - N/A. No user specific gas fee rebates set initially
+- No
 ---
 - userSpecificGasFeeRebatesSet
 - The list of users with a specific gas fee rebate value set. If the userSpecificGasFeeRebate value is set but this flag is not set, the user will pay the default gas fee rebate.
 - N/A. No user specific gas fee rebates set initially
+- No
 {% /table %}
 
 # Copyright
