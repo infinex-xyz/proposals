@@ -19,9 +19,6 @@ This XIP proposes the use of Wormhole CCTP for processing deposits.
 We propose using Wormhole CCTP to process Infinex deposits. This implementation still relies on the Circle CCTP bridge but adds the security of the Wormhole decentralized guardians to validate transactions.
 
 ## Rationale
-
-`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
-
 While it would have been possible to rely only on CCTP for USDC bridging, many more assets are expected to be added to Infinex over the coming months. Using the Wormhole CCTP wrapper ensures these assets will conform to the same bridging process, reducing the complexity of future asset integrations.
 
 ## Technical Specification
