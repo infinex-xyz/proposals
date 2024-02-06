@@ -29,17 +29,17 @@ Infinex is currently oversubscribed and requires a method to allocate available 
 
 ## Technical Specification
 
-##### Deposits
+#### Deposits
 
 Infinex will be accepting deposits for STW via the architecture specified in[ XIP-17](https://proposals.infinex.io/xips/xip-17). Deposits will be accepted on Ethereum, Polygon POS, Arbitrum, Optimism and Base.
 
-##### Withdrawals
+#### Withdrawals
 
 Withdrawals will be initially disabled via a smart contract feature flag, and will remain disabled throughout the STW campaign.
 
 Withdrawals can be enabled at any time by The Council through executing a transaction to set the feature flag using the the deployer safe. Withdrawals will operate as specified in [XIP-6](https://proposals.infinex.io/xips/xip-6).
 
-##### Governance Points Staking Rewards
+#### Governance Points Staking Rewards
 
 A Staking Rewards contract will be deployed, allowing users to stake their deposit balance and earn GP. The majority of the mechanisms for managing epochs and calculating rewards are adapted from the [Synthetix StakingRewards](https://github.com/Synthetixio/synthetix/blob/develop/contracts/StakingRewards.sol) contract, with some modifications added to address the unique scenarios required by the Infinex GP campaign.
 
