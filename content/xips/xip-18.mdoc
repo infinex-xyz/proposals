@@ -1,0 +1,74 @@
+---
+title: Speedrun the Waitlist
+id: 18
+author: kmao (@kmaox), clem (@0xclem)
+type: core-upgrade
+network: Base
+status: Draft
+created: '2024-02-06'
+---
+# Proposal Summary
+
+XIP-18 proposes a campaign named "Speedrun the Waitlist". This campaign allows users who create an Infinex Account and deposit USDC to earn Governance Points (GP) and get early access to the platform.
+
+# Specification
+
+## Overview
+
+Infinex is currently deployed on Base in closed alpha. With the imminent launch of our closed beta there are now over 250,000 waitlist entries. It will take several months to allocate all of these potential users an Infinex Account due to liquidity provisions on Base.
+
+The aim of the campaign is to efficiently allocate liquidity to the most valuable users, whilst also providing all users the chance to be granted access to Infinex. Users who participate in STW will also earn Governance Points in the process.
+
+This campaign will last 30 days, and distribute a total of 477,815,424 GP, resulting in a total supply of 565 million GP. Once STW begins, users will be able to create Infinex accounts and deposit USDC across six chains. Once a user's deposit has been processed, they will be able to stake their deposit for GP, with withdrawals disabled until the end of the campaign.
+
+Users are required to "claim" their GP for them to be reflected onchain. Once a user claims their GP, they will be placed into a waitlist (sorted by GP), with batches of users being granted access to the trading app as liquidity becomes available.
+
+## Rationale
+
+Infinex is currently oversubscribed and requires a method to allocate available liquidity to potential users. STW solves this problem by ensuring the users with the most liquidity are given access to the platform. Involving governance points as a reward also provides further incentive for users to create accounts and deposit on Infinex.
+
+## Technical Specification
+
+#### Deposits
+
+Infinex will be accepting deposits for STW via the architecture specified in[ XIP-17](https://proposals.infinex.io/xips/xip-17). Deposits will be accepted on Ethereum, Polygon POS, Arbitrum, Optimism and Base.
+
+#### Withdrawals
+
+Withdrawals will be initially disabled via a smart contract feature flag, and will remain disabled throughout the STW campaign.
+
+Withdrawals can be enabled at any time by The Council through executing a transaction to set the feature flag using the the deployer safe. Withdrawals will operate as specified in [XIP-6](https://proposals.infinex.io/xips/xip-6).
+
+#### Governance Points Staking Rewards
+
+A Staking Rewards contract will be deployed, allowing users to stake their deposit balance and earn GP. The majority of the mechanisms for managing epochs and calculating rewards are adapted from the [Synthetix StakingRewards](https://github.com/Synthetixio/synthetix/blob/develop/contracts/StakingRewards.sol) contract, with some modifications added to address the unique scenarios required by the Infinex GP campaign.
+
+When users invoke the stake function, their USDC will not be transferred to the contract due to its utility in trading. Instead, the Staking contract will calculate the staked balance by summing the USDC balances from both the user's Infinex and Synthetix margin accounts. This approach ensures that the contract maintains an accurate track of the staked USDC, even if funds are moved from the Infinex account to the Synthetix margin. Additionally, the recorded staked amount is designed to be cumulative, preventing any reduction in the staked balance. This measure safeguards against the potential issue of diminishing staking amounts due to trading losses, thereby upholding fairness in the staking process.
+
+The Council will grant the StakingRewards contract minting rights, enabling it to directly adjust balances within the GP contract. Given that Governance Points (GP) do not conform to the ERC20 standard, there will be no prerequisite for tokens to be deposited into the contract prior to the initiation of a rewards epoch. Instead, the contract will directly allocate the earned amounts to the users by updating the balances mapping within the GP contract when the claim function is called.\
+\
+The&nbsp;`GPStakingRewards` contract will have the following functions:
+
+{% table %}
+- Function
+- Description
+---
+- `notifyRewardAmount(uint256 _reward)`
+- Starts a new reward epoch, specifying a reward amount. This function can only be called by the Council.
+---
+- `setRewardsDuration(uint256 _duration)`
+- Sets the duration of the rewards period. This function can only be called by the Council.
+---
+- `stake(address _account)`
+- Stakes the USDC balance of an account.
+---
+- `claim(address _account)`
+- Claims the earned rewards for an account
+---
+- `earned(address _account)`
+- Returns the amount of rewards earned by an account.
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
