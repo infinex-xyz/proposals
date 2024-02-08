@@ -6,7 +6,7 @@ type: governance
 network: Base
 status: Draft
 created: '2024-02-01'
-updated: '2024-02-01'
+updated: '2024-02-08'
 ---
 # Proposal Summary
 
@@ -16,7 +16,7 @@ This XIP proposes to allocate Governance Points to actively engaged Infinex comm
 
 ## Overview
 
-Infinex aims to reward engaged community members with GP via the establishment of a Governance Points Engagement Campaign, following the [migration of Governance Points (GP) onchain](https://proposals.infinex.io/xips/xip-13). Infinex aims to distribute 35 million GP to community members who contribute in 5 different categories.
+Infinex aims to reward engaged community members with GP via the establishment of a Governance Points Engagement Campaign, following the [migration of Governance Points (GP) onchain](https://proposals.infinex.io/xips/xip-13). Infinex aims to distribute 50 million GP to community members who contribute in 6 different categories.
 
 These categories are:
 
@@ -25,8 +25,9 @@ These categories are:
 1. **Governance Call Participation**
 1. **Discord Competitions & Events**
 1. **Approved XIP Authors**
+1. **Farcaster Campaigns**
 
-This campaign requires 35m GP to be minted and sent to a Campaign Distribution Contract (CDC). This contract will be managed by the Operations Seat with oversight from the Treasury Seat. Distribution from the contract will require a Merkle tree to be uploaded, with both the Operations and Treasury Seats signing the transaction. GP will be distributed directly from the CDC to each user's Infinex Account.
+This campaign requires 50M GP to be minted and sent to a Campaign Distribution Contract (CDC). This contract will be managed by the Operations Seat with oversight from the Treasury Seat. Distribution from the contract will require a Merkle tree to be uploaded, with both the Operations and Treasury Seats signing the transaction. GP will be distributed directly from the CDC to each user's Infinex Account.
 
 Members of the Core WG are only applicable to receive GP from the fifth category (Approved XIP Authors).
 
@@ -36,48 +37,55 @@ Governance Points are the mechanism by which the Infinex Protocol incentivises u
 
 ## Technical Specification
 
-Prior to distribution, Governance Points will be assigned to a user's offchain identity. These identities can include a user's Discord ID, Twitter handle, or Github username. Periodically, a Merkle tree will then be deployed to distribute accrued GP to each user's Infinex account via a secure and verifiable process.
+Prior to distribution, Governance Points will be assigned to a user's offchain identity. These identities can include a user's Discord ID, Github username or Farcaster Account. Periodically, a Merkle tree will then be deployed to distribute accrued GP to each user's Infinex account via a secure and verifiable process.
 
 #### Distribution Breakdown
 
-A total of 35,000,000 GP will be distributed, increasing the total supply to 122,184,576 GP.
+A total of 50,000,000 GP will be distributed, increasing the total supply to 137,184,576 GP.
 
 The distribution is:
 
-##### **1. Discord Activity (~14.2%)**
+##### **1. Discord Activity (10%)**
 
 - **Allocation**: 5 Million GP
 - **Criteria**: Engagement and constructive contributions in Discord chat channels (not daily GMs).
-- **Calculation** **Method**: Moderators will grant GP to active members at their own discretion.
+- **Calculation** **Method**: Discord moderators will grant GP to active members at their own discretion.
 - **Distribution Method:** Infinex will create a Discord bot to link a user's Infinex account to their Discord account and migrate their balance to their Infinex account.
 
-##### **2. Twitter Activity (~14.2%)**
+##### 2. Twitter Activity **(10%)**
 
 - **Allocation**: 5 Million GP
 - **Criteria**: Engagement and constructive contributions on Twitter.
-- **Calculation** **Method**: The Operations Seat will assign points to constructive tweets about Infinex. This will be weighted by the tweet's engagement (replies/retweets/likes/views).
-- **Distribution Method:** Infinex will allow users to link their Twitter accounts to their Infinex accounts and migrate their balance to their Infinex accounts.
+- **Calculation** **Method**: Participants are required to post their content/activity in a specific Discord channel. Users must have their Twitter Account linked to their discord. Core Working Group Members or Moderators of Discord can then assign points to a user's Discord ID. This will be weighted by the tweet's engagement (replies/retweets/likes/views).
+- **Distribution Method:** Infinex will create a Discord bot to link a user's Infinex account to their Discord account and migrate their balance to their Infinex account.
 
-##### **3. Governance Call Participation (~28.5%)**
+##### 3. Governance Call **Participation** **(40%)**
 
-- **Allocation**: 10 Million GP
-- **Criteria**: Active participation and attendance in governance calls.
+- **Allocation**: 20 Million GP
+- **Criteria**: Active participation and attendance in governance & community calls.
 - **Calculation** **Method**: GP will be automatically assigned to a user's Discord ID based on their participation logs.
 - **Distribution Method:** Infinex will create a Discord bot to link a user's Infinex account to their Discord account and migrate their balance to their Infinex account.
 
-##### **4. Discord Competitions & Events (~14.2%)**
+##### 4. Discord Competitions & Events **(10%)**
 
 - **Allocation**: 5 Million GP
 - **Criteria**: Participation and winning in various Discord-based competitions
 - **Calculation** **Method**: Manual allocation post-competition, based on performance and creativity.
-- **Distribution Method:** GP will be assigned to an author's Github account. Infinex will then allow users to link their Github accounts to their Infinex accounts and migrate their balance to their Infinex accounts.
+- **Distribution Method:** GP will be assigned to an author's Github account. Infinex will then allow users to link their Discord accounts to their Infinex accounts and migrate their balance to their Infinex accounts.
 
-##### **5. Approved XIP Authors (~28.5%)**
+##### 5. Approved **XIP Authors** (**20%)**
 
 - **Allocation**: 10 Million GP
 - **Criteria**: Contribution to the Infinex ecosystem through approved proposals. Valid proposal types include Infinex Improvement Proposals (XIPs), Infinex Referendums (IRs), & Working Group Charters (WGCs). Treasury Request for Feedback (TRF) and Release Candidate (RC) authors will not be assigned GP.
 - **Calculation** **Method**: Manual allocation post council approval.
-- **Distribution Method:** Infinex will create a Discord bot to link a user's Infinex account to their Discord account and migrate their balance to their Infinex account.
+- **Distribution Method:** Infinex will create a Discord bot to link a user's Infinex account to their Github account and migrate their balance to their Infinex account.
+
+##### 6. **Farcaster Campaigns** (**10%)**
+
+- **Allocation**: 5 Million GP
+- **Criteria:** Engagement and constructive contributions within the Farcaster campaigns.
+- **Calculation Method**: The campaign will automatically assign users GP based of the frame they interact with.
+- **Distribution Method**: GP will be assigned to the first connected address to their Farcaster account, and then stored in an off-chain database during the duration of the campaign. Infinex will then update the GP balance on-chain.
 
 ## Copyright
 
