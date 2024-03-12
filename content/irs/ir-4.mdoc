@@ -1,0 +1,60 @@
+---
+title: Governance v1.3
+id: 4
+author: kmao (@kmaox)
+status: Draft
+created: '2024-03-13'
+---
+# Referendum Summary
+
+IR-4 proposes the introduction of the Security Seat and the introduction of a bond for the Security and Operations Seats.
+
+# Specification
+
+## Overview
+
+The following changes are proposed in IR-4:
+
+1. The introduction of a Security Seat.
+1. The introduction of a bond for the Operations and Security Seat.
+1. A modification made to the election process of the Operations Seat.
+
+If approved, the changes to the Infinex Governance contracts must be implemented before the end of the current epoch (April 30th 2024). This gives Infinex the flexibility to bundle any further governance changes prior to the start of the next epoch.
+
+## Rationale
+
+As a result of the recent security breach, several improvements have been identified:
+
+1. The implementation of a security role within the Council.
+1. The implementation of a mandatory bond system for the Operations and Security Seats, to protect against malicious actions, and ensure alignment.
+1. The Council to have additional power in the nomination process of the Operations Seat.
+
+## Technical Specification
+
+### Introduction of a Security Seat
+
+As a result of recent events, this IR proposes to add a Security Seat as an additional councillor, resulting in a six person council.
+
+The Security Seat will operate in a similar manner to the Operations Seat, and will be elected by The Council to serve indefinitely. Any existing member of the Core Working Group that served for a minimum of six months may nominate themselves for the role of Security Seat by filling out a nomination form in the designated governance platform. The council will also have the ability to nominate individuals that bypass this rule, as long as it is unanimously agreed upon. Nominations will open after/if IR-4 passes, and will last one week. The voting mechanism will be via instant run-off process, and [on-chain.](https://vote.infinex.io/#/) The Security Seat can be dismissed by a unanimous vote of The Council, and if dismissed, nominations will open again.
+
+The Security Seat will manage the security of the protocol. This includes tasks such as:
+
+1. Managing the security and infrastructure of the Core WG.
+1. Being the delegate of [Infinex's Infrastructure and Services (XIP-14)](https://proposals.infinex.io/xips/xip-14).
+1. Taking the initiative on improving Infinex's security.
+
+The Security Seat also receives a 1,000 SNX stipend, monthly.
+
+### Introduction of the Operations and Security Bond
+
+Assuming the passage of IR-4, the Infinex Council will have two out of six members serving for an indefinite period of time. In order to ensure there is a disincentive for malicious activity by these two members of Infinex Governance, this IR proposes the implementation of a bond.
+
+The Treasury Seat will impose this bond on the Operations Seat and Security Seat to ensure continuity of governance, should a handover process be required. Details of the bond will be negotiated, and managed by Treasury Seat.
+
+### Modification to Election Process of the Operations Seat
+
+In [IR-3](https://proposals.infinex.io/irs/ir-3), the Operations Seat was established with a two week nomination process. This proposal aims to shorten the nomination process to one week, and grant the Infinex Council the power to close nominations at their own discretion.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
