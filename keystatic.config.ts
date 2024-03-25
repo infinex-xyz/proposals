@@ -124,6 +124,7 @@ export default config({
           ],
         }),
         created: fields.date({ label: 'Created' }),
+        updated: fields.date({ label: 'Last Updated' }),
         dependencies: fields.text({
           label: 'Dependencies',
         }),
