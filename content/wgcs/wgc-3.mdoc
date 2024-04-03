@@ -1,64 +1,64 @@
 ---
-title: Continue the Legal Working Group
-id: 4
-wgName: Legal Working Group
-wgLead: Ryón Nixon
+title: Establish an Infrastructure WG
+wgName: Infrastructure
+id: 3
 author: Bilby (@bilb-y)
-status: Draft
-budget: 250,000
-budgetCadence:
-timeline: 60 days
-created: '2024-01-11'
-updated: '2024-04-03'
+status: Implemented
+timeline: Indefinetly
+created: '2023-12-18'
+established: '2023-12-22'
 ---
 ### Working Group Name
 
-Legal Working Group
+Infrastructure Working Group
 
 ### Working Group Lead
 
-The Working Group Lead for the Legal WG is Ryón Nixon
+Discord - rocketfish007
 
-- Discord: ryo_omega#0151
-- Github: RyonNixonHorizonsLaw
+Github - [Rocketfish0007](https://github.com/Rocketfish0007)
 
 ### Outcomes
 
-The initial legal analysis outlined prior has been completed by the Legal Working Group, with proposals made to and accepted by the Council. The next stage is to execute on the proposed legal strategy which will require a longer timeframe and larger budget. Additional analysis will also be undertaken with respect to the proposed Patron NFT sale, with supporting proposals made where relevant.
+In order to offer an application that can compete with centralized exchanges, Infinex will need to host off-chain infrastructure, including databases, servers, serverless functions, relayers, and keepers.
 
-Per the Legal Working Group’s advice, the Council has decided to maintain confidentiality with respect to the specific details related to the implementation of Infinex’s legal strategy. This decision is due to generalized legal risks and uncertainty with respect to digital assets.&nbsp;Infinex’s code will always be open-source and Infinex’s community will always maintain ultimate control of the protocol through decentralized governance. Treasury funds and protocol fees will always remain visible on-chain.
+The Infrastructure Working Group (Infra WG) are responsible for deploying and hosting this infrastructure for the Infinex DAO. Importantly, any off-chain infrastructure run by the working group should serve the purpose of improving the user experience without custodying user funds.
 
-The Legal Working Group will engage directly with the Infinex Council. Discussions between the Legal Working Group and the Council will be kept confidential and protected under attorney-client privilege. The Council will decide if and when to publicly disclose certain details related to Infinex’s legal strategy, though such disclosures will be made only as necessary in the Council’s sole determination. Accordingly, the DAO should presume that all discussions between the Council and Legal Working Group will remain confidential.
+The responsibilities of the Infra WG are:
+
+- Off-chain infrastructure
+  - All databases, servers, and/or serverless functions will be hosted by the Infra WG.
+  - It falls under the mandate of the Infra WG to ensure that output of a release candidate from the Core Working Group is delpoyed as specified.
+- Operation of relayer network
+  - As per [XIP-3](https://proposals.infinex.io/xips/xip-3-perps), the initial implementation of the Infinex contracts will require an off-chain relayer to relay transactions. The Infra WG will ensure that this is running and topped up with gas provided by the Infinex Council.
+- Operation of keepers
+  - Any public keepers required to operate the protocol can be run by the Infra WG as a backstop for the Infinex App, in case they aren't operated organically by the community at any point.
+- Frontend hosting
+  - The Infra WG will be required to host all frontend code for the Infinex App as specified in Core Working Group release candidates.
+- DNS
+  - The Infra WG should hold the domain name infinex.io and configure any records required to operate the protocol.
+- Infrastructure maintenance
+  - Bug fixes, optimizations and improvements to any piece of the infrastructure stack specified in a Core Working Group release candidate.
+
+Any releases or changes to the above must be submitted to the Infinex Council via a Release Candidate, following the guidelines defined in [RC-1](https://proposals.infinex.io/rcs/rc-1).
 
 # Budget
 
-$250,000 USD
-
 ### Budget Rationale
 
-The fees associated with this proposal will be used for legal costs and services related to corporate entity structuring. The entity structure is designed with the intent to preserve Infinex’s core values of on-chain transparency and community-driven governance, while simultaneously mitigating the legal exposure of Infinex’s working groups and the Council members.
+The Infinex protocol has not launched and so it is difficult to estimate variable infrastructure costs up-front. The Infra WG have agreed to front the cost of operating until a budget has been defined, at which point this charter shall be amended.
+
+Budget should be sent to the following address:
+eth:0x78CEE97C23560279909c0215e084dB293F036774
 
 # Timeline
 
 ### Timeline Rationale
 
-The working group budget will operate as described for 60 days from the approval of this charter, after which time the outcomes will be evaluated and the continuation of the working group will be reassessed by the Council.
+The Infra WG will operate indefinitely or until they are replaced by other working groups for the purposes of furthering decentralization of the protocol.
 
 ### Release Candidate Frequency
 
-Release candidates will be proposed on an ad hoc basis, if at all.
+The release candidate frequency of infrastructure changes will be ad-hoc.
 
-# **Changelog**
-
-## **Update Log – 2024-04-3**
-
-As the following WGC has come to a conclusion, a new update was made to reflect the new outcomes, budget, and timelines.
-
-- Outcomes was updated from prior outcomes (below), to reflect the new focus of the Legal Working Group
-
-  - Analyzing the Infinex architecture, governance structure, strategy and other initiatives from a legal perspective, incorporating U.S. securities and commodities laws, FINRA regulations and other applicable regulations.
-  - Investigating legal entity structures for the DAO.
-
-- The budget has changed from $30,000 a month retainer, to a flat $250,000 fee. This is to accommodate the legal costs and services related to corporate entity structuring
-
-- The timeline has also been updated to another 60 days, which means the Legal Working Group will be in action until June 3, 2024.
+### **Dissolution Rationale**
