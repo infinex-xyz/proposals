@@ -42,24 +42,12 @@ export default config({
             { label: 'Integration Upgrade', value: 'integration-upgrade' },
             { label: 'Governance', value: 'governance' },
             { label: 'Parameter Change', value: 'parameter-change' },
-            { label: 'Community', value: 'community' },
+            { label: 'Community', value: 'Community' },
           ],
         }),
-        network: fields.select({
-          label: 'Network',
-          defaultValue: '',
-          options: [
-            { label: '', value: '' },
-            { label: 'Base', value: 'Base' },
-            { label: 'Optimism', value: 'Optimism' },
-            { label: 'Ethereum', value: 'Ethereum' },
-            { label: 'Ethereum & Optimism', value: 'Ethereum & Optimism' },
-            { label: 'Ethereum & Base', value: 'Ethereum & Base' },
-            {
-              label: 'Ethereum & Base & Optimism',
-              value: 'Ethereum & Base & Optimism',
-            },
-          ],
+        network: fields.text({
+          label: 'Network(s)',
+          description: 'e.g Base, Optimism, Ethereum, Solana, etc',
         }),
         status: fields.select({
           label: 'Status',
