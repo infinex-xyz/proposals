@@ -71,46 +71,33 @@ The following changes are made to the existing smart contracts:
 ##### **Modifying the Treasury Council Election System**
 
 1. A new TreasuryElectionModule is deployed where the treasury seat is voted on by holders of an ERC-721 collection
-
 1. A vote is initiated in the IR Migrator with the following execution params
-
    1. Call Deployer InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
    1. Call Treasury InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
    1. Call Operations InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
    1. Call Security InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
-
 1. After the vote passes it executes the defined contract calls
-
 1. Hold an election with the new TreasuryElectionModule to determine the new Treasury seat
-
 1. Call `resetSafeSigners()` on the Security and Operations Safe to read the new signers from the updated list of election modules
-
 1. Call `resetSafeAndCrossChainSafeSigners()` on the Treasury and Deployer Safes to update the signers of the Safes on Base and also the Mainnet Safes
 
 ##### **Removing a council member from an election module**
 
 1. A vote is initiated in the IR Migrator with the following execution params
-
    1. Call the election module method to remove the previous council members and add the new addresses provided
    1. Pushes a cross-chain message to the Mainnet IR Migrator with the calldata to perform the same item a
-
 1. After the vote passes it executes the defined contract calls
-
 1. Call `resetSafeSigners()` on the Security and Operations Safe to read the new signers from the updated list of election modules
-
 1. Call `resetSafeAndCrossChainSafeSigners()` on the Treasury and Deployer Safes to update the signers of the Safes on Base and also the Mainnet Safes
 
 ##### **Upgrading the IR Migrator so that voting power for IRs is determined by a different ERC-20 token**
 
 1. A new IR Migrator contract is deployed which reads votes from a different ERC-20 token.
-
 1. A vote is initiated in the IR Migrator with the following execution params
-
    1. Set migrator to the new IR Migrator contract in the Deployer InfinexSafeModule
    1. Set migrator to the new IR Migrator contract in the Operations InfinexSafeModule
    1. Set migrator to the new IR Migrator contract in the Treasury InfinexSafeModule
    1. Set migrator to the new IR Migrator contract in the Security InfinexSafeModule
-
 1. After the vote passes it executes the defined contract calls
 
 ### Introducing Cross-chain Safes
