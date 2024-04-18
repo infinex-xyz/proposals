@@ -1,0 +1,148 @@
+---
+title: Governance v2.0
+id: 5
+author: kmao (@kmaox), Ray Zhu (@rayzhudev)
+status: Draft
+created: 2024-04-18
+---
+## Referendum Summary
+
+IR-5 proposes a set of governance changes collectively presented as the Governance v2.0 upgrade.
+
+## Specification
+
+### Overview
+
+The following upgrades are proposed in IR-5:
+
+1. A new suite of governance contracts which enable onchain meta-governance changes.
+1. The deployment of a cross-chain safe.
+1. The election of an addition Trader Seat.
+1. The rollover of the Treasury Seat.
+1. A delayed start to Epoch 2.
+
+The deployment of Governance 2.0 will also include the approved but not implemented changes from [IR-3](https://proposals.infinex.io/irs/ir-3) and [IR-4](https://proposals.infinex.io/irs/ir-4), which include
+
+- The introduction of an Operations Seat and the deprecation of the Core Contributor Seat.
+- The establishment of the Patron NFT as the voting method for the Treasury Seat.
+- The introduction of the Security Seat.
+
+The Governance 2.0 upgrade aims to lay the foundation for a composable and transparent megovernance framework that will accommodate future governance changes.
+
+### Rationale
+
+In order to launch governance 1.0 a decision was made to implement a governance framework that did not have an onchain upgrade mechanism. Several such frameworks have been proposed previously, including Synthetix V3GM, however none of these have been implement or meet the needs of Infinex Governance. Since the launch of governance there was an expectation that a new onchain framework would be deployed, but after significant R&D it was decided that the only viable path forward was to implement a new set of bespoke governance contracts.
+
+## Technical Specification
+
+Several improvements have been identified from Infinex's existing Governance framework. These improvements include:
+
+1. A defined way to fork and evolve Infinex Governance.
+1. A secure method to create and manage safes across all EVM networks.
+1. An increase in the number of council members, leading for a wider range of opinions.
+
+Furthermore, various changes are proposed in order to smoothen the transition process to Governance 2.0.
+
+1. A rollover of the Treasury Seat from Epoch One, due to the Patron NFT not being deployed yet.
+1. A two week delay to the start of Epoch Two, as the Governance 2.0 contracts finalise audit.
+
+The existing code for Governance 2.0 is [here](https://github.com/infinex-io/contracts-governance). It is currently undergoing audits before it is able to be deployed. Once deployed, any changes to Infinex Meta-Governance require an IR, as well as a vote to be initiated via the new governance contracts.
+
+### Improving Infinex Meta-governance
+
+The current Infinex governance contracts are immutable which results in a rigid governance framework. This has caused issues with making improvements to the governance process such as adding new council members to the treasury safe. To address these problems, Governance v2.0 proposes a process for upgrading the governance framework through the introduction of an "IR Migrator". The IR Migrator is a wrapper on the council safe which allows election modules to be swapped in and out. This provides the Infinex governance contracts with a framework flexible enough to allow for the addition and removal of seats which are voted on in a variety of methods.
+
+The IR migrator is also upgradeable to allow for any changes in how IRs are conducted. This allows the IR Migrator to change the voting threshold, and how voting power is calculated. The IR migrator can only be upgraded through an IR.
+
+The following changes are made to the existing smart contracts:
+
+**InfinexSafeModule**
+
+- Introduces a new method to update the ElectionModules that can only be called by the IR Migrator
+- Will store the IR Migrator contract address on initialisation.
+- Adds a method to set the IR Migrator contract, only callable by current the IR Migrator.
+
+**ElectionModule**
+
+- Introduces a new method to update the list of councils that can only be called by the IR Migrator contract. A migration can only be approved via an on-chain vote, via Synthetix Debt Share holders. Only individuals with SDS are able to vote. A migration vote will last seven days, and will only be passed if after the seven days, over 60% of the votes are in favour of migration. If so, then anyone will be able to call `migrate`, which will then, transfer the NFTs in the specified addresses.
+
+#### Here are some examples of future upgrades that could be made with the governance 2.0 framework:
+
+##### **Modifying the Treasury Council Election System**
+
+1. A new TreasuryElectionModule is deployed where the treasury seat is voted on by holders of an ERC-721 collection
+
+1. A vote is initiated in the IR Migrator with the following execution params
+
+   1. Call Deployer InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
+   1. Call Treasury InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
+   1. Call Operations InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
+   1. Call Security InfinexSafeModule to remove the previous TreasuryElectionModule and add the new one
+
+1. After the vote passes it executes the defined contract calls
+
+1. Hold an election with the new TreasuryElectionModule to determine the new Treasury seat
+
+1. Call `resetSafeSigners()` on the Security and Operations Safe to read the new signers from the updated list of election modules
+
+1. Call `resetSafeAndCrossChainSafeSigners()` on the Treasury and Deployer Safes to update the signers of the Safes on Base and also the Mainnet Safes
+
+##### **Removing a council member from an election module**
+
+1. A vote is initiated in the IR Migrator with the following execution params
+
+   1. Call the election module method to remove the previous council members and add the new addresses provided
+   1. Pushes a cross-chain message to the Mainnet IR Migrator with the calldata to perform the same item a
+
+1. After the vote passes it executes the defined contract calls
+
+1. Call `resetSafeSigners()` on the Security and Operations Safe to read the new signers from the updated list of election modules
+
+1. Call `resetSafeAndCrossChainSafeSigners()` on the Treasury and Deployer Safes to update the signers of the Safes on Base and also the Mainnet Safes
+
+##### **Upgrading the IR Migrator so that voting power for IRs is determined by a different ERC-20 token**
+
+1. A new IR Migrator contract is deployed which reads votes from a different ERC-20 token.
+
+1. A vote is initiated in the IR Migrator with the following execution params
+
+   1. Set migrator to the new IR Migrator contract in the Deployer InfinexSafeModule
+   1. Set migrator to the new IR Migrator contract in the Operations InfinexSafeModule
+   1. Set migrator to the new IR Migrator contract in the Treasury InfinexSafeModule
+   1. Set migrator to the new IR Migrator contract in the Security InfinexSafeModule
+
+1. After the vote passes it executes the defined contract calls
+
+### Introducing Cross-chain Safes
+
+Deployments to multiple chains as well as having assets on multiple networks require the deployment of crosschain safes. As such, this proposal aims to introduce two new cross-chain safes on Mainnet, which will be controlled via the Council NFTs on base.
+
+This can be implemented via integrating a cross-chain query within the `resetSafeSigners` function, which will query the base network for the owners of specified council NFTs, and then assign ownership of the safe to them. These safes will work as normal other than being dependent on Base for control.
+
+The safes will also need to be linked to the token addresses, which will be done during the deployment of the safes. The deployment will be facilitated by the operations seat, and then ownership of the safes will be burnt, making the contracts immutable, just like Infinex's Governance contracts.
+
+Infinex will deploy an additional treasury and deployer safe on Ethereum Mainnet, but new safes can be deployed on any EVM chain in the future as required.
+
+### Expanding the Council
+
+As a result of governance changes within Infinex, one third of the positions on the Council are appointed roles not subject to direct election.
+
+IR-5 proposes to add an additional Trader Seat to the Infinex Council, bringing the total number of seats to seven, allowing for a wider range of community input, whilst further decentralising the platform. This additional seat will have the same parameters as the existing Trader Seat.
+
+### A Rollover of the Treasury Seat
+
+IR-5 proposes the existing treasury seat from epoch one, which was [voted ](https://vote.infinex.io/#/proposal/0x295449db819f1b9412f94891f117818866c5a05d412f5a2369524d2fd9507ebf)in following the approval of [IR-2](https://proposals.infinex.io/irs/ir-2-governance-v1.1), be rolled over for the next epoch.
+
+Currently, the ratified voting mechanism for the Treasury Seat has not been deployed, making it impossible to elect a new Treasury Seat.
+
+### A Delayed Start to Epoch 2
+
+Infinex's Governance 2.0 contracts are currently in audit, and are expected to finalise midway through the next epoch. Furthermore, CWG members are currently working on an improved governance website (gov.infinex.io), and are expecting to finish, a month after Epoch 2 begins.
+
+Due to these dependencies, IR-5 proposes that epoch one be extended for an additional two months, ending on June 30th. Nominations will run for one week. Voting begins immediately following the conclusion of the nomination period, and voting will end on July 14th. The epoch will then end on December 30th. Future nominations will occur on either July 1st, or Jan 1st.
+
+With this extension, Infinex Governance can align governance epochs to the calendar year, with two epochs each year, the first from the 1st of January to the 30th of June and the second from the 1st of July to the 31st of December.
+
+# Copyright
+
+Copyright and related rights waived via&nbsp;[CC0](https://creativecommons.org/publicdomain/zero/1.0/).
