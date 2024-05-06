@@ -1,0 +1,78 @@
+---
+title: An Update to GP
+id: 21
+author: kmao (@kmaox), Kain (@kaiynne)
+type: integration-upgrade
+network: Ethereum, Base
+status: Draft
+created: '2024-05-06'
+---
+# Proposal Summary
+XIP-21 proposes an update to Governance Points (GP).
+
+# Specification
+
+## Overview
+
+Currently, GP is used for electing a Trader Seat to the Infinex Council. Following [recent discussio](https://twitter.com/kaiynne/status/1786203066888532294)ns of airdrop structures negatively impacting crypto communities several changes to GP are proposed:
+
+1. Airdrop an additional 100,000,000 GP to various crypto communities.
+1. Cap the GP supply to 600,000,000.
+1. Allocate 3% of the Patron NFT supply to GP.
+1. Update GP to be transferrable after STW ends.
+
+## Rationale
+
+The rationale of this XIP is outlined [here](https://twitter.com/kaiynne/status/1786202819982508504).
+
+The points meta has evolved into a tool for exploiting crypto communities to inflate metrics and raise at higher valuations. Infinex aims to be transparent in its points program, by announcing a fixed exchange rate between GP and Patron NFTs.
+
+## Technical Specification
+
+#### Airdrop an additional 100,000,000 GP
+
+The purpose of this is to reward active members of other communities, and encourage these members to join the Infinex community.
+
+##### 1. Pudgy Penguin Airdrop - 19,553,600 GP
+
+Distribute 19,553,600 GP to holders of [Pudgy Penguins](https://opensea.io/collection/pudgypenguins). This is approximately 3.3% of the total GP supply, and around 0.1% of the total supply (assuming GP converts to 3%).
+
+This results in an allocation of 2,200 GP per NFT (8,888 Pudgy Penguins exist).
+
+##### 2. Milady Maker Airdrop - 20,000,000 GP
+
+Distribute 20,000,000 GP to holders of [Milady](https://opensea.io/collection/milady)[**&nbsp;**](https://opensea.io/collection/milady)[Maker](https://opensea.io/collection/milady). This is approximately 3.3% of the total GP supply, and around 0.1% of the total supply (assuming GP converts to 3%).
+
+This results in an allocation of 2000 GP per NFT (10,000 Milady Makers exist).
+
+##### 3. Berachain Airdrop - 10,027,600 GP
+
+Distribute 10,027,600 GP to holders of [Bit Bears](https://opensea.io/collection/berachain-bit-bears). This is approximately 1.7% of the total GP supply, and around 0.05% of the total supply (assuming GP converts to 3%).
+
+This results in an allocation of 4400 GP per NFT (2,279 Bit Bears exist).
+
+##### 4. Keng Lernitas Airdrop - 50,418,800 GP
+
+50,418,800 GP will be allocated to the Keng Lernitas developers to distribute to Keng Lernitas holders. This is approximately 8.3% of the total GP supply, and around 0.25% of the total supply (assuming GP converts to 3%).
+
+#### Cap the GP supply at 600,000,000 GP
+
+Following the final airdrop of 100,000,000 GP, the supply of GP will be capped, providing clarity around the value of GP ahead of [Speedrun the Waitlist](https://proposals.infinex.io/xips/xip-18).
+
+#### Allocate 3% of the Patron NFT Supply to GP
+
+Allocate 3% of the total supply to GP holders, resulting in 3,000 Patron NFTs. This creates a fixed [exchange rate](https://twitter.com/kaiynne/status/1786203066888532294) between GP and the Patron NFT.
+
+On the release of the Patron NFT, users will be able to burn 200,000 GP in exchange for a Patron NFT.
+
+#### Update GP to be transferrable
+
+As outlined in [XIP-13](https://proposals.infinex.io/xips/xip-13), the current technical implementation of GP does not allow it to be transferrable. If no changes were to be made to the existing functionality of GP, users who have less than 200,000 GP would be unable to do anything with their GP.
+
+Thus, Infinex proposes to update the `GovernancePoints.sol` to be transferrable. Infinex will still deploy `GovernancePoints.sol` as a mapping of balances (not an ERC20 token), that are not transferrable between users. However, following the end of STW, Infinex will upgrade the contract to an ERC20 token that's transferrable, in preparation for the launch of the Patron NFT.
+
+This mean users will be able to trade their GP, and eventually, burn their GP in exchange for a Patron NFT.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
