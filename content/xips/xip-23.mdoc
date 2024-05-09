@@ -1,0 +1,128 @@
+---
+title: Security Update
+id: 23
+author: Jed (@0xjaynex)
+type: core-upgrade
+network: All
+status: Draft
+created: '2024-05-09'
+updated: '2024-05-09'
+---
+# Proposal Summary
+
+XIP-23 is an update to [XIP-2: Security Core](https://proposals.infinex.io/xips/xip-2).
+
+# Specification
+
+## Overview
+
+The approved XIP-2 has some outdated items. This XIP aims to update these items.
+
+During implementation, the Core Working Group found that neither Stytch nor Lit were ready to be used as cornerstone technical foundations for Infinex's security model.
+
+Additionally, the complexity of the proposed security model (especially separating security logic in a Lit Action from the Ethereum contract logic) made the level of user safety Infinex needs to implement impossible.
+
+Instead of relying on overly complex logic and a one-size-fits-all approach, the security model has been comprehensively overhauled in favour of simplicity and clarity. The updated security logic can be implemented onchain in-situ with the smart contracts, and Infinex Accounts can be secured using [passkey](https://fidoalliance.org/passkeys/) technology ensuring users maintain genuine self-custody of access to their account without the risks inherent to password-based security.
+
+The foundations for this new security model are described in this XIP and will be implemented for launch, and for the Speedrun The Waitlist campaign ([as described in XIP-18](https://arc.net/l/quote/ypxtseai)).
+
+The scope for this update includes:
+
+- Account creation, authentication and session management
+- Non-custodial wallet creation and transaction signing
+- Account operation
+- Funds Recovery
+
+Further capability will be added in future updates to enable withdrawals, integrations, and account security configuration.
+
+## Rationale
+
+XIP-2 describes an overly complex security model, which is inappropriate to the updated goals of Infinex to become a secure, non-custodial unhosted wallet, and is based on integrations that have proven nonviable.
+
+## Technical Specification
+
+Infinex proposes some changes to the implementation of withdrawals and the Governance Points Staking Rewards.
+
+### Terminology
+
+These concepts replace Browser Keys, Device Keys, MFA Keys, and Recovery Keys described in earlier XIPs and implementations of the Infinex contracts and platform.
+
+#### Passkey
+
+See [FIDO Alliance's documentation](https://fidoalliance.org/passkeys/). Passkeys are a replacement for passwords that provide faster, easier, and more secure sign-ins to websites and apps across a user’s devices. Unlike passwords, passkeys are always strong and phishing-resistant.​
+
+#### Sudo Key
+
+A public/private key pair used to secure the highest level of access to an Infinex Account. At launch, each sudo key will be a [Turnkey Wallet](https://docs.turnkey.com/concepts/wallets) linked 1:1 with a passkey that the user holds, and is registered in the Account Contract.
+
+#### Origin Key
+
+The initial Sudo Key that is used to create the account and has initial authorisation. For security and to ensure only genuine account contracts are deployed, the origin key is part of the contract address salt.
+
+#### Operations Key
+
+A public/private key pair with lower privileges to operate the account than the sudo key. Must be registered with a sudo key. Provides the Infinex platform with limited capability to operate an account on behalf of the user, similar to the concept of a session key in ERC-4337.
+
+### Account Creation
+
+When creating an account, users will be prompted to provide a unique username (which is used to identify the user publicly in Infinex, e.g on the StW leaderboard, and also to identify their login credentials) and create a passkey on their local device.
+
+The Infinex platform will provide the passkey server and handle registration and association between the passkey and the account.
+
+### Authentication
+
+Returning users will be prompted to authenticate with their passkey to create a new web session on the Infinex platform. A session cookie will be used to identify the user on subsequent requests, and will be deleted when the user signs out.
+
+### Turnkey Integration
+
+Currently, passkeys cannot be used to sign onchain transactions for EVM, so we need an intermediary who can securely verify a passkey signature and sign an onchain transaction with the appropriate curve (SECP256K1 for EVM chains, ED25519 for Solana)
+
+[Turnkey](https://docs.turnkey.com/) provides us with the ability to generate a private key for signing that is not accessible to Infinex or Turnkey, is unlocked by the user's passkey, and can be integrated through their API.
+
+Built by the team who worked on Coinbase Custody, Turnkey also has extensive security practices [documented here](https://docs.turnkey.com/category/security).
+
+#### Implementation Details
+
+Infinex will control a Turnkey [organisation](https://docs.turnkey.com/concepts/organizations).
+
+When creating a new Infinex Account, the Infinex platform will also create:
+
+- A [sub-organisation](https://docs.turnkey.com/concepts/sub-organizations) for the account;
+- A [user](https://docs.turnkey.com/concepts/users/introduction) in the new sub-organisation; and
+- A [wallet](https://docs.turnkey.com/concepts/wallets) (which is the Origin Key for the account) in the new sub-organisation.
+
+The account passkey will be set as an [authenticator](https://docs.turnkey.com/concepts/users/credentials) for the Turnkey user.
+
+Initially, during account setup, Infinex will also hold an API Key for a user in the sub-organisation which is part of the root quorum. As early as practical, this access will be revoked so that Infinex does not custody access to the account that has been created.
+
+#### Transaction Signing
+
+When an onchain transaction needs to be signed, the user will be prompted to authenticate with their passkey. This will create a temporary API Key held by the Infinex backend which can be used by the Infinex platform to sign the transaction with the user's Sudo Key, without the Sudo Key being accessible to Infinex.
+
+### Funds Recovery
+
+To ensure user safety, at launch Infinex will implement strict protocols regarding the recovery of deposited funds in the case the user loses access to their passkey.
+
+Accounts will allow the configuration of:
+
+- Two recovery addresses (one for supported EVM chains, and one for Solana)
+- Social sign-on credentials for funds recovery; and/or
+- EOAs or Solana Accounts to sign for funds recovery
+
+For safety, before an account's deposit address is shown, the user will have to set up at least one funds recovery authentication mechanism and a recovery address for the chain they are depositing to.
+
+Setting any of these requires a Sudo Key signature.
+
+For security, the funds recovery address can only be set once. This means that if a user's passkey is compromised or lost, the user will have alternative authentication capabilities to confirm they want to recovery funds; while in the case that a user's passkey is compromised, a bad actor cannot change the recovery address after funds have been deposited.
+
+### Future enhancements
+
+After initial launch, Infinex will work to build additional security features, to be specified in future XIP(s) including:
+
+- Support for associating multiple passkeys with a single Infinex account
+- Support for configuring additional factors, e.g additional user-held EOA signers, for high risk operations like withdrawals
+- A mechanism for full account recovery
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
