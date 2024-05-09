@@ -1,0 +1,69 @@
+---
+title: Update to STW
+id: 22
+author: kmao (@kmaox), axe (@axefinaxe)
+type: core-upgrade
+network: Ethereum, Base, Optimism, Arbitrum, Polygon POS, Solana
+status: Draft
+created: '2024-05-09'
+---
+# Proposal Summary
+
+XIP-22 is an update to [XIP-18: Speedrun the Waitlist](https://proposals.infinex.io/xips/xip-18).
+
+# Specification
+
+## Overview
+
+The approved XIP-18 has some outdated items. This XIP aims to update these items.
+
+When users participate in STW, users will not be "*placed into a waitlist (sorted by GP), with batches of users being granted access to the trading app as liquidity becomes available"* ([as stated in XIP-18](https://arc.net/l/quote/ypxtseai)). STW will still include a waitlist, however, the purposes of the waitlist is for Infinex to prioritise access to upcoming integrations, one of which may include a trading app.
+
+Infinex aims to update the technical functionality behind withdrawals and the GP staking rewards.
+
+## Rationale
+
+XIP-18 is outdated and requires updates.
+
+## Technical Specification
+
+Infinex proposes some changes to the implementation of withdrawals and the Governance Points Staking Rewards.
+
+#### Withdrawals
+
+A new account implementation will be deployed to include withdrawal functionality, and will be set as the latest account implementation version by the council.
+Users will have to update to this version of the Infinex Smart Contract Account to be able to withdraw funds.
+
+Should the user opt out of upgrading their account, they will still be able to recover their funds to their specified Funds Recovery Address. Withdrawals will largely operate as specified in [XIP-6](https://proposals.infinex.io/xips/xip-6), with the exception that only sudo keys (the key directly linked to the user's passkey) will be able to enact withdrawals. This change was made to improve the security of user funds.
+
+Additional security may be added, including requiring a second factor that may include a signature by an EOA that the user controls.
+
+**Governance Points Staking Rewards**
+
+The Infinex platform will use a trusted keeper to report the user balances accross all supported chains. The amounts per chain will be reported as a set, and thus be auditable. The Staking contract will calculate the staked balance by summing the USDC balances from all chains.
+
+No trading integration will be activated during the campaign, which is a change from XIP-18. If an app is enabled during the STW campaign, and the USDC in the user's Infinex account is decreased, this will not impact their staked amount, however, for the user's staked balance to increase, the USDC balance will have to be in excess of the previously staked amount.
+
+{% table %}
+- Function
+- Description
+---
+- `notifyRewardAmount(uint256 _reward)`
+- Starts a new reward epoch, specifying a reward amount. This function can only be called by the Council.
+---
+- `setRewardsDuration(uint256 _duration)`
+- Sets the duration of the rewards period. This will be set on deployment as per the deployment configuration.
+---
+- `stake(address _account)`
+- Stakes the USDC balance of an account. This can only be called by the trusted keeper
+---
+- `claim(address _account)`
+- Claims the earned rewards for an account
+---
+- `earned(address _account)`
+- Returns the amount of rewards earned by an account.
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
