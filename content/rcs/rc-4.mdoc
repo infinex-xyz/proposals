@@ -1,0 +1,71 @@
+---
+title: Release STW
+id: 4
+wg: Core WG
+author: kmao (@kmaox), Jaynex (@0xjaynex)
+status: Draft
+released: '2024-05-10'
+---
+### Overview
+
+The Core WG will launch STW on May 13th. Deployment and configuration activities will occur on the days leading up to this launch.
+
+- EVM smart contracts and Solana programs will be deployed and configured by Friday 10 May
+- Web platform and databases will be deployed and configured by Friday 10 May, but will only allow limited access to Core Working Group members for validation and testing
+- The Infinex app website will be open to the public on Monday 13 May AEST
+- Governance Points are expected to begin streaming on Tuesday 14th May AEST.
+
+### Outcome
+
+Release Infinex's first application, which allows all users to sign up for Infinex accounts and deposit USDC.
+
+Features will include:
+
+- Anyone can create a new Infinex account, secured by a passkey.
+- A Turnkey sub-org, wallet and user will be created for the new account.
+- The EVM account contract will be deployed to Base
+- The Solana account will be created
+- Users can configure a funds recovery address and recovery authentication methods (EVM or Solana wallets, and/or Google or Apple logins).
+- Users can fund their accounts by depositing USDC on Ethereum Mainnet, Base, Optimism, Arbitrum, Polygon POS, and Solana.
+- Users can stake deposited USDC amounts and earn GP points.
+- Users can claim GP points to their account.
+
+*Note: Users will not be able to withdraw funds during the STW campaign, which is intended to run for 30 days.*
+
+---
+
+### Proposed Changes
+
+##### **Smart contract changes**
+
+This is the first deployment of the smart contracts on all applicable platforms. The scope of the deployed smart contracts includes all of the above STW features, as well as some functionality that will support future app features (such as bridging intra-account funds between chains).
+
+The initial smart contracts and programs will be deployed to Ethereum Mainnet, Base, Optimism, Arbitrum, Polygon POS, and Solana. This section also outlines how these contracts/programs will be deployed.
+
+**EVM Compatible Smart Contracts**
+
+Smart contracts are unable to be deployed from a multisig wallet, so the Operations Seat will initially deploy with an EOA, and then transfer the necessary contracts to a new Infinex deployment safe. This safe will have the Operations Seat, Security Seat, Treasury Seat, and a member from the CWG as signers. The threshold will be 3/4.
+
+EVM smart contract definitions will be published to [Cannon](https://usecannon.com/packages/infinex) from an audited Github commit. The Operations Seat can then deploy the smart contracts to the relevant chains with chain specific configurations. The chain specific configurations will be captured in a deployment file stored in the `infinex-deployments` Github repository, as well as published to the Cannon website.
+
+**Solana Programs**
+
+Solana Programs are unable to be deployed from a multisig wallet, so the Security Seat will initially deployment with an EOA. They will then be configured to transfer all admin control to a multisig (configured via the Squads v3 protocol).
+
+This safe will have the Operations Seat, Security Seat, Treasury Seat, and a member from the CWG as signers. The threshold will be 3/4.
+
+Solana programs will also be built using a repeatable and externally verifiable process. This process will be driven from an audited Github commit hash. External verification will come in a future release, when the Solana program repository is made public.
+
+##### **Infinex Platform (Frontend & Backend Changes)**
+
+Infinex has already deployed a new landing page to [infinex.xyz](https://infinex.xyz/).
+
+Releasing STW means deploying the Infinex Platform to app.infinex.xyz, which will be linked to from the main web page. This includes configuring production infrastructure accounts and deploying the platform to the new infrastructure.
+
+The Core Working Group will provide a version of the to-be-released app on a staging clone of the production infrastructure, available on a staging domain, prior to the final release.
+
+The Council will test and confirm the functionality in the staging version; then the CWG will propose the promotion of the system deployed to the staging environment to production; the Council will validate the production release is configured with the approved onchain deployment; and finally the CWG will execute the deployment.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
