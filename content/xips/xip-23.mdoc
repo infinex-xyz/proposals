@@ -1,7 +1,7 @@
 ---
 title: Security Update
 id: 23
-author: Jed (@0xjaynex)
+author: Jaynex (@0xjaynex)
 type: core-upgrade
 network: All
 status: Draft
@@ -37,11 +37,9 @@ Further capability will be added in future updates to enable withdrawals, integr
 
 ## Rationale
 
-XIP-2 describes an overly complex security model, which is inappropriate to the updated goals of Infinex to become a secure, non-custodial unhosted wallet, and is based on integrations that have proven nonviable.
+XIP-2 describes an overly complex security model, which is inappropriate to the updated goals of Infinex to become a secure, non-custodial unhosted wallet.
 
 ## Technical Specification
-
-Infinex proposes some changes to the implementation of withdrawals and the Governance Points Staking Rewards.
 
 ### Terminology
 
@@ -89,15 +87,16 @@ When creating a new Infinex Account, the Infinex platform will also create:
 
 - A [sub-organisation](https://docs.turnkey.com/concepts/sub-organizations) for the account;
 - A [user](https://docs.turnkey.com/concepts/users/introduction) in the new sub-organisation; and
-- A [wallet](https://docs.turnkey.com/concepts/wallets) (which is the Origin Key for the account) in the new sub-organisation.
+- A [wallet](https://docs.turnkey.com/concepts/wallets) (which is the Origin Key for the account) in the new sub-organisation;
+- A wallet (which is the Operation Key for the account) in the new sub-organisation
 
 The account passkey will be set as an [authenticator](https://docs.turnkey.com/concepts/users/credentials) for the Turnkey user.
 
-Initially, during account setup, Infinex will also hold an API Key for a user in the sub-organisation which is part of the root quorum. As early as practical, this access will be revoked so that Infinex does not custody access to the account that has been created.
+Initially, during account setup, Infinex will also hold an API Key for a user in the sub-organisation which is part of the root quorum. When the account setup is complete, this access will be revoked so that Infinex does not custody access to the account that has been created.
 
 #### Transaction Signing
 
-When an onchain transaction needs to be signed, the user will be prompted to authenticate with their passkey. This will create a temporary API Key held by the Infinex backend which can be used by the Infinex platform to sign the transaction with the user's Sudo Key, without the Sudo Key being accessible to Infinex.
+When an onchain transaction needs to be signed, the user will be prompted to authenticate with their passkey. This will create a temporary API Key which can be used by the Infinex platform to sign the transaction with the user's Sudo Key, without the Sudo Key being accessible to Infinex.
 
 ### Funds Recovery
 
