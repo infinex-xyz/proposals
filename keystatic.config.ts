@@ -287,7 +287,7 @@ export default config({
           defaultValue: 'Draft',
           options: [
             { label: 'Draft', value: 'Draft' },
-            { label: 'Feedback', value: 'Feedback' },
+            { label: 'Feedback Open', value: 'Feedback Open' },
             { label: 'Closed', value: 'Closed' },
             { label: 'Implemented', value: 'Implemented' },
           ],
