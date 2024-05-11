@@ -1,0 +1,68 @@
+---
+title: GP Distribution (New Meta)
+id: 26
+author: 0xsmolrun (@0xsmolrun)
+type: integration-upgrade
+network: Ethereum, Base
+status: Draft
+created: '2024-05-11'
+---
+# Proposal Summary
+XIP-26 proposes an entirely new meta on GP distribution.
+
+# Specification
+
+## Overview
+
+GP distribution has been a heated topic recently in XIP-21, discord chat has different opinions about who should really be distributed or be airdropped for the sake of the future of Infinex. XIP-26 is an improvement for XIP-21 about airdrop target audience. The changes will be displayed as below:
+1. Mad Lads replaced by Tensorians
+1. Berachain NFT replaced by EIP-4844 L2 Power Users (Base & Optimism)
+1. Keng Lernitas Airdrop - 10,244,400 GP reduced by half (20,488,800 GP in XIP-21), given to EIP-4844 L2 Power Users
+1. Use Guild.xyz to verify roles for NFT holders eligibility for GP airdrop
+
+
+## Rationale
+
+No doubt airdrop has been the greatest marketing tool in the crypto space. When you airdrop tokens to any community, that community will shill them for you in various ways (X, discord, telegram group, etc.). Most importantly, which community should we airdrop to achieve the best marketing result and ensure longevity of Infinex? There are several aspects we need to really take into account before making the first ever airdrop of your project. The first is always the most important, one mistake made could really destroy your project and there’s no way to start over again. Study [here](https://x.com/hmalviya9/status/1787714421084520862)
+
+## Technical Specification
+
+#### Airdrop an additional 100,000,000 GP to specific communities
+
+Reward onchain power users, active Infinex community and popular NFT holders to get the best network effect in return.
+Snapshot for the Pudgy Penguin (Ethereum Mainnet), Milady Maker (Ethereum Mainnet) and Tensorians (Solana) on 13 May 2024 (00:00:01 UTC) estimated at Block #19854991 on Ethereum Mainnet. NFT that are listed on NFT marketplace during snapshot should not be eligible for GP airdrop. Any unclaimed GP for the chosen airdrop community will be distributed to STW participants evenly.
+Pudgy Penguin, Milady Maker and Tensorians eligible recipients are required to sign up for an Infinex account and deposit at least 50 USDC into their account. An Infinex guild will be created via guild.xyz to allows users to verify their wallet and getting roles as follows:
+1.	Pudgy Penguin – Participants who hold Pudgy Penguin NFT during snapshot
+1.	Milady - Participants who hold Milady Maker NFT during snapshot
+1.	Tensorians - Participants who hold Tensorians during snapshot
+1.	STW - Participants who deposited at least 50 USDC into their account
+
+Once they have verified, they will see the amount of locked GP in the User Interface (UI). After STW has ended, the verified NFT participants will be able to claim their GP directly into their Infinex account.
+
+A snapshot of Lernitas holders will be taken after STW concludes (13 June 2024) estimated at Block #121304623 (Optimism Mainnet).
+
+##### 1. Tensorians Airdrop – 20,008,000 GP (replaced Mad Lads in XIP-21)
+
+- Distribute 19,930,000 GP to holders of [Tensorians](https://www.tensor.trade/trade/tensorians). This is approximately 3.3% of the total GP supply, and around 0.1% of the total supply (assuming GP converts to 3%).
+
+- This results in an allocation of 2000 GP per NFT (10,004 Tensorians exist).
+
+
+##### 2. EIP-4844 L2 Power Users Airdrop – 20,000,000 GP (replaced Berachain NFT holders)
+
+- Distribute 20,000,000 GP to (top 10,000 of Optimism and top 10,000 of Base power users) on 13 March 2024 (13:55:59 UTC) at Block #19426589 until 13 May 2024 (00:00:01 UTC) estimated at Block #19854991 on Ethereum Mainnet. 
+
+- The metrics will be volume per transaction over number of transactions between the snapshot date. This is approximately 3.3% of the total GP supply, and around 0.1% of the total supply (assuming GP converts to 3%).
+
+- A total of 20,000 power users will be eligible which will result in 2,000 GP for each eligible participant.
+
+
+##### 3. Keng Lernitas Airdrop - 10,244,400 GP (20,488,800 GP in XIP-21)
+
+- 10,244,400 GP will be allocated to the Keng Lernitas developers to distribute to Keng Lernitas holders. This is approximately 1.7% of the total GP supply, and around 0.05% of the total supply (assuming GP converts to 3%).
+
+
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
