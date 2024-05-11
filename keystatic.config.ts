@@ -289,7 +289,6 @@ export default config({
             { label: 'Draft', value: 'Draft' },
             { label: 'Feedback Open', value: 'Feedback Open' },
             { label: 'Closed', value: 'Closed' },
-            { label: 'Implemented', value: 'Implemented' },
           ],
         }),
         created: fields.date({ label: 'Created' }),
