@@ -1,46 +1,84 @@
 ---
-title: Support additional USDC variants
+title: Add L2 bridged USDC variants
 id: 5
-wg: Core WG
 author: kmao (@kmaox)
 status: Draft
-released: '2024-05-13'
 ---
-## Pre-alpha Release
+## Add L2 Bridged USDC Variants
 
 ### Overview
 
-The Core WG will upgrade the STW contracts to allow all USDC deposits to accepted and earn GP during STW.
+The current STW platform only recognises native USDC deposits for staking and claiming. The Core WG will upgrade the STW platform to allow L2 bridged USDC deposits to be recognised and earn GP during STW.
 
 ---
 
 ### Outcome
 
-Upgrade the STW contracts to support other variants of USDC.
+Upgrade the STW platform to recognise L2 bridged USDC deposits.
 
 ---
 
 ### Proposed Changes
 
-##### **Smart contract changes**
+##### **Platform**
 
-Infinex aims to upgrade the platform to support these variants of USDC as part of the users total USDC balance, and what is available to be staked:
+Infinex aims to upgrade the platform to support L2 bridged variants of USDC as part of the users total USDC balance, and the total available to be staked.
 
-These exisiting USDC variants are currently supported:
+The existing USDC variants that are supported are:
 
-- Arbitrum: 0xaf88d065e77c8cC2239327C5EDb3A432268e5831
-- Base: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913
-- Optimism: 0x0b2c639c533813f4aa9d7837caf62653d097ff85
-- Polygon POS: 0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174
-- Ethereum: 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
-- Solana: EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v
+{% table %}
+- Chain
+- Ticker
+- Address
+---
+- Arbitrum
+- USDC
+- `0xaf88d065e77c8cC2239327C5EDb3A432268e5831`
+---
+- Base
+- USDC
+- `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`
+---
+- Optimism
+- USDC
+- `0x0b2c639c533813f4aa9d7837caf62653d097ff85`
+---
+- Polygon POS
+- USDC
+- `0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174`
+---
+- Ethereum
+- USDC
+- `0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48`
+---
+- Solana
+- USDC
+- `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`
+{% /table %}
 
-These new USDC variants that the Core WG is aiming to add:
+The new USDC variants that the Core WG is aiming to add:
 
-- Arbitrum: 0xff970a61a04b1ca14834a43f5de4533ebddb5cc8
-- Base: 0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca
-- Optimism: 0x7f5c764cbc14f9669b88837ca1490cca17c31607
-- Polygon POS: 0x3c499c542cef5e3811e1192ce70d8cc03d5c3359
+{% table %}
+- Chain
+- Ticker
+- Address
+---
+- Arbitrum
+- USDC.e
+- `0xff970a61a04b1ca14834a43f5de4533ebddb5cc8`
+---
+- Base
+- USDCbc
+- `0xd9aaec86b65d86f6a7b5b1b0c42ffa531710b6ca`
+---
+- Optimism
+- USDC.e
+- `0x7f5c764cbc14f9669b88837ca1490cca17c31607`
+---
+- Polygon POS
+- USDC.e
+- `0x3c499c542cef5e3811e1192ce70d8cc03d5c3359`
+{% /table %}
 
 Once upgraded, existing users who have deposited those USDC variants will be able to stake their full deposited USDC balance.
 
