@@ -33,6 +33,10 @@ export const statusColors: StatusColors = {
     border: 'border-red-600',
     text: 'text-red-600',
   },
+  Reverted: {
+    border: 'border-red-600',
+    text: 'text-red-600',
+  },
   DEFAULT: {
     border: 'border-slate-700',
     text: 'text-slate-400',
