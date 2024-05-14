@@ -26,8 +26,8 @@ export const statusColors: StatusColors = {
     text: 'text-emerald-400',
   },
   Implemented: {
-    border: 'border-[#FE6F39]',
-    text: 'text-[#FE6F39]',
+    border: 'border-[#3b82f6]',
+    text: 'text-[#3b82f6]',
   },
   Rejected: {
     border: 'border-red-600',
