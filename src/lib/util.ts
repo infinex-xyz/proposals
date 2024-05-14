@@ -29,6 +29,10 @@ export const statusColors: StatusColors = {
     border: 'border-cyan-700',
     text: 'text-cyan-400',
   },
+  Rejected: {
+    border: 'border-red-600',
+    text: 'text-red-600',
+  },
   DEFAULT: {
     border: 'border-slate-700',
     text: 'text-slate-400',
