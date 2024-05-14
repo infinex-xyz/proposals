@@ -1,0 +1,222 @@
+---
+title: Establish a GP Reserve Fund
+id: 26
+author: kmao (@kmaox)
+type: integration-upgrade
+network: Base
+status: Draft
+created: '2024-05-14'
+---
+# Proposal Summary
+
+`This section provides a short, less than 500-word summary of the proposal. The Proposal Summary should briefly cover what will happen if the proposal passes, why it should pass, and how it will be implemented. The overview should be non-technical and accessible to a casual community member.`
+
+XIP-27 aims to improve the existing GP distribution and finalize its mechanics and allocation.
+
+# Specification
+
+`The specification should describe the syntax and semantics of any new feature. There are four sections:`
+
+1. `Overview`
+1. `Rationale`
+1. `Technical Specification`
+1. `Test Cases`
+
+## Overview
+
+`This is a high-level overview of how the XIP will solve the problem. The overview should clearly describe how the new feature will be implemented.`
+
+There has been a lot of discussion around GP's distribution and mechanics. This XIP aims to address all of these concerns and finalize its details. The proposed changes include:
+
+1. Establish a GP reserve fund for future incentives, whilst maintaining the Patron NFT peg.
+1. Improve and finalize the distribution of GP.
+1. Clarifying the prior airdrops.
+1. Clarifying the Patron NFT redemption mechanism.
+
+## Rationale
+
+`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
+
+In [XIP-21](https://proposals.infinex.xyz/xips/xip-21), Infinex locked the supply of GP at 600 million and established a "peg" for the Patron NFT, allowing users to burn 200,000 GP for a Patron NFT. Since the supply was capped, and the Patron NFT is expected to release in coming months, Infinex now has no ability to offer incentives for new programs, which have been proposed by various community members. Furthermore, due to the non-divisibility of NFTs, only limited incentive programs are able to be established.
+
+## Technical Specification
+
+`The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Infinex currently exposes or the creations of new ones.`
+
+#### Establishing the "GP Retirement Fund"
+
+Following the supply cap of GP, various community proposals ([XIP-24](https://proposals.infinex.xyz/xips/xip-24), [XIP-25](https://proposals.infinex.xyz/xips/xip-25)) have popped up which aim to grant additional GP to more communities. Due to the cap, these proposals have taken a negative-sum approach, reducing other communities allocation in exchange for increasing another communities.
+
+This proposal aims to allocate another 150 Patron NFTs to the GP pool, which allows Infinex to increase the max supply of GP to 630,000,000, whilst maintaining the conversion rate of 200,000 GP for 1 Patron NFT. This additional 30,000,000 GP will be allocated to the "GP Retirement Fund", which will operate as a protocol controlled fund of GP, allowing for community members to write proposals on how best to utilize it.
+
+This will not dilute any existing GP holders, as the peg between GP and Patron NFT is maintained, and will allow for Infinex to collaborate with more communities without negatively impacting prior partnerships.
+
+#### Finalizing the Distribution of GP
+
+The prior table outlines Infinex's prior distribution of GP.
+
+{% table %}
+---
+- **Current**
+- **Allocated**
+- **Spent**
+---
+- Governance Point Farming
+- 88,262,010.31
+- 88,262,010.31
+---
+- Discord Activity (GPEC)*
+- 5,000,000
+- 1,289,346
+---
+- Twitter Activity (GPEC)
+- 5,000,000
+- 714,653
+---
+- Governance Call Participation (GPEC)
+- 20,000,000
+- 3,272,359
+---
+- Discord Competitions & Events (GPEC)
+- 5,000,000
+- 780,001
+---
+- Approved XIP Authors
+- 10,000,000
+- 0
+---
+- Farcaster Campaigns
+- 5,000,000
+- 0
+---
+- STW
+- 377,815,424
+- 377,815,424
+---
+- Pudgy Penguin Airdrop
+- 19,553,600
+- 0
+---
+- Milady Airdrop
+- 20,000,000
+- 0
+---
+- Berachain Airdrop
+- 10,027,600
+- 0
+---
+- Mad Lads Airdrop
+- 19,930,000
+- 0
+---
+- Keng Lernitas Airdrop
+- 20,488,800
+- 0
+---
+- Infinex Early Supporters Airdrop
+- 10,000,000
+- 0
+---
+- **Total**
+- **616,077,434.31**
+- **467,414,793.31**
+{% /table %}
+
+\*GPEC refers to [XIP-15: Governance Points Engagement Campaign](https://proposals.infinex.xyz/xips/xip-15).
+
+I did not effectively account for the additional points earned via the referral program of Governance Point Farming, and thus has seen a miscalculation of 11,069,435.31 GP**.**Furthermore, Infinex believes that the allocations to the GPEC were too high, as only 6,056,359 was spent out of allocated 50,000,000 GP, after 3 months. Since GP aims to be depreciated following the launch of the Patron NFT (~ 3 months), Infinex estimates that a majority of the allocated GP will not be spent.
+
+As a result of this, Infinex proposes these various changes:
+
+- Reduce the Governance Call Participation allocation from 20 million to 10 million.
+- Merge the Discord and Twitter allocation as a single one, and reduce it's allocation to 7.5 million.
+- Reduce the Approved XIP Authors allocation to 7.5 million.
+- Reduce the Discord Competitions & Events allocation to 2.5 million.
+- Move the remaining GP to the retirement fund.
+
+This is the proposed future allocation of GP:
+
+{% table %}
+---
+- **Proposed**
+- **Allocated**
+- **Spent**
+---
+- Governance Point Farming
+- 88,262,010.31
+- 88,262,010.31
+---
+- Discord & Twitter Activity (GPEC)
+- 7,500,000
+- 2,003,999
+---
+- Governance Call Participation (GPEC)
+- 10,000,000
+- 3,272,359
+---
+- Discord Competitions & Events (GPEC)
+- 2,500,000
+- 780,001
+---
+- Approved XIP Authors
+- 7,500,000
+- 0
+---
+- Farcaster Campaigns
+- 5,000,000
+- 0
+---
+- STW
+- 377,815,424
+- 377,815,424
+---
+- Pudgy Penguin Airdrop
+- 19,553,600
+- 0
+---
+- Milady Airdrop
+- 20,000,000
+- 0
+---
+- Berachain Airdrop
+- 10,027,600
+- 0
+---
+- Mad Lads Airdrop
+- 19,930,000
+- 0
+---
+- Keng Lernitas Airdrop
+- 20,488,800
+- 0
+---
+- Infinex Early Supporters Airdrop
+- 10,000,000
+- 0
+---
+- GP Retirement Fund
+- 31,422,565.69
+- 0
+---
+- **Total**
+- **630,000,000**
+- **467,414,793.31**
+{% /table %}
+
+#### Clarifying Prior Airdrops
+
+In [XIP-21](https://proposals.infinex.xyz/xips/xip-21), Infinex established an airdrop for Pudgy Penguin, Milady Maker, Bit Bears, and Mad Lads holders, which included the following criteria:
+
+"*Recipients of the Pudgy Penguin, Milady Maker, Berachain or Mad Lads airdrop are required to sign up for an Infinex account, deposit at least 50 USDC into their account. Once STW ends, users will be able to connect and verify their wallets which holds their NFTs, and then claim their GP directly into the Infinex account."*
+
+This XIP proposes that the criteria of signing up for an Infinex Account and depositing at least 50 USDC, extend to the Keng Lernitas and Infinex Early Supporters airdrop recipients. Furthermore, the unclaimed GP will remain unclaimed indefinitely, and users can redeem an unclaimed airdrop whenever.
+
+#### Clarifying the Patron NFT Redemption Mechanism
+
+This XIP also proposes further functionality in regards to the mechanics of the Patron NFT swap.
+
+On the release of the Patron NFT, Infinex will deploy a pool of 3,150 NFTs. As I believe it is unfair to impose a time limit on airdrops, Infinex will not implement any admin withdrawal functions and leave the pool open for redemption until the end of time, allowing any user with 200,000 GP to redeem their GP for a Patron NFT.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
