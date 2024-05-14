@@ -239,6 +239,7 @@ export default config({
             { label: 'Vote Pending', value: 'Vote Pending' },
             { label: 'Approved', value: 'Approved' },
             { label: 'Rejected', value: 'Rejected' },
+            { label: 'Reverted', value: 'Reverted' },
             { label: 'Implemented', value: 'Implemented' },
           ],
         }),
