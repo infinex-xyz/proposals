@@ -26,14 +26,18 @@ export const statusColors: StatusColors = {
     text: 'text-emerald-400',
   },
   Implemented: {
-    border: 'border-cyan-700',
-    text: 'text-cyan-400',
+    border: 'border-[#FE6F39]',
+    text: 'text-[#FE6F39]',
   },
   Rejected: {
     border: 'border-red-600',
     text: 'text-red-600',
   },
   Reverted: {
+    border: 'border-red-600',
+    text: 'text-red-600',
+  },
+  Dissolved: {
     border: 'border-red-600',
     text: 'text-red-600',
   },
