@@ -1,0 +1,62 @@
+---
+title: Airdrop GP to Memecoins Instead of NFTs
+id: 27
+author: piotrmisiurek (@piotrmisiurek)
+type: integration-upgrade
+network: Base, Ethereum, Solana
+status: Draft
+created: '2024-05-15'
+---
+
+# Proposal Summary
+
+Airdrop GPs to top-tier memecoin communities instead of NFTs.
+
+# Specification
+
+## Overview
+
+Remove GP allocations for NFT holders and assign them to top-tier memecoin holders (PEPE, WIF, DEGEN).
+
+The idea is to remove GP allocation from NFT collections: Pudgy Penguin, Milady Maker, Berachain, or Mad Lads. Instead, allocate those points to top-tier meme holders on the most active chains: Ethereum (PEPE), Base (DEGEN), and Solana (WIF).
+
+As memecoins have many more holders than NFTs and we want to airdrop meaningful allocations, two mechanisms will be implemented:
+- Minimum holdings threshold
+- Limited number of allocations: first come, first served
+
+## Rationale
+
+We use GP airdrops as a marketing tool to attract more users to Infinex. Memecoins are a better choice than NFTs for several reasons.
+
+The communities of the largest memecoins are significantly larger than those of NFTs. In this cycle, they are also much more active. Since the entry barrier is considerably lower, this group also features greater diversity. A larger percentage of these communities are potential users of Infinex.
+
+## Technical Specification
+
+We remove allocations for NFT collections: 
+* Pudgy Penguin (19,553,600 GPs)
+* Milady (20,000,000 GPs)
+* Berachain (10,027,600 GPs)
+* MadLads (19,939,000 GPs)
+
+As a result, we have 69,520,200 GPs to allocate.
+
+We use them to reward top-tier memecoin holders:
+- PEPE (Ethereum)
+- WIF (Solana)
+- DEGEN (Base)
+
+For NFTs, we allocated from 2,000 to 4,000 GPs per NFT holder. As we want to target a broader audience, we change the allocation to 1,000 GP per user. This allows us to serve more people while still making the allocation significant. As a result, we can distribute to 69,520 top-tier memecoin holders.
+
+As there are many more top-tier memecoin holders than that, we implement two additional mechanisms:
+- First come, first served. You need to actively claim your GPs by depositing 50 USDC into your Infinex account.
+- Minimum holding value of 50 USDC. This allows small holders to claim but cleans up the dust. Why 50 USD? We use the same number as the deposit condition.
+
+The holder snapshot will be taken after STW concludes (June 13th).
+
+#### Keng Lernitas Airdrop
+
+This XIP doesn't modify rules for the Keng Lernitas airdrop.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
