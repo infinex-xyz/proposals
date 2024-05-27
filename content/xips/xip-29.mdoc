@@ -1,0 +1,35 @@
+---
+title: Enable USDe Deposits and GP staking
+id: 29
+author: kmao (@kmaox), Kain (@kaiynne)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-05-27'
+---
+# Proposal Summary
+
+XIP-29 proposes enabling [USDe](https://www.coingecko.com/en/coins/ethena-usde) deposits and adding USDe to the list of assets that earn GP during Speedrun the Waitlist.
+
+# Specification
+
+## Overview
+
+Add USDe as the second asset enabled for deposits. USDe deposited will earn USDe rewards claimable by each Infinex Account that deposits and holds USDe, on a rolling weekly basis.
+
+Users that deposit USDe are also eligible to earn GP during the STW campaign.
+
+## Rationale
+
+Expanding support for more stablecoins beyond USDC will allow Infinex TVL to continue to grow past the $100m USD already deposited across over 10,000 accounts. USDe was chosen because it is the fastest growing stablecoin with almost $3b in circulation and because staked USDe currently provides over 35% APY for holders. The ability to earn from Ethena while also earning Infinex GP will drive significant TVL growth in the Speedrun the Waitlist campaign.
+
+## Technical Specification
+
+The Infinex account currently accepts deposits from all ERC20 assets. This means the technical implementation required to enable USDe is:
+
+1. Upgrade the Infinex backend infrastructure to track USDe deposits, and stream GP to deposited USDe.
+1. Claimable in USDe from a distribution contract each week to Infinex accounts that hold USDe.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
