@@ -1,0 +1,71 @@
+---
+title: Enable USDe Deposits and GP Staking
+id: 30
+author: blockchainwinston
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-05-XX'
+---
+# Proposal Summary
+
+XIP-30 proposes enabling Minting and Redeeming USDe using USDC on Ethereum.
+
+# Specification
+
+## Overview
+
+Call Ethena API endpoint to mint and redeem USDe using USDC as collateral.
+
+## Rationale
+
+To give users the opportunity to gain additional yield from their USDC.
+
+## Technical Specification
+
+1. Get indicative Quote
+Infinex website should poll the indicative quote endpoint to display rough price and remaining mint supply.
+```
+curl 'https://api2.ethena.fi/indicative?pair=USDC/USDe'
+```
+
+2.1 Get Formal Quote for Minting: 
+User can input their size and call the RFQ endpoint for a formal quote
+```
+curl 'https://api2.ethena.fi/rfq?pair=USDC/USDe&side=mint&size=100000'
+```
+Replace size with amount
+
+2.2 Get Formal Quote for Redeeming: 
+User can input their size and call the RFQ endpoint for a formal quote
+```
+curl 'https://api2.ethena.fi/rfq?pair=USDC/USDe&side=redeem&size=100000'
+```
+Replace size with amount
+
+3. Submit Order
+Call order submission request endpoint
+curl -d '{ 
+    "benefactor": "{user wallet address}", 
+    "beneficiary": "{user wallet address}", 
+    "collateral_amount": "{number of usdc}", 
+    "collateral_asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", 
+    "expiry": {expiry}, 
+    "nonce": {nonce}, 
+    "order_type": "{MINT/REDEEM}", 
+    "usde_amount": "{USDe amount}" 
+}' 
+-H "Content-Type: application/json" 
+-X POST https://api2.ethena.fi/order?signature={EIP721 Signature}&rfq_id={RFQ ID} 
+
+EIP712 signature ORDER_TYPE
+bytes32 private constant ORDER_TYPE = keccak256( "Order(uint8 order_type, uint256 expiry, uint256 nonce, address benefactor, address beneficiary, address collateral_asset, uint256 collateral_amount, uint256 usde_amount)" );
+
+# Links
+
+API Documentation: https://ethena-labs.gitbook.io/ethena-labs/api-documentation/overview#example-mint-request
+Ethena API sample code: https://github.com/ethena-labs/Ethena_API_Examples/blob/main/mint_script.py
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
