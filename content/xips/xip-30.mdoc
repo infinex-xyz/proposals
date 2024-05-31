@@ -1,0 +1,33 @@
+---
+title: Enable USDe Deposits and GP Staking
+id: 30
+author: winston (@blockchainwinston), axe (@axefinaxe)
+type: 'intergration-upgrade'
+network: Ethereum
+status: Draft
+created: '2024-05-31'
+---
+# Proposal Summary
+XIP-30 proposes enabling swapping of USDC to USDe on Ethereum and Arbitrum.
+
+# Specification
+
+## Overview
+
+Allow users to swap USDC to USDCe to earn from Ethena in their Infinex accounts. 
+
+## Rationale
+
+Holding USDC in Infinex accounts does not earn any interest. As USDCe is now a supported asset, it would benefit users to be able to swap USDC to USDCe to earn from Ethena. This will decrease the need for users to withdraw USDC to their wallets and then deposit USDCe to earn from Ethena and participate in Infinex.
+
+## Technical Specification
+
+Ethena currently supports swapping into USDe using a variety of pools. The primary pools are Curve StableSwapNG pools on Ethereum and Arbitrum. 
+
+We propose integrating Curve swaps for these pools on both chains to allow users to swap USDC to USDe within their Infinex accounts.
+
+Ethena does support minting via their API, however this is only for approved users and requires an application with KYC to be approved. Utilising the Curve pools instead is permissionless.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
