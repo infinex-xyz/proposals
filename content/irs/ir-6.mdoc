@@ -1,0 +1,148 @@
+---
+title: Governance v2.1
+id: 6
+author: kmao (@kmaox)
+status: Draft
+created: '2024-05-31'
+---
+# Referendum Summary
+
+IR-6 proposes the Governance v2.1 upgrade.
+
+# Specification
+
+## Overview
+
+These following upgrades are proposed in IR-6:
+
+1. Merging the Ecosystem and Trader Seats.
+1. Establishing GP as the voting mechanism for the ecosystem seats, and IRs.
+1. Changing the council stipend to be Patron NFTs based.
+1. Clarifying election timing.
+
+## Rationale
+
+[Governance v2.0](https://proposals.infinex.xyz/irs/ir-5) established an upgraded framework for implementing future governance changes. Given the transition of the project to **wallet\_infrastructure** a credibly neutral governance framework is required to foster adoption. The optimal way to achieve credible neutrality is to remove the influence of any other projects in Infinex Governance.
+
+Furthermore, Infinex's governance system has become overly complex with the recent IRs. A number of options were considered for reducing complexity, including reducing the number of seats, modifying the roles, splitting the council into multiple sub-councils. Simplifying the council structure to operational seats and ecosystem seats allows for a broader participation from the community in the upcoming election. Specifically removing the Trader Seat will allow for any member of the wider crypto ecosystem to make a case to the community as to the value they can add to the Infinex Council.
+
+## Technical Specification
+
+#### Merging the Ecosystem and Trader Seats
+
+As of [Governance v2.0](https://proposals.infinex.xyz/irs/ir-5), the Infinex Council is currently made out of:
+
+{% table %}
+---
+- **Existing Structure**
+- **Election Structure**
+---
+- 2 x Trader Seats
+- Elected in every Epoch
+---
+- 2 x Ecosystem Seats
+- Elected in every Epoch
+---
+- Treasury Seat
+- Elected in every Epoch
+---
+- Operations Seat
+- Appointed Seat
+---
+- Security Seat
+- Appointed Seat
+{% /table %}
+
+I propose that the Trader and Ecosystem seats are to be morphed into four ecosystem seats, as they aim to serve the same purpose, resulting in a more simplified structure.
+
+{% table %}
+---
+- **Proposed Structure**
+- **Election Structure**
+---
+- 4 x Ecosystem Seats
+- Elected in every Epoch
+---
+- Treasury Seat
+- Elected in every Epoch
+---
+- Operations Seat
+- Appointed Seat
+---
+- Security Seat
+- Appointed Seat
+{% /table %}
+
+#### Changing the Voting Mechanism
+
+This IR proposes that the 4 Ecosystem Seats, in the next epoch uses GP as the voting mechanism. Voting power will be calculated linearly.
+
+Here is a table outlining the proposed changes:
+
+{% table %}
+---
+- Proposed
+- Epoch 1 Voting Mechanism
+- Epoch 2 Mechanism
+---
+- Ecosystem Seats
+- Voted in via SNX
+- Voted in via GP
+---
+- Treasury Seat
+- Elected by Council
+- Term extended via [IR-5](https://proposals.infinex.xyz/irs/ir-5#:~:text=existing%20Trader%20Seat.-,A%20Rollover%20of%20the%20Treasury%20Seat,-IR%2D5%20proposes)
+---
+- Operations Seat
+- Appointed Seat
+- Appointed Seat
+---
+- Security Seat
+- Appointed Seat
+- Appointed Seat
+{% /table %}
+
+As the majority of Infinex GP is distributed to the Infinex Account, which is currently unable to interact with the on-chain election modules, Infinex will instead hold the nominations and voting process off-chain, within the Infinex account. After the councillors are elected via the Infinex Platform, the Operations Seat will then deploy a new instance of the governance contracts, with the councillors initialized.
+
+As there is additional GP which is not allocated to an Infinex account, Infinex will also implement an interface where users can connect their wallet/wallets, and import their GP into their Infinex account.
+
+Furthermore, all future IRs should use GP as the voting mechanism, with voting power calculated linearly. IRs will also not occur on snapshot moving forward, but will instead be conducted natively within the Infinex App.
+
+#### Changing the Council Stipend
+
+In line with the removal of SNX-based voting, Infinex proposes to change the monthly council stipend from 1,000 SNX to 4 Patron NFTs per epoch. These NFTs will be granted to a council member at the end of the epoch. If a council member is voted out before the end of an Epoch, they will not receive any of their stipend.
+
+#### Clarifying Election Timing
+
+In [IR-5](https://proposals.infinex.xyz/irs/ir-5), Infinex mentioned that the council's future nominations will start on July 1st, with voting opening 7 days later, and the council will be elected on July 14th. This was was technically incorrect, and Infinex instead intends to propose the following dates:
+
+{% table %}
+---
+- **Epoch**
+- **Nominations Open**
+- **Voting Open**
+- **Council Voted in**
+---
+- Epoch 2
+- June 17
+- June 24
+- July 1st
+---
+- Epoch 3
+- 18 December
+- 25th December
+- Jan 1st
+---
+- Epoch 4
+- June 18
+- June 25
+- July 2nd
+{% /table %}
+
+Unfortunately, it is technically impossible to have the council voted in on July 1st and Jan 1st of every year, as the contracts are operated based off how many days an epoch is. The configuration that will be used is:
+
+7 days of nominations → 7 days of voting → 183 days of their term → repeat.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
