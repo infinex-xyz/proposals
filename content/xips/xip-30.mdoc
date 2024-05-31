@@ -1,5 +1,5 @@
 ---
-title: Enable USDe Deposits and GP Staking
+title: Enable swapping of USDC for USDe
 id: 30
 author: blockchainwinston
 type: core-upgrade
@@ -9,62 +9,24 @@ created: '2024-05-XX'
 ---
 # Proposal Summary
 
-XIP-30 proposes enabling Minting and Redeeming USDe using USDC on Ethereum.
+XIP-30 proposes enabling minting and redeeming USDe using USDC on Ethereum and Arbitrum.
 
 # Specification
 
 ## Overview
 
-Call Ethena API endpoint to mint and redeem USDe using USDC as collateral.
+Allow users to swap USDC to USDCe to earn from Ethena in their Infinex accounts. 
 
 ## Rationale
 
-To give users the opportunity to gain additional yield from their USDC.
+Holding USDC in Infinex accounts does not earn any interest. As USDCe is now a supported asset, it would benefit users to be able to swap USDC to USDCe to earn from Ethena. This will decrease the need for users to withdraw USDC to their wallets and then deposit USDCe to earn from Ethena and participate in Infinex.
 
 ## Technical Specification
+Ethena currently supports swapping into USDe using a variety of pools. The primary pools are Curve StableSwapNG pools on Ethereum and Arbitrum. 
 
-1. Get indicative Quote
-Infinex website should poll the indicative quote endpoint to display rough price and remaining mint supply.
-```
-curl 'https://api2.ethena.fi/indicative?pair=USDC/USDe'
-```
+We propose integrating Curve swaps for these pools on both chains to allow users to swap USDC to USDe within their Infinex accounts.
 
-2.1 Get Formal Quote for Minting: 
-User can input their size and call the RFQ endpoint for a formal quote
-```
-curl 'https://api2.ethena.fi/rfq?pair=USDC/USDe&side=mint&size=100000'
-```
-Replace size with amount
-
-2.2 Get Formal Quote for Redeeming: 
-User can input their size and call the RFQ endpoint for a formal quote
-```
-curl 'https://api2.ethena.fi/rfq?pair=USDC/USDe&side=redeem&size=100000'
-```
-Replace size with amount
-
-3. Submit Order
-Call order submission request endpoint
-curl -d '{ 
-    "benefactor": "{user wallet address}", 
-    "beneficiary": "{user wallet address}", 
-    "collateral_amount": "{number of usdc}", 
-    "collateral_asset": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", 
-    "expiry": {expiry}, 
-    "nonce": {nonce}, 
-    "order_type": "{MINT/REDEEM}", 
-    "usde_amount": "{USDe amount}" 
-}' 
--H "Content-Type: application/json" 
--X POST https://api2.ethena.fi/order?signature={EIP721 Signature}&rfq_id={RFQ ID} 
-
-EIP712 signature ORDER_TYPE
-bytes32 private constant ORDER_TYPE = keccak256( "Order(uint8 order_type, uint256 expiry, uint256 nonce, address benefactor, address beneficiary, address collateral_asset, uint256 collateral_amount, uint256 usde_amount)" );
-
-# Links
-
-API Documentation: https://ethena-labs.gitbook.io/ethena-labs/api-documentation/overview#example-mint-request
-Ethena API sample code: https://github.com/ethena-labs/Ethena_API_Examples/blob/main/mint_script.py
+Ethena does support minting via their API, however this is only for approved users and requires an application with KYC to be approved. Utilising the Curve pools instead is permissionless.
 
 # Copyright
 
