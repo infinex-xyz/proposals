@@ -114,7 +114,7 @@ In line with the removal of SNX-based voting, Infinex proposes to change the mon
 
 #### Clarifying Election Timing
 
-In [IR-5](https://proposals.infinex.xyz/irs/ir-5), Infinex mentioned that the council's future nominations will start on July 1st, with voting opening 7 days later, and the council will be elected on July 14th. This was was technically incorrect, and Infinex instead intends to propose the following dates:
+In [IR-5](https://proposals.infinex.xyz/irs/ir-5), Infinex mentioned that the council's future nominations will start on June 30th, with voting opening 7 days later, and the council will be elected on July 14th. This was slightly incorrect, and this IR clarifies the exact configuration of times in which voting and nominations will occur.
 
 {% table %}
 ---
@@ -124,22 +124,22 @@ In [IR-5](https://proposals.infinex.xyz/irs/ir-5), Infinex mentioned that the co
 - **Council Voted in**
 ---
 - Epoch 2
-- June 17
-- June 24
 - July 1st
+- July 8th
+- July 15th
 ---
 - Epoch 3
-- 18 December
-- 25th December
-- Jan 1st
+- Dec 31st
+- Jan 7th
+- Jan 14th
 ---
 - Epoch 4
-- June 18
-- June 25
 - July 2nd
+- July 9th
+- July 16th
 {% /table %}
 
-Unfortunately, it is technically impossible to have the council voted in on July 1st and Jan 1st of every year, as the contracts are operated based off how many days an epoch is. The configuration that will be used is:
+The configuration that will be used is:
 
 7 days of nominations → 7 days of voting → 183 days of their term → repeat.
 
