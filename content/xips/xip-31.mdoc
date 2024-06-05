@@ -5,7 +5,7 @@ author: blockchainwinston
 type: core-upgrade
 network: Ethereum, Base, Optimism, Arbitrum, Polygon POS, Solana
 status: Draft
-created: '2024-06-01'
+created: '2024-06-05'
 ---
 # Proposal Summary
 
@@ -24,9 +24,11 @@ Connect to dApps (that supports WalletConnect) with Infinex wallet, using Wallet
 
 ## Technical Specification
 
-I propose to integrate WalletConnect API with Infinex Wallets. By establishing end points, and upgrading the wallet interface on Infinex, a connection between Infinex wallets and dApps can be established.
-
-WalletConnect supports connection on Ethereum, Base, Optimism, Arbitrum, Polygon POS, Solana.
+I propose to integrate WalletConnect API with Infinex Wallets. This can be achieved by:
+1. Integrate WalletConnect library into Infinex. 
+2. Establish API endpoints to handle connection requests from dApps.
+3. Upgrade Infinex UI to allow users to initiate and manage WalletConnect sessions.
+4. Configure WalletConnect to support connections on Ethereum, Base, Optimism, Arbitrum, Polygon POS, and Solana.
 
 ## Product considerations
 
