@@ -1,8 +1,21 @@
+---
+title: Xip 32
+id: 32
+type: 'XIP'
+network: 'not specified'
+status: Draft
+---
+# Proposal Summary
+
 The following tweet from Infinex official X account suggests to
 
 https://x.com/infinex_app/status/1796693183642149094
  
 Vote for who should receive a share of 30M GP from the 'GP Retirement Fund
+
+This proposal lines out how on to better create a vote which involves only commited community members with "skin in the game"
+
+# Specification
 
 Now, how about to make such a vote just available to:
 
@@ -16,3 +29,23 @@ To identify holders, Discord bots have to be added:
 
 -Guild or Collabland for EVM
 -Matrica Verification for Solana
+
+## Overview
+
+This XIP tries to address distribution of GP to exclusively very aligned community members.
+
+## Rationale
+
+Votes on Twitter can easily be botted or just soliciting non community members to vote favourable and should not be indicative.
+
+## Technical Specification
+
+not applicable. 
+
+## Test Cases
+
+not applicaple.
+
+# Copyright
+
+not applicaple.
