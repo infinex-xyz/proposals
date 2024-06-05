@@ -1,0 +1,39 @@
+---
+title: Integrate the WalletConnect API with the Infinex platform
+id: 31
+author: blockchainwinston
+type: core-upgrade
+network: Ethereum, Base, Optimism, Arbitrum, Polygon POS, Solana
+status: Draft
+created: '2024-06-05'
+---
+# Proposal Summary
+
+XIP-31 proposes the integration of the WalletConnect API with the Infinex platform. This integration aims to enable connections between Infinex Wallet and decentralized applications (dApps) that support WalletConnect.
+
+# Specification
+
+## Overview
+
+Connect to dApps (that supports WalletConnect) with Infinex wallet, using WalletConnect protocol.
+
+## Rationale
+
+1. Interim Solution for Feature Gaps: Implementing core features such as swapping, staking, lending, and yield farming can be time-consuming. In the interim, integrating WalletConnect provides users with immediate access to these functionalities through external dApps, ensuring they can fully utilize their assets and the DeFi ecosystem without waiting for these features to be developed natively.
+2. Asset Utilization: Currently, stablecoins and other assets sitting idle in users' wallets offer limited utility. With WalletConnect, users can seamlessly use these assets across various DeFi platforms without transferring them out, thereby increasing engagement and retention within the Infinex ecosystem. An example includes staking of USDe.
+
+## Technical Specification
+
+I propose to integrate WalletConnect API with Infinex Wallets. This can be achieved by:
+1. Integrate WalletConnect library into Infinex. 
+2. Establish API endpoints to handle connection requests from dApps.
+3. Upgrade Infinex UI to allow users to initiate and manage WalletConnect sessions.
+4. Configure WalletConnect to support connections on Ethereum, Base, Optimism, Arbitrum, Polygon POS, and Solana.
+
+## Product considerations
+
+The original vision for Infinex was to develop and integrate native features such as swapping, staking, lending, and yield farming directly within the platform. While the integration of WalletConnect does not fully align with this long-term vision, it serves as a practical interim solution. This approach enables users to access these critical DeFi functionalities through external dApps, ensuring they can fully utilize their assets in the meantime.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
