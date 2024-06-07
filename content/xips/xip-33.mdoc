@@ -1,0 +1,135 @@
+---
+title: Patron NFT Structure
+id: 33
+author: Egor (@egorsidelska), kmao (@kmaox)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-06-07'
+---
+# Proposal Summary
+
+XIP-33 proposes the replacement of[ XIP-12 ](https://proposals.infinex.io/xips/xip-12)and the structure of the Patron NFT.
+
+# Specification
+
+## Overview
+
+XIP-33 replaces XIP-12 in its entirety. We introduce the Patron NFT as a commemorative, limited-edition, collectible digital memorabilia available to early Infinex users, called 'Patrons'. Patron NFT ownership (Patronage) is a way for Infinex users to signal early support of Infinex.&nbsp;
+
+This XIP proposes the following:
+
+1. The structure of the Patron NFT sale.
+1. The Community Mint parameters, criteria and optionality.
+
+## Rationale
+
+As has been discussed at length in the community over the last year, the existing incentives for token distributions are currently broken.
+
+XIP-33 attempts to establish the fair conditions for all those interested in participating in the mint to purchase Patron NFTs under the same terms (eg the same price and lockup options).
+
+In creating this distribution mechanism, the Treasury intends to provide an equal opportunity to all those who participate in the sale, irrespective of their status, wealth or brand name. This encompasses strategic purchasers, the core working group and the founder.
+
+Up to 60% (30,000 NFTs) of the Community Mint may be set aside for strategic purchasers, foundations and DAOs who are providing pre-commitments ahead of the mint date, subject to the same lock-up and price bands as other Patrons, directly to the Treasury.
+
+## Technical Specification
+
+#### Patron NFT Distribution
+
+A total of 100,000 Patron NFTs will be created on the Ethereum network, with 50,000 (50%) available in the Community Mint and the remaining 50% allocated to the treasury, core working group and incentives. A full distribution is listed below:
+
+![](/assets/xips/xip-33/hero-distribution-proposal@2x.png)
+
+#### Infinex Accounts
+
+The Infinex platform will host the Patron NFT sale, and all participants will need Infinex Accounts to purchase Patron NFTs.
+
+#### Community Mint
+
+The Community Mint is the only Patron NFT sale mechanism.
+
+Out of the 50,000 allocated Patron NFTs for the Community Mint, up to 30,000 of the supply will be sold to strategic companies, foundations, DAOs and angels before the public sale, with unsold supply also rolled over.
+
+The remaining supply will be gated.
+
+#### Participation
+
+All Patron NFT purchasers will be able to select from the following options when purchasing NFTs.
+
+{% table %}
+- **Patron Price**
+- **Cliff**
+- Lockup
+---
+- $5000
+- 0
+- 0
+---
+- $3000 (40% discount)
+- 0
+- 12 months linear unlock
+---
+- $1250 (75% discount)
+- 12 months
+- 24 months linear unlock
+{% /table %}
+
+Due to the indivisibility of NFTs, the linear unlock will work in a manner where a locked purchaser can only withdraw their NFT from the lockup contract once an entire unit is unlocked.
+
+Here are some examples:
+
+- *User purchases 10 NFTs at 3 month cliff with 6 month linear unlock = User gets 1 NFT unlocked per 18.25 days after 3 months.*
+- *User purchases 1 NFTs at 3 month cliff with 6 month linear unlock = User gets 1 NFT unlocked after 9 months.*
+
+#### Strategic Participation
+
+Strategic purchasers include integration partners, protocols, dApps, Layer 1's, foundations, DAOs, companies and other ecosystem participants. As stated above, strategic purchasers are subject to the same price and lockup terms as Community Mint participants.
+
+#### Distribution
+
+Prior to the Patron Sale, Infinex will pre-mint all 100,000 Patron NFTs, and will distribute them as follows:
+
+- 3.15% of the Patron NFT supply will be placed in a pool where users with 200,000 GP can receive a free Patron NFT. This pool will remain open until all free NFTs are distributed.
+- The future incentives and treasury allocations will be transferred to the Infinex Treasury Safe, which is operated by the Infinex Council.
+- The Core Working Group NFTs will be placed in a lockup contract.
+- The Community Mint Patron NFTs will be placed in an escrow contract, and purchasers will be able to claim them based on their selected lockup terms.
+
+#### Lockup terms
+
+- **Core Working Group:** 12 month cliff with 24 month linear unlock.
+- **Community Mint:** Various based on the mint conditions (see Participation section).
+- **Strategic purchasers:** Various based on the mint conditions (see Participation section).
+- **Allocated incentives + future incentives + Treasury:** unlocked on launch.
+
+#### Summary table
+
+{% table %}
+---
+- Total Patron NFTs
+- 100,000
+---
+- Total offered in Patron NFT sale
+- 50% (50,000 NFTs)
+---
+- Infinex allocation
+- 20% Core Working Group
+
+  20% Treasury
+
+  6.85% Future Incentives
+
+  3.15% Allocated Incentives
+---
+- CWG lockup
+- 12m cliff, 24m linear unlock
+{% /table %}
+
+#### Disclaimer
+
+Patron NFTs are commemorative, limited-edition, collectible digital memorabilia available to early Infinex users to signal early support and use of Infinex. Patron NFTs are not investment instruments. Patron NFTs do not confer any rights to or ownership interests in any Infinex-related entity, intellectual property, or revenue. This XIP is not a solicitation, recommendation, endorsement, or offer by the Infinex Council, its affiliates, or any third-party service providers to buy or sell any securities or other financial instruments.
+
+All purchases will be subject to the terms and conditions made available on the mint website.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
