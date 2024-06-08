@@ -1,0 +1,234 @@
+---
+title: Craterun
+id: 34
+author: Kain (@kaiynne), ClΞm (@0xclem)
+type: core-upgrade
+network: Ethereum, Solana, Base, Optimism, Arbitrum, Polygon
+status: Draft
+created: '2024-06-08'
+---
+# Proposal Summary
+
+XIP-34 proposes the next Infinex campaign named "Craterun".
+
+# Specification
+
+## Overview
+
+Craterun is a proposed campaign in which users can deposit supported assets to their Infinex Account and in return earn Crates. Crates can be "opened" in the Infinex App, providing the user with a chance to win prizes including Patron NFTs, Patron Passes, and more (see below).
+
+It is proposed that Craterun should last for approximately one month until the expected Patron NFT Community Sale, with exact dates to be confirmed in a future RC.
+
+Initially, users will earn but not be able to open their Crates. After approximately one week, the ability to open crates will be enabled in batches based on the final speedrun waitlist ranking. Users with higher waitlist rankings will be able to open crates earlier than users with lower rankings. This does not impact the probability of opening rare crates, the number of crates and prizes is fixed at the start of the campaign. Eventually all users will be able to open crates, regardless of their waitlist rank.
+
+At the end of Craterun, users will have 24 hours to open their crates before they expire. Any remaining prizes will be rolled over to the next Infinex campaign.
+
+Additionally, it is proposed that users who have deposited funds as part of Speedrun the Waitlist, and who do not withdraw their funds before the start of Craterun, will receive a one-off 25% TVL bonus at the start of craterun. For example, a user with a deposit of $1,000 who recevieves a 25% TVL boost will earn crates on an effective deposit balance of $1,250.
+
+Finally, any withdrawals made during the Craterun campaign will result in the user's staked balance resetting to zero, forefeiting any applied TVL boosts and/or bonuses.
+
+#### Crates
+
+- There will be a total 5 million Crates.
+
+- Infinex users will earn $CRATE by depositing USDC, USDe and other supported tokens.
+
+- 1 x $CRATE can open one Crate.
+
+- Users will be able to open a whole number of crates within the Infinex interface. Once a Crate is opened, the $CRATE will be burnt.
+
+- The contents of a Crate will be determined by [Pyth's VRF](https://docs.pyth.network/entropy).
+
+- The Craterun dashboard will show:
+
+  - Progress towards the next Crate
+  - Number of earned and unopened Crates
+  - Prizes won
+
+#### Crate Prizes
+
+{% table %}
+- **Prize**
+- **Quantity**
+- **% Chance**
+---
+- None
+- 2,500,000
+- 50%
+---
+- $500 Boost
+- 1,691,704
+- 33.83%
+---
+- $1,000 Boost
+- 600,000
+- 12%
+---
+- $10,000 Boost
+- 2,000
+- 0.04%
+---
+- $100,000 Boost
+- 200
+- 0.004%
+---
+- $1,000,000 Boost
+- 5
+- 0.0001%
+---
+- Patron Ticket
+- 200,000
+- 4%
+---
+- Patron Pass
+- 5,000
+- 0.1%
+---
+- Patron NFT
+- 1,000
+- 0.02%
+---
+- Community Prize
+- 69
+- 0.00138%
+---
+- 10,000 W
+- 10
+- 0.002%
+---
+- 10,000 PYTH
+- 10
+- 0.002%
+---
+- 32 ETH (Top Prize)
+- 1
+- 0.0002%
+---
+- 200 Solana
+- 1
+- 0.0002%
+---
+- 
+- Total: 5,000,000
+- 
+{% /table %}
+
+\
+The table above lists all the prizes available during the campaign, the quantity of items available, and the odds of winning each item.
+
+A crate can be opened only once, with a 50% chance of containing a prize.
+
+All prizes, with the exception of the Boost Coupons, will be distributed at the conclusion of the campaign.
+
+#### Patron Prizes
+
+There are 3 different Patron prizes:
+
+- Patron NFT: an IOU redeemable for a Patron NFT.
+- Patron Pass: gives access to the Patron Sale, with a guaranteed Patron NFT mint.
+- Patron Ticket: gives access to the Patron Sale, with no guaranteed Patron NFT mint.
+
+More information on the Community Sale can be found in [XIP-33](https://proposals.infinex.xyz/xips/xip-33).
+
+#### Boost Coupons
+
+Boost coupons are part of the Craterun prizes and, when redeemed, increase a staker's deposit by their designated value in the StakingRewards contract, allowing them to earn more $CRATE points.
+
+There are five types of Boost coupons, each differing by the value they represent: $500, $1,000, $10,000, $100,000, and $1,000,000.
+
+#### **Exclusive Prizes**
+
+Exclusive Prizes are the rarest prizes in the Craterun campaign, with only 14 available, as listed in the table above.
+
+#### Community Prizes
+
+Community Prizes represent exclusive offerings from Infinex partners. As of now, the specifics of these 50 prizes are still to be determined. To apply to offer a community prize, please reach out on twitter or discord.
+
+## Rationale
+
+As we approach the end of StW and the launch of the Patron NFT, there are two problems Infinex needs to solve:
+
+1. How does Infinex continue to grow TVL?
+1. How will Infinex fairly distribute the Patron NFTs?
+
+Other potential campaigns were considered, however, Craterun was selected as it provided the most unique farming experience, with the ability to attract the most users. Craterun continues the existing crypto meta in which users will pick volatile and unique reward schemes over basic point farming campaigns.
+
+## Technical Specification
+
+Craterun will require the addition of 3 contracts:
+
+- A **Crate** contract, where all the $CRATE points' balances will be stored.
+- A **CrateOpener**contract allowing the opening of a crate, and the burning of the associated $CRATE points.
+- A new **StakingRewards** contract enabling users to earn $CRATE points by depositing USDC and other supported tokens to their Infinex account. Additionally, this contract will manage Boost coupons and TVL bonuses, which can be earned at the start and during the campaign, respectively, to boost staked balances.
+
+#### Crate Contract
+
+The Crate contract can mint and burn $CRATE points.
+
+{% table %}
+- Function
+- Description
+---
+- `mint(address _to, uint256 _amount)`
+- Mints $CRATE token for a specified receiver address. Can only be called by an authorised minter.
+---
+- `burn(address _from, uint256 _amount)`
+- Burns $CRATE token for a specified holder address. Can only be called by an authorised minter.
+---
+- `addAuthorisedMinter(address _minter, bool _isAuthorised)`
+- Allows an address to mint and burn $CRATE tokens. Can only be called by the council-controlled deployer safe.
+{% /table %}
+
+#### CrateOpener Contract
+
+The CrateOpener contract simulates the opening of a crate by assigning a random number to 1 $CRATE point, representing a crate owned by an Infinex user.
+
+To expedite the process, the contract allows for the opening of multiple crates in a single transaction. Due to gas limitations, an *openAll()* function is not feasible, so the maximum number of crates that can be opened in one transaction will be capped.
+
+The contents of a crate will be determined by calling [Pyth's VRF](https://docs.pyth.network/entropy), which will generate a random number for each crate.\
+\
+The assigned crate ID will then be stored in a mapping for the Infinex backend to use, helping determine which prize has been won by each user.
+
+The amount of $CRATE points used in the transaction will then be burned.
+
+{% table %}
+- Function
+- Description
+---
+- `requestCrateOpening(address _from, uint256 _amount)`
+- Requests the opening of a specified number of crates for a user. This function calls the Entropy contract to generate a random number.
+---
+- `entropyCallback(uint64 _sequenceNumber, address, bytes32 _randomNumber)`
+- Callback function invoked by Entropy, providing a random number which the contract uses to assign a crate ID.
+---
+- `getCrateIds(address _crateOwner, uint256 _minIndex, uint256 _maxIndex)`
+- Returns all crate IDs assigned to a user. Indices are provided as parameters for pagination purposes.
+{% /table %}
+
+#### StakingRewards Contract
+
+The StakingRewards contract will essentially be the same used by StW except that a new mechanism will need to be implemented to redeem Boost Coupons and increase TVL.
+
+{% table %}
+- Function
+- Description
+---
+- **`notifyRewardAmount(uint256 _reward)`**
+- Starts a new reward epoch, specifying a reward amount. This function can only be called by the Council.
+---
+- **`setRewardsDuration(uint256 _duration)`**
+- Sets the duration of the rewards period. This function can only be called by the Council.
+---
+- **`stake(address _account, uint256 _depositAmount, uint256 _bonusAmount, uint, uint256 _boostAmount)`**
+- Sets the staking balance for an account. Can only be called by an authorised keeper.
+---
+- **`claim(address _account)`**
+- Claims the earned rewards for an account. Can only be called by an authorised keeper.
+---
+- **`earned(address _account)`**
+- Returns the amount of rewards earned by an account.
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
