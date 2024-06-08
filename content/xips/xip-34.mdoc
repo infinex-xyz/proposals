@@ -40,7 +40,6 @@ Finally, any withdrawals made during the Craterun campaign will result in the us
 - The contents of a Crate will be determined by [Pyth's VRF](https://docs.pyth.network/entropy).
 
 - The Craterun dashboard will show:
-
   - Progress towards the next Crate
   - Number of earned and unopened Crates
   - Prizes won
@@ -156,7 +155,6 @@ Other potential campaigns were considered, however, Craterun was selected as it 
 ## Technical Specification
 
 Craterun will require the addition of 3 contracts:
-
 - A **Crate** contract, where all the $CRATE points' balances will be stored.
 - A **CrateOpener**contract allowing the opening of a crate, and the burning of the associated $CRATE points.
 - A new **StakingRewards** contract enabling users to earn $CRATE points by depositing USDC and other supported tokens to their Infinex account. Additionally, this contract will manage Boost coupons and TVL bonuses, which can be earned at the start and during the campaign, respectively, to boost staked balances.
@@ -185,8 +183,8 @@ The CrateOpener contract simulates the opening of a crate by assigning a random 
 
 To expedite the process, the contract allows for the opening of multiple crates in a single transaction. Due to gas limitations, an *openAll()* function is not feasible, so the maximum number of crates that can be opened in one transaction will be capped.
 
-The contents of a crate will be determined by calling [Pyth's VRF](https://docs.pyth.network/entropy), which will generate a random number for each crate.\
-\
+The contents of a crate will be determined by calling [Pyth's VRF](https://docs.pyth.network/entropy), which will generate a random number for each crate.
+
 The assigned crate ID will then be stored in a mapping for the Infinex backend to use, helping determine which prize has been won by each user.
 
 The amount of $CRATE points used in the transaction will then be burned.
