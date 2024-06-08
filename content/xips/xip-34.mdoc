@@ -16,15 +16,10 @@ XIP-34 proposes the next Infinex campaign named "Craterun".
 ## Overview
 
 Craterun is a proposed campaign in which users can deposit supported assets to their Infinex Account and in return earn Crates. Crates can be "opened" in the Infinex App, providing the user with a chance to win prizes including Patron NFTs, Patron Passes, and more (see below).
-
 It is proposed that Craterun should last for approximately one month until the expected Patron NFT Community Sale, with exact dates to be confirmed in a future RC.
-
 Initially, users will earn but not be able to open their Crates. After approximately one week, the ability to open crates will be enabled in batches based on the final speedrun waitlist ranking. Users with higher waitlist rankings will be able to open crates earlier than users with lower rankings. This does not impact the probability of opening rare crates, the number of crates and prizes is fixed at the start of the campaign. Eventually all users will be able to open crates, regardless of their waitlist rank.
-
 At the end of Craterun, users will have 24 hours to open their crates before they expire. Any remaining prizes will be rolled over to the next Infinex campaign.
-
 Additionally, it is proposed that users who have deposited funds as part of Speedrun the Waitlist, and who do not withdraw their funds before the start of Craterun, will receive a one-off 25% TVL bonus at the start of craterun. For example, a user with a deposit of $1,000 who recevieves a 25% TVL boost will earn crates on an effective deposit balance of $1,250.
-
 Finally, any withdrawals made during the Craterun campaign will result in the user's staked balance resetting to zero, forefeiting any applied TVL boosts and/or bonuses.
 
 #### Crates
@@ -40,7 +35,6 @@ Finally, any withdrawals made during the Craterun campaign will result in the us
 - The contents of a Crate will be determined by [Pyth's VRF](https://docs.pyth.network/entropy).
 
 - The Craterun dashboard will show:
-
   - Progress towards the next Crate
   - Number of earned and unopened Crates
   - Prizes won
@@ -156,7 +150,6 @@ Other potential campaigns were considered, however, Craterun was selected as it 
 ## Technical Specification
 
 Craterun will require the addition of 3 contracts:
-
 - A **Crate** contract, where all the $CRATE points' balances will be stored.
 - A **CrateOpener**contract allowing the opening of a crate, and the burning of the associated $CRATE points.
 - A new **StakingRewards** contract enabling users to earn $CRATE points by depositing USDC and other supported tokens to their Infinex account. Additionally, this contract will manage Boost coupons and TVL bonuses, which can be earned at the start and during the campaign, respectively, to boost staked balances.
@@ -185,8 +178,8 @@ The CrateOpener contract simulates the opening of a crate by assigning a random 
 
 To expedite the process, the contract allows for the opening of multiple crates in a single transaction. Due to gas limitations, an *openAll()* function is not feasible, so the maximum number of crates that can be opened in one transaction will be capped.
 
-The contents of a crate will be determined by calling [Pyth's VRF](https://docs.pyth.network/entropy), which will generate a random number for each crate.\
-\
+The contents of a crate will be determined by calling [Pyth's VRF](https://docs.pyth.network/entropy), which will generate a random number for each crate.
+
 The assigned crate ID will then be stored in a mapping for the Infinex backend to use, helping determine which prize has been won by each user.
 
 The amount of $CRATE points used in the transaction will then be burned.
