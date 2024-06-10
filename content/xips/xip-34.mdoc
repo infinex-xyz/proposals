@@ -1,7 +1,7 @@
 ---
 title: Craterun
 id: 34
-author: Kain (@kaiynne), ClΞm (@0xclem)
+author: Kain (@kaiynne), Clem (@0xclem)
 type: core-upgrade
 network: Ethereum, Solana, Base, Optimism, Arbitrum, Polygon
 status: Draft
@@ -23,7 +23,7 @@ Initially, users will earn but not be able to open their Crates. After approxima
 
 At the end of Craterun, users will have 24 hours to open their crates before they expire. Any remaining prizes will be rolled over to the next Infinex campaign.
 
-Additionally, it is proposed that users who have deposited funds as part of Speedrun the Waitlist, and who do not withdraw their funds before the start of Craterun, will receive a one-off 25% TVL bonus at the start of craterun. For example, a user with a deposit of $1,000 who recevieves a 25% TVL boost will earn crates on an effective deposit balance of $1,250.
+Additionally, it is proposed that users who have deposited funds as part of Speedrun the Waitlist, and who do not withdraw their funds before the start of Craterun, will receive a one-off 25% TVL bonus at the start of craterun. For example, a user with a deposit of $1,000 who receives a 25% TVL boost will earn crates on an effective deposit balance of $1,250.
 
 Finally, any withdrawals made during the Craterun campaign will result in the user's staked balance resetting to zero, forefeiting any applied TVL boosts and/or bonuses.
 
@@ -147,7 +147,7 @@ Other potential campaigns were considered, however, Craterun was selected as it 
 
 Craterun will require the addition of 3 contracts:
 - A **Crate** contract, where all the $CRATE points' balances will be stored.
-- A **CrateOpener**contract allowing the opening of a crate, and the burning of the associated $CRATE points.
+- A **CrateOpener** contract allowing the opening of a crate, and the burning of the associated $CRATE points.
 - A new **StakingRewards** contract enabling users to earn $CRATE points by depositing USDC and other supported tokens to their Infinex account. Additionally, this contract will manage Boost coupons and TVL bonuses, which can be earned at the start and during the campaign, respectively, to boost staked balances.
 
 #### Crate Contract
