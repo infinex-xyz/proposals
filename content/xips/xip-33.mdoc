@@ -34,7 +34,7 @@ Scroll's USDC bridge also fulfills the key features that are desirable in CCTP:
 
 ### Deposits
 
-Infinex will lazy-create an L1 smart contract for each user, using the `create2` function after a balance has been detected. 
+Infinex will lazy-create an L1 smart contract for each user, with the keeper service using the `create2` function after a balance has been detected. 
 
 If a created account has a USDC balance on Ethereum, the keeper service will call a function on the Ethereum contract that will cause the contract to call the Scroll USDC bridge. This will bridge the USDC from L1 and L2, depositing the funds into the user's Trading Account on Scroll.
 
