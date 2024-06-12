@@ -1,0 +1,51 @@
+---
+title: Implement Cross-Chain Architecture on Scroll
+id: 33
+author: isabelle(@isabellewei)
+network: Ethereum & Scroll
+status: Draft
+created: '2023-06-10'
+updated: '2023-06-10'
+
+---
+# Proposal Summary
+
+This XIP proposes to add Scroll onto the Infinex platform.
+
+# Specification
+
+## Overview
+
+We propose to adapt the cross-chain architecture described in [XIP-6](https://proposals.infinex.xyz/xips/xip-6) for Scroll. Through Infinex, users on Scroll can gain access to Synthetix PerpsV3.
+
+Instead of using Circle's CCTP bridge for depositing, bridging and withdrawing USDC, Scroll's USDC bridge utilizing the native messenger will be used instead.
+
+## Rationale
+
+Scroll's USDC bridge also fulfills the key features that are desirable in CCTP:
+
+- Bridging is facilitated by the sequencer, which will move towards a decentralized architecture.
+- Supports a non-custodial Infinex architecture.
+- Bridging transactions can be fulfilled independently of Infinex protocol (the caller will pay the gas).
+- Straightforward and gas-efficient integration.
+- Speed, as finality of Scroll's native bridge takes up to an hour.
+
+## Technical Specification
+
+### Deposits
+
+Infinex will lazy-create an L1 smart contract for each user, using the `create2` function after a balance has been detected. 
+
+If a created account has a USDC balance on Ethereum, the keeper service will call a function on the Ethereum contract that will cause the contract to call the Scroll USDC bridge. This will bridge the USDC from L1 and L2, depositing the funds into the user's Trading Account on Scroll.
+
+### Withdrawals
+
+A user initiates a withdrawal to a specified Ethereum address. On Scroll, this results in a call from their Scroll Trading Account to the USDC bridge. The L2 to L1 withdrawal transaction must then be claimed, which can be accomplished by the user or anyone else, but will always withdraw the funds into the original specified target address. 
+
+## Test Cases
+
+This flow will be tested on Ethereum Sepolia and Scroll Sepolia.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
