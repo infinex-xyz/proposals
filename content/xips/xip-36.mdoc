@@ -1,0 +1,36 @@
+---
+title: Enable ETH, SOL & WBTC Deposits
+id: 36
+author: kmao (@kmaox)
+type: core-upgrade
+network: Ethereum, Solana
+status: Draft
+created: '2024-06-13'
+---
+# Proposal Summary
+
+XIP-36 proposes enabling ETH, SOL and WBTC deposits.
+
+# Specification
+
+## Overview
+
+Infinex currently supports USDC and USDE for deposits. While users are still able to deposit ETH, SOL and WBTC, these assets are not officially recognised and tracked by Infinex's backend.
+
+This XIP proposes enabling deposits for ETH and WBTC on Ethereum Mainnet, and Solana. User deposits will be tracked by the Infinex backend and will be tracked in the UI.
+
+Users who deposit ETH, SOL or WBTC will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign, and earn crates.
+
+## Rationale
+
+Expanding support for more assets besides stablecoins will allow Infinex's TVL to continue to grow after the end of STW, and the community has expressed interest in depositing more volatile assets. ETH, SOL & WBTC are the most technically simple and most valuable coins in crypto that Infinex is aiming to support.
+
+## Technical Specification
+
+The Infinex account currently accepts deposits from all ERC-20 assets and Solana coins which means to support WBTC and Solana deposits, Infinex will simply just need to upgrade the backend infrastructure to track the WBTC and Solana deposits.
+
+However, accepting deposits for Ethereum require additional complexity, as Ethereum is a native coin, not a token. This means the functionality for depositing Ethereum will be initially disabled, and only enabled until users upgrade their account. Account upgrades will be documented and proposed in a future XIP.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
