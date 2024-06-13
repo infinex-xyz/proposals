@@ -1,0 +1,44 @@
+---
+title: Interim Withdrawals
+id: 35
+author: Jaynex (@0xjaynex)
+type: core-upgrade
+status: Draft
+created: '2024-06-13'
+---
+# Proposal Summary
+
+This XIP proposes an interim version of withdrawals that uses the Funds Recovery specified in [XIP-23](https://proposals.infinex.xyz/xips/xip-23) and already implemented for Speedrun The Waitilist, to allow users to withdraw funds from their accounts as close as possible to the end of the Speedrun campaign.
+
+# Specification
+
+## Overview
+
+A fully functional and secure spec for how users will withdraw funds from Infinex, or send funds to other addresses, is yet to be finalised and built. Additionally, as specified in [XIP-23](https://proposals.infinex.xyz/xips/xip-23), more sophisticated withdrawals / send functionality will require users to opt into an account upgrade.
+
+With the end of Infinex's Speedrun The Waitlist campaign in mind, the Core Working Group has identified a way to safely unlock funds in the protocol for users who wish to withdraw.
+
+We propose to add UI to the Infinex App which uses the Funds Recovery functionality in the contracts to allow withdrawals, and signs the transaction with the user's Sudo Key.
+
+## Rationale
+
+Transferring the entire asset balance per chain is a limitation of using the existing Funds Recovery functionality, but it seems preferable to unlock funds than continue to block withdrawals until work on the full withdraw/send functionality has been completed.
+
+## Technical Specification
+
+Funds recovery allows users to send the entire balance of a single asset (e.g USDC) on a single chain (e.g Ethereum) to the Funds Recovery Address that was set up before the User deposited the asset into their Infinex Account.
+
+A new screen will be added to the Infinex App listing each asset in the account, on each chain, and present the user with a button to transfer the entire balance to the funds recovery address. The user will sign the transaction by unlocking their Passkey.
+
+Constraints will be:
+
+- Only the entire balance of a specific asset on a specific chain will be transferred
+- The assets can only be transferred to the pre-set Recovery Address
+
+If a user only wants to transfer some of their assets from their account to another address, they will have to withdraw the entire balance and re-deposit the amount they want to leave in their Infinex account.
+
+Functionality to send a specific amount of an asset to any address will be specified and implemented separately.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
