@@ -1,7 +1,7 @@
 ---
-title: Enable ETH & SOL Deposits
+title: Suppport ETH & SOL
 id: 36
-author: kmao (@kmaox)
+author: kmao (@kmaox), Jaynex (@0xjaynex)
 type: core-upgrade
 network: Ethereum, Solana
 status: Draft
@@ -15,13 +15,17 @@ XIP-36 proposes enabling ETH & SOL deposits.
 
 ## Overview
 
-Infinex currently supports USDC and USDE for deposits. While users are still able to deposit ETH and SOL, these assets are not officially recognised and tracked by Infinex's backend. This XIP proposes enabling deposits for ETH and Solana. User deposits will be tracked by the Infinex backend and will be tracked in the UI.
+Infinex currently supports USDC and USDE. This XIP propses expanding support to include ETH and SOL.
 
-Users who deposit ETH and SOL will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign, and earn crates. These assets will be the first volatile assets to be added to Infinex, and be eligible for Craterun rewards, however these will not be all of the additional supported assets for Craterun.
+In order to do so, the Infinex Platform will need to be upgraded to support these assets. This will involve enabling support in the EVM Smart Contracts for ETH deposits, tracking deposits of these assets in the Infinex backend, and displaying them in the UI.
+
+It will also mean adding support for volatile assets in the UI, taking the current market price of the assets in USD into account when displaying total wallet value, as well as the total balance available for staking in campaigns.
+
+The value of ETH and SOL deposited by users, demoninated in USD and determined by a 3rd-party market price feed, will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign. These assets will be the first volatile assets to be added to Infinex, and be eligible for Craterun rewards, however these will not necessarily be all of the additional supported assets for Craterun.
 
 ## Rationale
 
-Expanding support for more assets besides stablecoins will allow Infinex's TVL to continue to grow after the end of STW, and the community has expressed interest in depositing more volatile assets. ETH and SOL are the most technically simple and most valuable coins in crypto that Infinex is aiming to support. 
+Expanding support for more assets besides stablecoins will allow Infinex's TVL to continue to grow after the end of STW, and the community has expressed interest in depositing more volatile assets. ETH and SOL are the clearest first two assets to add, given their market cap value and the fact that they are the native assets of chains Infinex currently supports.
 
 ## Technical Specification
 
@@ -32,9 +36,11 @@ The supported assets will be
 
 Specific contract addresses of these assets will be posted in a future RC.
 
-The Infinex account currently accepts deposits from all Solana coins, which means to support Solana deposits, Infinex will simply just need to upgrade the backend infrastructure to track Solana deposits. 
+The Infinex account currently does not block deposits from all Solana coins, which means to support SOL deposits, Infinex will simply just need to upgrade the backend infrastructure to track Solana deposits. 
 
-However, accepting deposits for Ethereum require additional complexity, as Ethereum is a native coin, not a token. This means the functionality for depositing Ethereum will be initially disabled, and only enabled until users upgrade their account. Account upgrades will be documented and proposed in a future XIP.
+However, accepting deposits for Ethereum require a contract upgrade, as Ethereum is a native coin, not a token.
+
+It is expected that a Terms Of Use upgrade and Contract Version Upgrade will need to be accepted by Users to enable ETH and SOL support in the UI.
 
 # Copyright
 
