@@ -14,16 +14,21 @@ XIP-36 proposes enabling ETH & SOL deposits.
 # Specification
 
 ## Overview
-Infinex currently supports USDC and USDE for deposits. While users are still able to deposit ETH and SOL, these assets are not officially recognised and tracked by Infinex's backend.
 
-This XIP proposes enabling deposits for ETH on Ethereum Mainnet, and Solana. User deposits will be tracked by the Infinex backend and will be tracked in the UI.
+Infinex currently supports USDC and USDE for deposits. While users are still able to deposit ETH and SOL, these assets are not officially recognised and tracked by Infinex's backend. This XIP proposes enabling deposits for ETH and Solana. User deposits will be tracked by the Infinex backend and will be tracked in the UI.
 
-Users who deposit ETH and SOL will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign, and earn crates.
+Users who deposit ETH and SOL will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign, and earn crates. These assets will be the first volatile assets to be added to Infinex, and be eligible for Craterun rewards, however these will not be all of the additional supported assets for Craterun.
 
 ## Rationale
+
 Expanding support for more assets besides stablecoins will allow Infinex's TVL to continue to grow after the end of STW, and the community has expressed interest in depositing more volatile assets. ETH and SOL are the most technically simple and most valuable coins in crypto that Infinex is aiming to support.
 
 ## Technical Specification
+
+The supported assets will be
+
+- Ethereum and Wrapped Ethereum on Ethereum Mainnet, Arbitrum, Optimism, Base, Polygon
+- Solana and Wrapped Solana on Solana.
 
 The Infinex account currently accepts deposits from all Solana coins, which means to support Solana deposits, Infinex will simply just need to upgrade the backend infrastructure to track  Solana deposits.
 
