@@ -243,7 +243,7 @@ export default config({
             { label: 'Reverted', value: 'Reverted' },
           ],
         }),
-        released: fields.date({ label: 'Released' }),
+        created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Updated' }),
         implemented: fields.date({ label: 'Implemented' }),
         content: fields.document({
