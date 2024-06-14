@@ -9,23 +9,11 @@ created: '2024-06-13'
 ---
 # Proposal Summary
 
-`This section provides a short, less than 500-word summary of the proposal. The Proposal Summary should briefly cover what will happen if the proposal passes, why it should pass, and how it will be implemented. The overview should be non-technical and accessible to a casual community member.`
-
 XIP-36 proposes enabling ETH & SOL deposits.
 
 # Specification
 
-`The specification should describe the syntax and semantics of any new feature. There are four sections:`
-
-1. `Overview`
-1. `Rationale`
-1. `Technical Specification`
-1. `Test Cases`
-
 ## Overview
-
-`This is a high-level overview of how the XIP will solve the problem. The overview should clearly describe how the new feature will be implemented.`
-
 Infinex currently supports USDC and USDE for deposits. While users are still able to deposit ETH and SOL, these assets are not officially recognised and tracked by Infinex's backend.
 
 This XIP proposes enabling deposits for ETH on Ethereum Mainnet, and Solana. User deposits will be tracked by the Infinex backend and will be tracked in the UI.
@@ -33,14 +21,9 @@ This XIP proposes enabling deposits for ETH on Ethereum Mainnet, and Solana. Use
 Users who deposit ETH and SOL will be counted as TVL for the upcoming [Craterun](https://proposals.infinex.xyz/xips/xip-34) campaign, and earn crates.
 
 ## Rationale
-
-`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
-
 Expanding support for more assets besides stablecoins will allow Infinex's TVL to continue to grow after the end of STW, and the community has expressed interest in depositing more volatile assets. ETH and SOL are the most technically simple and most valuable coins in crypto that Infinex is aiming to support.
 
 ## Technical Specification
-
-`The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Infinex currently exposes or the creations of new ones.`
 
 The Infinex account currently accepts deposits from all Solana coins, which means to support Solana deposits, Infinex will simply just need to upgrade the backend infrastructure to track  Solana deposits.
 
