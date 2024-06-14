@@ -1,0 +1,31 @@
+---
+title: Clarify GP Distribution to NFT Holders
+id: 38
+author: kmao (@kmaox)
+type: Community
+status: Draft
+created: '2024-06-14'
+---
+# Proposal Summary
+
+XIP-38 clarifies the method in which holders of Milady Maker, Pudgy Penguins, Mad Lads claim their GP airdrop.
+
+# Specification
+
+## Overview
+
+[XIP-21](https://arc.net/l/quote/nguhowpd) states that there will be a snapshot of NFT holders taken after STW ends as the method for tracking a user's airdrop associated with the NFTs. Instead, this proposal proposes the method of "linking" the GP to the various NFT ids, and then marking them as claimed, once a user claims them.
+
+This means a user's GP airdrop will no longer be associated to a user's address, and instead their NFT id, which means if you transfer your NFT to a new wallet, you can claim your airdrop from the new wallet. This means, when purchasing new NFTs, you may also purchase NFTs which have a GP airdrop associated with them.
+
+## Rationale
+
+The prior snapshot method of distributing GP would not ensure that the allocated GP per NFT collection would be claimed, as users may not have deposited their funds during STW. This new proposed method ensures that all GP may be claimed by STW depositors.
+
+## Technical Specification
+
+Infinex will need to track if a NFT id has been claimed, instead of tracking the snapshotted addresses. The user interface to claim your GP will be the same, which will require a user to connect their wallet to the Infinex Account, and sign a message.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
