@@ -1,0 +1,35 @@
+---
+title: Ship Interim Withdrawals
+id: 8
+wg: CWG
+author: jaynex (@0xjaynex)
+status: Draft
+---
+### Overview
+
+As decided in [XIP-35](https://proposals.infinex.xyz/xips/xip-35), the CWG is going to update the Infinex App to enable interim withdrawals so that Users who want to withdraw their funds at the end of Speedrun The Waitlist are able to.
+
+Additional UI to show information about the upcoming Craterun campaign (per [XIP-34](https://proposals.infinex.xyz/xips/xip-34)) has also been prepared, along with warnings for users who withdraw that they will lose their Speedrun Bonus for the Craterun Campaign.
+
+### Outcome
+
+Upgrade the platform to enable Interim Withdrawals and announce initial details for the Craterun Campaign.
+
+### Proposed Changes
+
+##### **Platform**
+
+Added frontend and backend functionality to enable withdrawals, which use the onchain recovery methods in combination with the User's passkey to send the entire balance of a single asset to the funds recovery address (as already set by the User before depositing) on the same chain.
+
+> For example, a User can "withdraw" the entire USDC balance on Base in their Infinex Account to their EVM Funds Recovery Address on Base.
+
+Added Craterun UI to the Infinex App:
+
+- Announcement on the Dashboard
+- New Craterun Section with information about the campaign
+- Display the User's Speedrun Bonus for Craterun in various parts of the UI
+- Warn Users who are about to withdraw funds that doing so will forfeit their Speedrun Bonus for Craterun
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
