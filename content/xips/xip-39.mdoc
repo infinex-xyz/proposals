@@ -1,0 +1,40 @@
+---
+title: Support sUSDe & sDAI 
+id: 39
+author: blockchainwinston
+type: core-upgrade 
+network: Ethereum
+status: Draft
+created: '2024-06-15'
+---
+# Proposal Summary
+
+XIP-39 proposes to enabling sUSDe & sDAI deposits.
+
+# Specification
+
+## Overview
+Infinex currently supports USDC, USDE and will support ETH and SOL as written in [XIP-36](https://proposals.infinex.xyz/xips/xip-36). This XIP proposes expanding support to include sUSDe and sDAI.
+
+In order to do so, the Infinex Platform will need to be upgraded to support these assets. This will involve enabling support in the EVM Smart Contracts for sUSDe and sDAI deposits, tracking deposits of these assets in the Infinex backend, and displaying them in the UI.
+
+Ideally, users will be able to withdraw and convert their assets to sUSDe and sDAI within a certain timeframe, without losing their TVL boost from STW campaign.
+
+## Rationale
+
+Currently, the stablecoins supported by Infinex (USDC and USDE) are not yield-bearing, leading to missed opportunities for potential earnings. With the upcoming craterun campaign, users face low odds of winning desirable prizes, making it less attractive to leave their funds in the platform.
+
+By introducing yield-bearing stablecoins such as sUSDe (17.5% APY) and sDAI (8% APY), Infinex can encourage TVL retention. Users will have more incentive to keep their funds on the platform, enjoying potential yields while participating in Infinex's activities.
+
+## Technical Specification
+
+The supported assets will be
+
+- sUSDe on Ethereum Mainnet (0x9d39a5de30e57443bff2a8307a4256c8797a3497).
+- sDai on Ethereum Mainnet (0x83F20F44975D03b1b09e64809B757c47f942BEeA).
+
+It is expected that a Terms Of Use upgrade and Contract Version Upgrade will need to be accepted by Users to enable sUSDe & sDAI support in the UI.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
