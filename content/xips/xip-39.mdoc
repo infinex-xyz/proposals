@@ -1,5 +1,5 @@
 ---
-title: Support sUSDe & sDAI 
+title: Enable Redeposits for Craterun
 id: 39
 author: blockchainwinston
 type: core-upgrade 
@@ -9,32 +9,29 @@ created: '2024-06-15'
 ---
 # Proposal Summary
 
-XIP-39 proposes to enabling sUSDe & sDAI deposits.
+XIP-39 proposes to allow users to withdraw and redeposit an equvalent amount of tokens (in usd) for a certain time period before craterun campaign.
 
 # Specification
 
 ## Overview
-Infinex currently supports USDC, USDE and will support ETH and SOL as written in [XIP-36](https://proposals.infinex.xyz/xips/xip-36). This XIP proposes expanding support to include sUSDe and sDAI.
 
-In order to do so, the Infinex Platform will need to be upgraded to support these assets. This will involve enabling support in the EVM Smart Contracts for sUSDe and sDAI deposits, tracking deposits of these assets in the Infinex backend, and displaying them in the UI.
-
-Ideally, users will be able to withdraw and convert their assets to sUSDe and sDAI within a certain timeframe, without losing their TVL boost from STW campaign.
+Initially, only USDC deposits were supported, which are non-yield bearing. During the STW campaign, USDe (a yield-bearing stablecoin) was introduced, but no swapping function is currently available. This proposal aims to:
+- Allow users to swap USDC for supported tokens: USDe, ETH, and SOL.
+- Enable redeposits to benefit from yield or potential price appreciation.
 
 ## Rationale
 
-Currently, the stablecoins supported by Infinex (USDC and USDE) are not yield-bearing, leading to missed opportunities for potential earnings. With the upcoming craterun campaign, users face low odds of winning desirable prizes, making it less attractive to leave their funds in the platform.
-
-By introducing yield-bearing stablecoins such as sUSDe (17.5% APY) and sDAI (8% APY), Infinex can encourage TVL retention. Users will have more incentive to keep their funds on the platform, enjoying potential yields while participating in Infinex's activities.
+Enabling redeposits will provide users the flexibility to earn yield or hold tokens they believe might appreciate in value.
 
 ## Technical Specification
 
-The supported assets will be
+The exact dates for enabling redeposits will be determined by the core working group. This should occur before the Craterun campaign and after ETH and SOL deposits are supported.
 
-- sUSDe on Ethereum Mainnet (0x9d39a5de30e57443bff2a8307a4256c8797a3497).
-- sDai on Ethereum Mainnet (0x83F20F44975D03b1b09e64809B757c47f942BEeA).
+A recommended amnesty period of 2 days will be provided. A snapshot of USD balances will be taken at the start and end of this period.
 
-It is expected that a Terms Of Use upgrade and Contract Version Upgrade will need to be accepted by Users to enable sUSDe & sDAI support in the UI.
+USD valuation of redeposits will be taken at the time of redeposit to account for price fluctuations of volatile assets like ETH and SOL. To accommodate for slippage and gas fees, a 2% slippage tolerance is proposed. Users need to deposit at least 98% of their original balance to maintain their Total Value Locked (TVL) boost.
 
-# Copyright
+For Example
+If a user had $100 USDC deposited during the STW campaign, resulting in a $25 boost, and they swap their USDC for USDe. As long as they redeposit above $98, they would retain their TVL boost, resulting in their balance in Infinex being $98 + $25 boost = $123.
 
 Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
