@@ -1,0 +1,83 @@
+---
+title: Send V1
+id: 39
+author: Jaynex (0xjaynex)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon, Solana
+status: Draft
+created: '2024-06-17'
+---
+# Proposal Summary
+
+XIP-39 proposes an update to the Withdrawals functionality, allowing users to send funds from an Infinex Account to any address on supported chains, safely.
+
+### Background
+
+After [XIP-23](https://proposals.infinex.xyz/xips/xip-23), Infinex's security model was simplified to implement a small functional surface area for launch, ensuring that user funds would be as safe as possible through the early public iterations of the Infinex Platform.
+
+At the end of the Speedrun The Waitlist Campaign, the Core Working Group implemented an interim solution for Withdrawals as specified in [XIP-35](https://proposals.infinex.xyz/xips/xip-35), which allows withdrawing the entire balance of a specific token, on a specific chain, to the previously configured Funds Recovery Address.
+
+Now that support for additional tokens is being added, and more users are onboarding to Infinex for the Craterun Campaign, we need better Withdrawals functionality with the ability to safely send any amount (up to the full amount in an Infinex Account) to any address, across all supported Chains.
+
+# Specification
+
+## Overview
+
+The Infinex Platform should be upgraded so that users can send funds from their account to any address onchain. Initially, this will mean being able to "Send" all or some of a specific token from the total amount deposited into the Account to another address on the same chain.
+
+In order to ensure safety, an allowlist should be developed with the following functionality:
+
+- Withdrawals can only be made to allowlisted addresses
+- Withdrawals require the Sudo Key (Passkey) signature
+- Adding an address to the allowlist requires the Sudo Key (Passkey) signature
+- Addresses on the allowlist are only valid 24h after they are added
+- The Funds Recovery Address can be used for withdrawals without delay
+- Addresses can be removed from the allowlist, effective immediately; this requires a passkey signature
+
+When an address is added to the allowlist, the Infinex Platform should send a transactional email to the account owner's registered email address (if provided) notifying them of the change, to increase the chance that unintended changes to the account are caught early and blocked.
+
+## Rationale
+
+Enabling the Infinex Platform to send funds is arguably one of the most risky features to add.
+
+While Infinex has become known for its simple UX and early adoption of Passkeys to safely ensure users are in control of their account activity onchain, there should still be some friction when it comes to sending immutable assets from an Account to another address.
+
+In the future, we have ideas to add multi-factor authentication and support for additional signing methods to allow users to configure their ideal security posture. We will also support configuring multiple Passkeys for a single Infinex Account.
+
+Today, however, we need to design a solution that is simple yet powerful enough to work for our current user base using the single Sudo Key signature model that is already in place.
+
+The built-in delay of 24 hours before an address becomes valid for withdrawals provides an important "cool down" period, during which an unauthorised address can be noticed by the account owner and blocked, before an unauthorised withdrawal can be completed.
+
+This seems the best balance of simple UX and Security for the first iteration of sending funds from an Infinex Account to any address.
+
+## Technical Specification
+
+> Note: the functions specified are indicative only and should be implemented in a way that allows for native (i.e ETH) token withdrawals, ERC-20 token withdrawals, NFT withdrawals, and Solana token withdrawals respectively.
+
+### Withdraw to Allowed Address
+
+This function will send the specified amount of a token to an address that has been added to the withdrawal allowlist.
+
+It will check that either (a) the address is on the allowlist **and** was added more than 24h ago; OR (b) the address is the funds recovery address for that chain.
+
+Requires a Sudo Key signature.
+
+### Add Withdrawal Address
+
+This function adds the specified address to the withdrawal allowlist, and stamps it with the current time.
+
+Requires a Sudo Key signature.
+
+### Remove Withdrawal Address
+
+This function removes the specified address from the withdrawal allowlist.
+
+Requires a Sudo Key signature.
+
+## Cross-chain Notes
+
+A separate list of Allowed Addresses will be maintained on each chain. This (a) reduces the need to sync account security config cross-chain, and (b) since controlling an address on one chain does not necessarily mean controlling that address on all support chains, ensures explicit authorisation is given to each allowlisted address on each chain individually.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
