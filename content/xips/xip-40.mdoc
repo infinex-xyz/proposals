@@ -1,0 +1,110 @@
+---
+title: Amnesty Period for Craterun
+id: 40
+author: Jaynex (@0xjaynex)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon, Solana
+status: Draft
+created: '2024-06-18'
+---
+# Proposal Summary
+
+XIP-40 proposes the concept of an "amnesty period", allowing users to withdraw and redeposit an equivalent amount of tokens within a limited time window, without losing their Craterun Campaign bonuses.
+
+# Specification
+
+## Overview
+
+Initially, only USDC deposits were supported by Infinex, which are non-yield bearing. During the Speedrun The Waitlist campaign, USDe (a yield-bearing stablecoin) was introduced, and now (as proposed in [XIP-36](https://proposals.infinex.xyz/xips/xip-36)) volatile assets including ETH and SOL will be supported as well.
+
+Infinex is providing incentives to users who do not withdraw from their Infinex Account, in the form of "Balance Boosts" which are additional bonuses that increase the rate at which those users earn Crates (as proposed in [XIP-34](https://proposals.infinex.xyz/xips/xip-34)). Balance Boosts are not free money bonuses, and are not withdraw-able, they exclusively serve the purpose of the user accruing additional crates.
+
+Since in-platform swapping is not available yet, users cannot switch from USDC to other supported tokens without losing their boosts.
+
+This proposal aims to:
+
+- Allow users to swap USDC for supported tokens: USDe, ETH, and SOL (and any other tokens added through the campaign).
+- Enable redeposits to benefit from yield or potential price appreciation while keeping their bonus.
+
+## Rationale
+
+Enabling redeposits will provide users the flexibility to earn yield or hold tokens they believe might appreciate in value, without losing the incentive to leave their deposits in their Infinex Account between the Speedrun The Waitilist and Craterun Campaigns.
+
+## Technical Specification
+
+Upon meeting certain criteria, users are provided with "Balance Boosts" in their Infinex Account, which provide additional USD to be staked in the Craterun Campaign. The two current boost types are:
+
+- 25% of the User's final wallet balance during the Speedrun The Waitlist campaign
+- Boosts provided as prizes in certain Crates.
+
+All boosts are forfeited when the user withdraws any amount from their Infinex Account.
+
+An "amnesty" feature should be developed, which would reinstate forfeited boosts if users redeposit an amount equivalent to their previous balance within a limited timeframe:
+
+- When a user withdraws any amount from their Infinex Account, the current timestamp and a snapshot of the account balance (in USD) is recorded against all boosts forfeited because of the withdrawal
+- When a user clicks "Stake" in the Craterun UI, if (a) their account balance is equivalent to the previous account balance, and (b) it is within the amnesty time period, the system will reinstate previously forfeited bonuses that match the criteria, and these will be included in the amount available to stake
+
+The recommended amnesty time period is 4 hours. This may be changed by the CWG in response to community feedback and environment variables.
+
+When calculating USD-equivalent values:
+
+- The current USD value of volatile assets (e.g ETH, SOL) should be determined by a 3rd-party market price feed
+- The USD value of stablecoin assets may be assumed to be 1:1 for simplicity
+
+The calculated value should be the same as the total displayed in the UI under "Total Balance".
+
+### Example 1
+
+A user deposited 100 USDC during StW and did not withdraw after the campaign, resulting in a $25 USD boost.
+
+They withdraw 100 USDC and swap to USDe. They deposit 100 USDe into their account 1 hour later. They see in their Infinex Account that $125 is available for staking if they stake within 3 hours.
+
+They click "stake" and their $25 USD boost is reinstated because:
+
+- The time is within the amnesty time period (1 hour < 4 hours) and
+- The total USD-equivalent amount is the same
+
+### Example 2
+
+A user deposited 100 USDC during StW and did not withdraw after the campaign, resulting in a $25 USD boost.
+
+They withdraw 100 USDC and swap to ETH at a conversion rate of 1ETH to 3500 USDC resulting in 0.0285 ETH. They deposit all 0.0285 ETH into their account 1 hour later. The price of ETH rises slightly to 3520 USD.
+
+They click "stake" and their $25 USD boost is reinstated because:
+
+- The time is within the amnesty time period (1 hour < 4 hours) and
+- The total USD-equivalent amount is greater ((0.0285 ETH * 3520 USD) > USD 100)
+
+### Example 3
+
+A user deposited 100 USDC during StW and did not withdraw after the campaign, resulting in a $25 USD boost.
+
+They withdraw 100 USDC and swap to ETH at a conversion rate of 1ETH to 3500 USDC resulting in 0.0285 ETH. They spend 0.00005 in gas, and deposit 0.02845 ETH into their account 1 hour later. The price of ETH has remained stable.
+
+They click "stake" but their $25 USD boost is not reinstated because the total USD-equivalent amount is lower ((0.02845 ETH * 3500 USD) < USD 100)
+
+### Example 4
+
+A user deposited 100 USDC during StW and did not withdraw after the campaign, resulting in a $25 USD boost.
+
+They withdraw 100 USDC and swap to USDe. They deposit 99 USDe into their account 5 hours later. They see in their Infinex Account that $99 is available for staking. They have permanently forfeited their boost, because the time is outside the amnesty time period (5 hours > 4 hours).
+
+### Example 5
+
+AuUser deposited 100 USDC during StW and did not withdraw after the campaign, resulting in a $25 USD boost.
+
+They withdraw 100 USDC and swap to ETH at a conversion rate of 1 ETH to 3500 USDC resulting in 0.0285 ETH. They have additional ETH in their wallet and deposit 0.03 ETH into their account 1 hour later. The price of ETH has dropped to 3000 USDC.
+
+They click "stake" but their $25 USD boost is not reinstated because the total USD-equivalent amount is lower ((0.03 ETH * 3000 USD) < USD 100)
+
+## A note on slippage and market volatility
+
+Crypto is inherently dynamic, with the market price for tokens constantly in flux. In addition, transactions incur gas fees and slippage. Because of this, users may find they withdraw an amount, only to have less value available to redeposit.
+
+While tolerance for slippage and price fluctuations was considered when designing the amnesty system, implementing tolerance would increase complexity and create opportunities for abuse.
+
+With that in mind, users taking advantage of the amnesty system for withdrawals should have additional funds available to cover transaction costs outside of the Infinex Platform, and to make up the difference if swapping into a volatile asset that loses value against the USD before it can be redeposited and staked.
+
+## Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
