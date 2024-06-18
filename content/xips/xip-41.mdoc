@@ -8,30 +8,15 @@ status: Draft
 created: '2024-06-18'
 ---
 # Proposal Summary
-
-`This section provides a short, less than 500-word summary of the proposal. The Proposal Summary should briefly cover what will happen if the proposal passes, why it should pass, and how it will be implemented. The overview should be non-technical and accessible to a casual community member.`
-
 This XIP proposes the implementation of a wallet screening service to scan all addresses connected to Infinex accounts and review them for a range of risk categories. It also proposes a set of rules that if triggered will result in an Infinex account being placed into withdraw only mode.
 
 # Specification
 
-`The specification should describe the syntax and semantics of any new feature. There are four sections:`
-
-1. `Overview`
-1. `Rationale`
-1. `Technical Specification`
-1. `Test Cases`
-
 ## Overview
-
-`This is a high-level overview of how the XIP will solve the problem. The overview should clearly describe how the new feature will be implemented.`
 
 An external wallet screening service will be implemented to scan all addresses connected to Infinex Accounts. This service provides extensive data and a broad range of risk related services, including reviewing addresses for evidence of issues such as Sanctions, Terrorist Financing, Human Trafficking, Hacked or Exploited funds as well as mixers and other services designed to obfuscate source of funds.
 
 ## Rationale
-
-`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
-
 All transaction activity in Infinex is onchain, thus it is a very poor candidate for any bad actor looking to obfuscate or hide their sources of funds. Each account is segregated and it is therefore not possible to leverage a "mixing" effect to obscure transaction paths through Infinex. Unlike some centralised exchanges which comingle funds creating a "black box" effect, by potentially enabling malicious users to attempt to obfuscate the connections between addresses, all user funds in Infinex are stored in individual onchain smart contracts.
 
 Infinex is sophisticated crypto wallet software. Unlike many onchain protocols it is not directly accessible onchain, it requires services and middleware operated by Infinex or third parties to support many of its functions. However, the fact that security information is managed onchain means a user can always bypass Infinex to withdraw funds, this ensures funds in Infinex Accounts are always controlled by the user. No third party can access user funds or censor access to those funds, the platform can however, censor access to the platform. This set of trade-offs is fairly novel and is one of the benefits of account abstraction.
@@ -47,9 +32,6 @@ The solution proposed looks at each address in isolation and applies a standard 
 The final consideration was how to deal with onchain mixers. While a discussion of the illogicality of attempting to sanction immutable software running on public blockchains is outside the scope of this XIP, there are many novel approaches to onchain privacy that are being actively implemented, which seek to concurrnetly facilite the right to privacy and proof of legitimancy of source of funds.
 
 ## Technical Specification
-
-`The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Infinex currently exposes or the creations of new ones.`
-
 Risk factors are graded within the system according to perceived seriousness and evidence of degree of proximity to the owner of the wallet address.
 
 The wallets that return an outcome reflecting the highest level of risk across the highest impact categories, including, but not limited to; Sanctions, Terrorist Financing, Human Trafficking and Child Sexual Abuse Material, will have their accounts moved to withdrawal only mode.
