@@ -1,0 +1,44 @@
+---
+title: Support Jito Staked Solana
+id: 42
+author: kmao (@kmaox), AndrewT (@agsthurman)
+type: integration-upgrade
+network: Solana
+status: Draft
+created: '2024-06-18'
+---
+# Proposal Summary
+
+XIP-42 proposes enabling support for Jito Staked Solana.
+
+# Specification
+
+## Overview
+
+Infinex currently supports USDC and USDE, with ETH and SOL support also approved. Adding a yield accruing LST like JITOSOL to Infinex will further grow TVL, and incentive users who are simply holding JITOSOL, to deposit into Infinex, as there will be minimal opportunity cost.
+
+Infinex will need to update the UI to effectively reflect JITOSOL deposits and withdrawals, as well as the current market price of the asset. The value of JITOSOL will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, Jito has offered 20k JTO in Ecosystem Prizes for the Craterun Campaign. This will be split between 10 different prizes of 2,000 JTO each, and will take up 10 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
+
+## Rationale
+
+JitoSOL is the largest LST on Solana, currently accounting for $1.5 billion in TVL. Apart from its size, it’s proven to be an especially popular form of collateral in Solana DeFi. JitoSOL accounts for nearly 50% of the TVL in the Drift perps DEX, and additionally accounts for over 20% of the TVL for Solana-leading lending and liquidity platforms Kamino and MarginFi.&nbsp;
+
+During points and incentive programs on Solana in the past six months, JitoSOL has likewise been highly overrepresented. At times JitoSOL accounted for over 30% of Sanctum’s pool during the points campaign, and ran as high as 30% of Kamino’s TVL while the platform’s initial points program was ongoing.&nbsp;
+
+Finally, research from analytics firm Gauntlet indicates that the core userbase for JitoSOL is DeFi-active whales.&nbsp;
+
+In aggregate, this data shows that JitoSOL is an ideal asset to onboard to Infinex during the forthcoming Craterun Campaign: a capital efficient form of collateral favored by power users who like to farm incentives.&nbsp;
+
+Additionally, this integration and the TVL it ideally drives will set the stage for larger and more complex integrations, possibly leveraging JitoSOL as a cross-chain asset, in the future.&nbsp;
+
+## Technical Specification
+
+Infinex will add JITOSOL on the Solana network. The token address is J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn
+
+The Infinex account currently does not block deposits from all Solana coins, which means to support SOL deposits, Infinex will simply just need to upgrade the backend infrastructure to track JITOSOL deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
