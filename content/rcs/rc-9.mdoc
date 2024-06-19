@@ -1,0 +1,36 @@
+---
+title: Close STW and Prepare Craterun
+id: 9
+wg: CWG
+author: jaynex (@0xjaynex)
+status: Draft
+---
+### Overview
+
+This release supports a variety of platform features:
+
+- Claim any unclaimed GP for a user (now that STW has finished)
+- Enable non-USD assets as per [XIP-36](https://proposals.infinex.xyz/xips/xip-36), [XIP-42](https://proposals.infinex.xyz/xips/xip-42) and any other upcoming assets
+- Add language to login pages that support changes to terms of use for existing users
+
+It also includes a variety of UI fixes and tweaks in support of closing out Speedrun the Waitlist and preparing to launch Craterun.
+
+### Outcome
+
+Upgrade the platform to close out STW, prepare for Craterun and support new assets.
+
+### Proposed Changes
+
+##### **Platform**
+
+The following changes will be made to the platform:
+
+- Users with unclaimed GP points will have points automatically claimed for them in their account
+- Asset prices in USD will be sourced and saved in the system to support non-USD assets
+- A central supported assets list will be maintained
+- Users last login time will be captured, in order to infer the last set of terms of use they accepted
+- Users balances will be shown in USD-equivalent values using the external price feed
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
