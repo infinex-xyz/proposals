@@ -1,0 +1,70 @@
+---
+title: Support Lido Staked Ether
+id: 43
+author: kmao (@kmaox), kenneth (@kenkenkenx)
+type: integration-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon
+status: Draft
+created: '2024-06-19'
+---
+# Proposal Summary
+
+XIP-43 proposes enabling support for Lido Staked Ether.
+
+# Specification
+
+## Overview
+
+Infinex currently supports USDC and USDE, with ETH and SOL support also approved. Adding a yield accruing LST like STETH/WSTETH to Infinex will further grow TVL, and incentive users who are simply holding those assets, to deposit into Infinex, as there will be minimal opportunity cost.
+
+Infinex will need to update the UI to effectively reflect STETH & WSTETH deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, Lido has offered 15 STETH in Ecosystem Prizes for the Craterun Campaign. This will be split between 5 different prizes of 3 STETH each, and will take up 5 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
+
+## Rationale
+
+stETH and wstETH are the liquid staked tokens (LSTs) with the highest market capitalization in all of crypto, with stETH sitting at 6th in crypto market cap (based on Coingecko). The TVL of Lido Protocol sits at around 33b at the time of writing. Additionally, stETH and wstETH are arguably one of the most popular and capital efficient collateral types in all of Defi, with over USD $4.3b in TVL on Aave v3’s Ethereum market alone and is the most restaked asset apart from beacon chain Ether.&nbsp;
+
+The integration of stETH onto Infinex will open the doors for integrations that would make sense in the lens of retail adoption - the primary goal which Infinex is aiming for. Future integrations that can be enabled and widely used by Infinex users potentially include: levered staking with stETH, using stETH as a collateral across Defi and LPing stETH with LRTs/ETH. These are some strategies that Lido DAO contributors have identified as key use cases that can enable wider adoption. The integration will help to bring us a step closer to that.
+
+Lido DAO contributors also welcome the idea of getting staking on Lido natively integrated into Infinex allowing retail users to be highly capital efficient, earning validation rewards while interacting with Defi on Ethereum Mainnet and Layer 2s that Infinex will expand to in the future.
+
+## Technical Specification
+
+Infinex will add support for deposits and withdrawals of Lido Staked Ether (STETH) and it's wrapped variants on various chains. The accepted chains, variants, and token addresses are listed below:
+
+{% table %}
+- Asset
+- Network
+- Token Address
+---
+- STETH
+- Mainnet
+- 0xae7ab96520de3a18e5e111b5eaab095312d7fe84
+---
+- WSTETH
+- Mainnet
+- 0x7f39c581f595b53c5cb19bd0b3f8da6c935e2ca0
+---
+- WSTETH
+- Optimism
+- 0x1f32b1c2345538c0c6f582fcb022739c4a194ebb
+---
+- WSTETH
+- Arbitrum One
+- 0x5979d7b546e38e414f7e9822514be443a4800529
+---
+- WSTETH
+- Base
+- 0xc1cba3fcea344f92d9239c08c0568f6f2f0ee452
+---
+- WSTETH
+- Polygon POS
+- 0x03b54a6e9a984069379fae1a4fc4dbae93b3bccd
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support STETH & WSTETH deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
