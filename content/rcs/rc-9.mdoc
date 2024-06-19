@@ -3,16 +3,19 @@ title: Close STW and Prepare Craterun
 id: 9
 wg: CWG
 author: jaynex (@0xjaynex)
-status: Draft
-created: "2024-06-19"
+status: Implemented
+released: "2024-06-19"
+updated: "2024-06-19"
+implemented: "2024-06-19"
 ---
 ### Overview
 
 This release supports a variety of platform features:
 
 - Claim any unclaimed GP for a user (now that STW has finished)
-- Enable non-USD assets as per [XIP-36](https://proposals.infinex.xyz/xips/xip-36), [XIP-42](https://proposals.infinex.xyz/xips/xip-42) and any other upcoming assets
+- Enable non-USD assets as per [XIP-36](https://proposals.infinex.xyz/xips/xip-36), [XIP-42](https://proposals.infinex.xyz/xips/xip-42) and any other upcoming assetse
 - Add language to login pages that support changes to terms of use for existing users
+- Add transaction monitoring as per [XIP-41](https://proposals.infinex.xyz/xips/xip-41)
 
 It also includes a variety of UI fixes and tweaks in support of closing out Speedrun the Waitlist and preparing to launch Craterun.
 
@@ -31,6 +34,7 @@ The following changes will be made to the platform:
 - A central supported assets list will be maintained
 - Users last login time will be captured, in order to infer the last set of terms of use they accepted
 - Users balances will be shown in USD-equivalent values using the external price feed
+- Add address screening of deposit addresses, withdrawal addresses and recovery keys as per XIP-41
 
 # Copyright
 
