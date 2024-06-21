@@ -1,0 +1,56 @@
+---
+title: App Accounts
+id: 47
+author: ray (@rayzhudev), axe (@axefinaxe)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon
+status: Draft
+created: 2024-06-21
+---
+# Proposal Summary
+
+XIP-47 proposes the addition of app accounts to the Infinex account architecture. App accounts will enable the Infinex account to interact with other dapps onchain in a secure manner.
+
+# Specification
+
+## Overview
+
+We propose the addition of app accounts: a form of sub account for the main Infinex account to interact with specific apps. Ethena swaps will be supported by integrating with Curve using this architecture. Examples of other possible app integrations are Jupiter, Uniswap, etc. App accounts are to be separate from the main Infinex account, yet fully leverage the security of the main Infinex account by verifying keys that belong to the main account. The Infinex account will not be limited to how many app accounts it can have, allowing for as many app accounts as needed per integration that is added.
+
+App accounts can be created and deployed independently from changes to the main Infinex account. This is through the addition of an App Registry, which each app integration will need to be approved on to be deployed by the main account. An app integration can have any functionality, as long as it inherits the base functionality of the app account.
+
+App integrations cannot send user tokens to other addresses, they can only interact with the integration, or send funds to the main Infinex&nbsp;account&nbsp;for that user.
+
+## Rationale
+
+Currently the Infinex account smart contracts do not provide it the functionality to interact with any smart contract on the chains it's deployed on. The proposed architecture allows the Infinex account to integrate with any app, thereby giving Infinex accounts endless functionality. App accounts require their own address in order to provide the maximum security possible. App accounts provide a segregation of funds, similar to how it is recommended to use a hot wallet with a limited amount of funds when interacting with apps online. This architecture prevents two vectors of attack:
+
+- funds being drained if an app is exploited and there are approved allowances
+- misconfigured input parameters leading to funds loss
+
+The bounds for what an app account can do are broad so as to allow for flexibility. An app account could consist of a single app integration, or multiple.
+
+The decoupling of app accounts from the main account also allows for app integrations to be developed by anyone. App integrations can be enabled by the council at will, after which they will be enabled for all Infinex users to use.
+
+## Technical Specification
+
+The addition of app accounts requires the following changes:
+
+- the addition of an App Module to the main account
+- App Registry for declaring which apps are valid
+- `AppAccountBase` the contract all app accounts must inherit
+- `AppBeaconBase` the contract all app beacons must inherit
+
+![](/assets/xips/xip-47/image.png)
+
+The App Module in the main account supports deploying new app accounts provided they are in the list of valid apps in the App Registry. It also contains all the necessary functions to transfer assets to the app account (ETH, ERC20, ERC721, ERC1155).
+
+The App Registry is the source of truth for whether an app is enabled. An app is defined by an AppBeacon. The App Registry contains a set of valid apps in the form of a mapping of app beacons. An app beacon is counted as valid by the App Registry if it is stored in the registry, and is the latest app beacon as defined by the app beacon. In order for an app beacon to be added to the registry, it must abide by the `AppBeaconBase` interface, and the app implementation stored in the beacon must abide by the `AppAccountBase` interface.
+
+`AppAccountBase` is an abstract contract that supports functionality to transfer funds to the main account that owns it, both normally, and via funds recovery. An app account implementation must inherit this contract.
+
+`AppBeaconBase` is an abstract contract stores the app implementation, and latest app beacon. It can set the latest app implementation and app beacon. An app beacon must inherit this contract.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
