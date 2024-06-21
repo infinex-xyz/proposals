@@ -1,0 +1,62 @@
+---
+title: 'Support Renzo Restaked ETH '
+id: 46
+author: kmao (@kmaox), kratikl
+type: integration-upgrade
+network: Ethereum, Base, Arbitrum
+status: Draft
+created: '2024-06-21'
+---
+# Proposal Summary
+
+XIP-43 proposes enabling support for Renzo Restaked ETH.
+
+# Specification
+
+## Overview
+
+Infinex currently supports USDC, USDE, with upcoming support for ETH, SOL, STETH/WSTETH and JITOSOL. Adding a point-accruing LRT such as ezETH to Infinex will further grow TVL, and incentive users who are engaging in the restaking meta. Furthermore, a user depositing ezETH into Infinex will forgo minimal opportunity cost, as long as they continue to accumulate points.
+
+Infinex will need to update the UI to effectively reflect ezETH deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, as ezETH will accure both ezPoints and EigenLayer points, Infinex will need to update the UI to reflect the user's points. This value will only reflect the Infinex Account's points balance. This interface will be released during Craterun, but will not be bundled with the initial release of accepting ezETH as a supported asset.
+
+Furthermore, Renzo has offered 15 ezETH in Ecosystem Prizes for the Craterun Campaign. This will be split between 3 different prizes of 5 ezETH each, and will take up 3 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
+
+## Rationale
+
+Renzo is a Liquid Restaking Token (LRT) and Strategy Manager for EigenLayer. It is the interface to the EigenLayer ecosystem securing Actively Validated Services (AVSs) and offering a higher yield than ETH staking.&nbsp;
+
+$ezETH is the liquid restaking token representing a user’s restaked position at Renzo. Users can deposit native ETH or LSTs and receive $ezETH.
+
+Our strategy has focused on distribution and abstraction broadly speaking. Our north star is abstracting away what is otherwise a complex, nuanced, and intensive process of restaking and delegating with operators, making it as easy as possible to restake.
+
+$ezETH currently has $4b+ in TVL and 125+ integrations live across 8 supported networks where we’ve brought significant value, volume, and users to a variety of participating DeFi ecosystems.&nbsp;
+
+We are highly convicted that a listing and inclusion on Craterun and Infinex could be one of our more important integrations thus far, and will commit to providing supplemental incentive multipliers and growth activities to funnel users to the platform where they can find additional utility for their $ezETH holdings.
+
+## Technical Specification
+
+Infinex will add support for deposits and withdrawals of Renzo Restaked ETH (EZETH) on various chains. The accepted chains, and token addresses are listed below:
+
+{% table %}
+- Network
+- Token Address
+---
+- Mainnet
+- 0xbf5495efe5db9ce00f80364c8b423567e58d2110
+---
+- Base
+- 0x2416092f143378750bb29b79ed961ab195cceea5
+---
+- Arbitrum
+- 0x2416092f143378750bb29b79ed961ab195cceea5
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support EZETH deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+In order to track ezPoints and EigenPoints accrued by the user, Infinex will push a later update, via an RC, which will let the user see how much points they've accrued from holding ezETH.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
