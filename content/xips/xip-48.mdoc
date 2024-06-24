@@ -1,0 +1,51 @@
+---
+title: Support USDT
+id: 48
+author: kmao (@kmaox)
+type: integration-upgrade
+network: Ethereum, Base, Arbitrum
+status: Draft
+created: '2024-06-24'
+---
+# Proposal Summary
+
+XIP-46 proposes enabling support for USDT.
+
+# Specification
+
+## Overview
+
+Infinex currently supports only supports USDC and USDE stablecoins. Adding USDT as another supported asset will further grow TVL.
+
+Infinex will need to update the UI to effectively reflect USDT deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+## Rationale
+
+USDT is the biggest stablecoin by marketcap, and various Infinex users have already accidentally deposited USDT. By enabling support for USDT, these users will be able to stake their funds, and also withdraw them.
+
+## Technical Specification
+
+Infinex will add support for deposits and withdrawals of USDT on all supported chains except Base and Optimism. Some networks will have the native USDT token supported, and other networks will have a bridged variant supported. The token addresses can be found below.
+
+{% table %}
+- Network
+- Token Address
+---
+- Mainnet
+- 0xdac17f958d2ee523a2206206994597c13d831ec7
+---
+- Arbitrum
+- 0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9
+---
+- Polygon
+- 0xc2132d05d31c914a87c6611c10748aeb04b58e8f
+---
+- Solana
+- Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support USDT deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
