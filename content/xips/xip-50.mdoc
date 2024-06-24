@@ -1,0 +1,64 @@
+---
+title: Support DAI & SDAI
+id: 50
+author: kmao (@kmaox)
+type: integration-upgrade
+network: 'Ethereum, Optimism, Arbitrum, Base, Polygon '
+status: Draft
+created: '2024-06-24'
+---
+## **Proposal Summary**
+
+XIP-50 proposes enabling support for DAI and Savings DAI.
+
+# **Specification**
+
+## **Overview**
+
+Infinex currently supports only supports USDC and USDE stablecoins. Adding DAI as another supported stablecoin, and a yield accruing asset like SDAI will further grow TVL.
+
+Infinex will need to update the UI to effectively reflect DAI & SDAI deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+## **Rationale**
+
+DAI is the next biggest stablecoin that has not yet been approved by Infinex governance, making it obvious why Infinex supporting it will be important. Furthermore, SDAI is another yield accruing asset which can also added to Infinex to encourage further deposits.
+
+## **Technical Specification**
+
+A list of the supported token, network, and token address can be found below. Infinex will add support for deposit and withdrawals for all of the listed tokens.
+
+{% table %}
+- Token
+- Network
+- Token Address
+---
+- DAI
+- Mainnet
+- 0x6b175474e89094c44da98b954eedeac495271d0f
+---
+- DAI
+- Arbitrum One
+- 0xda10009cbd5d07dd0cecc66161fc93d7c9000da1
+---
+- DAI
+- Optimism
+- 0xda10009cbd5d07dd0cecc66161fc93d7c9000da1
+---
+- DAI
+- Base
+- 0x50c5725949a6f0c72e6c4a641f24049a917db0cb
+---
+- DAI
+- Polygon POS
+- 0x8f3cf7ad23cd3cadbd9735aff958023239c6a063
+---
+- Savings Dai (SDAI)
+- Mainnet
+- 0x83f20f44975d03b1b09e64809b757c47f942beea
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support DAI & SDAI deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
