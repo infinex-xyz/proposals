@@ -1,0 +1,66 @@
+---
+title: Establish Patron NFT Governance
+id: 7
+author: kmao (@kmaox)
+status: Draft
+created: '2024-06-25'
+---
+# Referendum Summary
+
+IR-7 proposes that the Patron NFT be established as the voting mechanism for the ecosystem seats of Infinex Governance.
+
+# Specification
+
+## Overview
+
+The following upgrades are proposed in IR-7.
+
+1. The Patron NFT be used as the voting mechanism for the ecosystem seats of Infinex Governance.
+1. Epoch 2 elections are delayed until the end of the Patron NFT sale.
+
+## Rationale
+
+Infinex currently uses GP to vote in the council members, and with this points program having already been sunset in favor of the Patron NFT, it's clear that the Patron NFT should become the offical voting tool of Infinex.
+
+In order to allow this, Infinex will then need to delay the council elections until after the Patron NFT sale.
+
+## Technical Specification
+
+#### Patron NFT Voting Rights
+
+This IR proposes that Patron NFTs be used to vote for all of ecosystem seats. Voting power should be calculated linearly, with one liquid Patron NFT serving for one vote. Any illiquid Patron NFTs should also have 0.2 voting power, the Patron community sale allows parties to purchase locked NFTs.
+
+This mean's the Infinex Council will be voted in via these means:
+
+{% table %}
+---
+- Council
+- Count
+- Voting Method
+---
+- Ecosystem Seat
+- 4
+- Patron NFTs
+---
+- Treasury Seat
+- 1
+- Patron NFTs
+---
+- Security Seat
+- 1
+- Appointed Seat
+---
+- Operations Seat
+- 1
+- Appointed Seat
+{% /table %}
+
+#### Delayed Epoch 2
+
+As the Patron NFT has not been released yet, this IR also proposes that Epoch 2 elections begin after the Patron NFT sale has concluded. This is estimated to be around mid August.
+
+In the meantime, council members will still receive their prior stipend, with only Epoch 2 candidates receiving the new Patron NFT stipend.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
