@@ -1,0 +1,57 @@
+---
+title: Referral Program
+id: 53
+author: Jaynex (@0xjaynex)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon, Solana
+status: Draft
+created: '2024-07-01'
+---
+# Proposal Summary
+
+XIP-53 proposes adding referral capability to Infinex, and incentivising referrals during Craterun by providing boosts.
+
+# Specification
+
+## Overview
+
+This proposal suggests Infinex adds support for referrals by:
+
+- Generating a unique referral code for each User;
+- Generating and displaying a referral link containing the current User's code in the Infinex UI;
+- Tracking when a new User opens the Infinex App by following a referral link; and
+- When the new user creates an account, associating them in the database as having been "referred by" the user whose referral link they followed
+
+Tracking should be simple, non-invasive, transparent and respectful of user privacy.
+
+In addition, when a new User signs up to Infinex, deposits, and stakes their balance as part of the Craterun campaign, both the referring User and new User should be rewarded with boosts:
+
+#### Referral Boosts
+
+The referrer should get 25% of all referral balance as a "referral boost" added to their total amount available to stake in Craterun.
+
+For the purpose of calculating the USD-equivalent value of referral balances, the last staked balance of referred Users should be used, not the current market value of assets deposited by referred Users. Deposits must be staked in order to be eligible for referral boosts.
+
+Additionally, Users must maintain a wallet balance of $50 USD (equivalent) or more to be eligible for referral boosts.
+
+Unlike other boosts, referral boosts would not be forfeit when a User withdraws from their Infinex account. However, only current deposits by referred Users would be considered as part of this boost; so if a referred User withdraws, the referral boost would be reduced.
+
+For simplicity, and at the Core Working Group's discretion, referral boosts may be calculated either daily or when referred Users stake and withdraw.
+
+As with other deposits and boosts, referral boosts must be staked in order to count towards the total value for earning crates. When the referral boost is reduced due to a withdraw, the difference should be automatically deducted from the referring User's staked amount.
+
+#### New User Boosts
+
+To incentivise signing up to Infinex by following a referral link, new Users who joined through a referral should get 10% of their initial deposit as a boost bonus.
+
+New User Boosts should be calculated and applied when the User first stakes their balance in Craterun. The total balance deposited (allowing for multiple deposit transactions) pre-staking should be included. Any balance deposited after the first time the User stakes their balance would not be eligible for the New User Boost.
+
+New User Boosts would be forfeit if the User withdraws from their Infinex Account, subject to the Amnesty Period described in [XIP-40](https://proposals.infinex.xyz/xips/xip-40).
+
+## Rationale
+
+Right now, there is no meaningful inventive for people to invite their friends and networks to Infinex. Referral boosts are a powerful mechanism to reward users for promoting Infinex and helping grow TVL.
+
+## Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
