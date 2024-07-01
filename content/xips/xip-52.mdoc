@@ -1,0 +1,48 @@
+---
+title: Support Pirex ETH
+id: 52
+author: kmao (@kmaox), 0xfunky (0xfunky)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-07-01'
+---
+# Proposal Summary
+
+XIP-52 proposes enabling support for Dinero Staked ETH & Dinero apxETH.
+
+# Specification
+
+## Overview
+
+Infinex already supports another Ethereum LST (Lido Staked Ether), and aims to add additional one, being PXETH & APXETH.
+
+Infinex will need to update the UI to effectively reflect PXETH & AXPETH deposits and withdrawals, as well as the current market price of the asset. The value of PXETH & AXPETH will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, Redacted has offered 140 BTRFLY in Ecosystem Prizes for the Craterun Campaign. This will be split between 4 different prizes of 35 BTRFLY each, and will take up 4 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
+
+## Rationale
+
+## Technical Specification
+
+The token addresses of PXETH & AXPETH can be found below:
+
+{% table %}
+- Coin
+- **Network**
+- **Token Address**
+---
+- PXETH
+- Mainnet
+- 0x04c154b66cb340f3ae24111cc767e0184ed00cc6
+---
+- APXETH
+- Mainnet
+- 0x9ba021b0a9b958b5e75ce9f6dff97c7ee52cb3e6
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support PXETH & APXETH deposits, Infinex will simply just need to upgrade the backend infrastructure to track them.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
