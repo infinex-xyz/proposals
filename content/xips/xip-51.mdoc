@@ -1,0 +1,207 @@
+---
+title: 'Support Memecoins '
+id: 51
+author: kmao (@kmaox), kain (@kaiynne)
+type: core-upgrade
+network: Solana, Ethereum, Base, Arbitrum
+status: Draft
+created: '2024-07-01'
+---
+# Proposal Summary
+
+`This section provides a short, less than 500-word summary of the proposal. The Proposal Summary should briefly cover what will happen if the proposal passes, why it should pass, and how it will be implemented. The overview should be non-technical and accessible to a casual community member.`
+
+XIP-51 proposes Memecoin Madness, adding support for fourteen new assets. Specifically, SHIB, PEPE, BONK, WIF, FLOKI, BRETT, MEW, POPCAT, MOG, MFER, MOUTAI, MOTHER, TOSHI, DEGEN.
+
+# Specification
+
+`The specification should describe the syntax and semantics of any new feature. There are four sections:`
+
+1. `Overview`
+1. `Rationale`
+1. `Technical Specification`
+1. `Test Cases`
+
+## Overview
+
+`This is a high-level overview of how the XIP will solve the problem. The overview should clearly describe how the new feature will be implemented.`
+
+Infinex now supports a variety of assets including Network tokens, LSTs, LRTs, yield-bearing stablecoins and many other tokens. Enabling the deposit of memecoins expands the range of supported assets on the platform, memecoins are expected to significantly increase Infinex's TVL.
+
+The value of each asset will be denominated in USD and determined by a 3rd-party price feed, they will also be counted as TVL for the [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Each day for a week two memecoins will battle for the highest TVL. Users will have 24 hours to deposit into their Infinex Account, the memecoin that wins will qualify for a 25% deposit bonus for the rest of Craterun.
+
+- As with other boots users who withdraw any amount from their Infinex account during Craterun will lose all of their boosts.
+
+Additional prizes will also be added to Infinex's Craterun Campaign, a detailed breakdown is found below.
+
+{% table %}
+- Coin
+- Prize
+- QTY
+---
+- Bonk
+- 450,000,000 BONK
+- 1
+---
+- dogwifhat
+- 4444 WIF
+- 1
+---
+- cat in a dogs world
+- 2,600,000 MEW
+- 1
+---
+- Mog Coin
+- 7,000,000,000 MOG
+- 1
+---
+- mfercoin
+- 500,000 MFER
+- 1
+---
+- Moutai
+- 500,000 MOUTAI
+- 1
+---
+- Mother Iggy
+- 150,000 MOTHER
+- 1
+---
+- Popcat
+- 15,000 POPCAT
+- 1
+{% /table %}
+
+### Schedule
+
+{% table %}
+- Day
+- Meme One
+- Meme Two
+---
+- Day One
+- MOTHER
+- MOG
+---
+- Day Two
+- BRETT
+- MOUTAI
+---
+- Day Three
+- POPCAT
+- MFER
+---
+- Day Four
+- SHIBA
+- FLOKI
+---
+- Day Five
+- MEW
+- TOSHI
+---
+- Day Six
+- DEGEN
+- WIF
+---
+- Day Seven
+- BONK
+- PEPE
+{% /table %}
+
+## Rationale
+
+`This is where you explain the reasoning behind how and why you propose to solve the problem. Why did you propose to implement the change in this way, what were the considerations and trade-offs? The rationale fleshes out what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.`
+
+Memecoins are one of the hottest narratives in crypto right now, and a variety of Infinex community members have requested support for them. Memecoins also have no utility, which means most users are simply holding them in a wallet. This means users will be more likely to deposit these assets into their Infinex Account due to lower opportunity costs.
+
+## Technical Specification
+
+A list of the supported token, network, and token address can be found below. Infinex will add support for deposit and withdrawals for all of the listed tokens.
+
+{% table %}
+- **Token**
+- **Network**
+- **Token Address**
+---
+- SHIBA
+- Mainnet
+- 0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce
+---
+- PEPE
+- Mainnet
+- 0x6982508145454ce325ddbe47a25d4ec3d2311933
+---
+- PEPE
+- Arbitrum One
+- 0x25d887ce7a35172c62febfd67a1856f20faebb00
+---
+- BONK
+- Solana
+- DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263
+---
+- BONK
+- Arbitrum One
+- 0x09199d9a5f4448d0848e4395d065e1ad9c4a1f74
+---
+- BONK
+- Polygon POS
+- 0xe5b49820e5a1063f6f4ddf851327b5e8b2301048
+---
+- BONK
+- Mainnet
+- 0x1151cb3d861920e07a38e03eead12c32178567f6
+---
+- WIF
+- Solana
+- EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm
+---
+- FLOKI
+- Mainnet
+- 0xcf0c122c6b73ff809c693db761e7baebe62b6a2e
+---
+- BRETT
+- Base
+- 0x532f27101965dd16442e59d40670faf5ebb142e4
+---
+- MEW
+- Solana
+- MEW1gQWJ3nEXg2qgERiKu7FAFj79PHvQVREQUzScPP5
+---
+- POPCAT
+- Solana
+- 7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr
+---
+- MOG
+- Mainnet
+- 0xaaee1a9723aadb7afa2810263653a34ba2c21c7a
+---
+- MOG
+- Base
+- 0x2da56acb9ea78330f947bd57c54119debda7af71
+---
+- MFER
+- Base
+- 0xe3086852a4b125803c815a158249ae468a3254ca
+---
+- MOUTAI
+- Solana
+- 45EgCwcPXYagBC7KqBin4nCFgEZWN7f3Y6nACwxqMCWX
+---
+- MOTHER
+- Solana
+- 3S8qX1MsMqRbiwKg2cQyx7nis1oHMgaCuc9c4VfvVdPN
+---
+- TOSHI
+- Base
+- 0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4
+---
+- Degen
+- Base
+- 0x4ed4e862860bed51a9570b96d89af5e1b0efefed
+{% /table %}
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
