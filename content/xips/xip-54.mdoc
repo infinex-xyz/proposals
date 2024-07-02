@@ -1,0 +1,48 @@
+---
+title: 'Support Super Symbiotic LRT (weETHs)'
+id: 54
+author: blockchainwinston (@blockchainwinston)
+type: integration-upgrade
+network: Ethereum
+status: Draft
+created: '2024-06-25'
+---
+# Proposal Summary
+
+XIP-54 proposes enabling support for Super Symbiotic LRT (weETHs).
+
+# Specification
+
+## Overview
+
+Super Symbiotic Liquid Restaking Token (LRT) is an automated vault that earns you Symbiotic, Veda and ether.fi points on your liquid staking assets. Currently, there is an increasing hype towards those points, as it can be seen my the increasing TVL locked in the vault ($129 million now). 
+
+## Rationale
+
+Symbiotic is a decentralized finance (DeFi) protocol designed to provide a flexible and permissionless framework for restaking. It allows networks to customize their staking implementations, leveraging the security of existing ecosystems. The protocol supports multiple ERC-20 tokens and aims to enhance security and incentivize adherence to protocol rules through a modular design. Symbiotic is backed by prominent investors such as Paradigm and Lido co-founders.
+
+Veda is a native yield layer that tokenizes complex DeFi interactions, allowing protocols to embed yield directly into their user experience. It integrates with various DeFi platforms to optimize asset yields across blockchains. Veda's technology is utilized by Ether.Fi, significantly boosting its total value locked (TVL) to $700 million. This protocol simplifies DeFi participation by providing a user-friendly interface and enforcing verifiable on-chain restrictions for secure capital allocation.
+
+EtherFi is a liquid staking platform that collaborates with Veda to enhance its liquid staking products. It allows users to stake assets while maintaining liquidity, benefiting from increased yields and simplified access to DeFi strategies.
+
+All three protocols are huge and becoming increasing popular. Symbiotic staking caps has been fully filled. Veda has many strong institution backings. I am certain that with the inclusion of weETHs, our TVL will grow a lot.
+
+## Technical Specification
+
+Infinex will add support for deposits and withdrawals of Super Symbiotic LRT (weETHs) on Ethereum mainnet. The accepted chain, and token address are listed below:
+
+{% table %}
+- Network
+- Token Address
+---
+- Mainnet
+- 0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support weETHs deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+In order to track Symbiotic, Veda and ether.fi points accrued by the user, Infinex will push a later update, via an RC, which will let the user see how much points they've accrued from holding weETHs.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
