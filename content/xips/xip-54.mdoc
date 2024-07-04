@@ -1,47 +1,39 @@
 ---
-title: 'Support Super Symbiotic LRT'
+title: Support BlazeStake Staked Solana
 id: 54
-author: blockchainwinston (@blockchainwinston)
-type: integration-upgrade
-network: Ethereum
+author: kmao (@kmaox), SolBlaze (@SolBlazeDev)
+type: core-upgrade
+network: Solana
 status: Draft
-created: '2024-06-25'
+created: '2024-07-03'
 ---
 # Proposal Summary
 
-XIP-54 proposes enabling support for Super Symbiotic LRT (weETHs).
+XIP-54 proposes enabling support for BlazeStake Staked SOL.
 
 # Specification
 
 ## Overview
 
-Super Symbiotic Liquid Restaking Token (LRT) is an automated vault that earns you Symbiotic, Veda and ether.fi points on your liquid staking assets. Currently, there is an increasing hype towards those points, as it can be seen my the increasing TVL locked in the vault ($129 million now). 
+Infinex already supports another Solana LST (JITOSOL), and aims to add additional one, being BSOL.
+
+Infinex will need to update the UI to effectively reflect BSOL deposits and withdrawals, as well as the current market price of the asset. The value of BSOL will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, BlazeStake has offered 70 MIL BLZ in Ecosystem Prizes for the Craterun Campaign. This will be split between 5 different prizes of 14 MIL BLZE each, and will take up 5 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
 
 ## Rationale
 
-Symbiotic is a decentralized finance (DeFi) protocol designed to provide a flexible and permissionless framework for restaking. It allows networks to customize their staking implementations, leveraging the security of existing ecosystems. The protocol supports multiple ERC-20 tokens and aims to enhance security and incentivize adherence to protocol rules through a modular design. Symbiotic is backed by prominent investors such as Paradigm and Lido co-founders.
+bSOL is one of the main LSTs on Solana with $300m+ in TVL. In addition, bSOL is used heavily throughout Solana DeFi, with over half of all bSOL tokens deployed in various lending and liquidity protocols across the Solana ecosystem including Kamino, Solend, Drift, marginfi, Hawksight, Meteora, Orca, and Raydium. Furthermore, bSOL features the widest validator set of any Solana stake pool, showcasing its commitment to decentralization.
 
-Veda is a native yield layer that tokenizes complex DeFi interactions, allowing protocols to embed yield directly into their user experience. It integrates with various DeFi platforms to optimize asset yields across blockchains. Veda's technology is utilized by Ether.Fi, significantly boosting its total value locked (TVL) to $700 million. This protocol simplifies DeFi participation by providing a user-friendly interface and enforcing verifiable on-chain restrictions for secure capital allocation.
+Creative incentive programs are at the core of bSOL's culture. bSOL pioneered many of the concepts behind liquid staking airdrops on Solana that have inspired other protocols across the ecosystem. Incentive mechanisms have also been used to harness the capabilities of bSOL to help bootstrap liquidity for more than a dozen new token launches on Solana, including the popular JUP token from Jupiter (the bSOL-JUP pair is the largest liquidity pool for JUP across all of Solana).
 
-EtherFi is a liquid staking platform that collaborates with Veda to enhance its liquid staking products. It allows users to stake assets while maintaining liquidity, benefiting from increased yields and simplified access to DeFi strategies.
-
-All three protocols are huge and becoming increasing popular. Symbiotic staking caps has been fully filled. Veda has many strong institution backings. I am certain that with the inclusion of weETHs, our TVL will grow a lot.
+Given its wide-ranging usage throughout the Solana DeFi ecosystem paired with an innovative incentives-driven culture, bSOL would be a perfect fit for an integration into Infinex, especially with the upcoming Craterun campaign.
 
 ## Technical Specification
 
-Infinex will add support for deposits and withdrawals of Super Symbiotic LRT (weETHs) on Ethereum mainnet. The accepted chain, and token address are listed below:
+Infinex will add BSOL on the Solana network. The token address is bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1
 
-{% table %}
-- Network
-- Token Address
----
-- Mainnet
-- 0x917ceE801a67f933F2e6b33fC0cD1ED2d5909D88
-{% /table %}
-
-The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support weETHs deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
-
-In order to track Symbiotic, Veda and ether.fi points accrued by the user, Infinex will push a later update, via an RC, which will let the user see how much points they've accrued from holding weETHs.
+The Infinex account currently does not block deposits from all Solana coins, which means to support SOL deposits, Infinex will simply just need to upgrade the backend infrastructure to track BSOL deposits.
 
 # Copyright
 
