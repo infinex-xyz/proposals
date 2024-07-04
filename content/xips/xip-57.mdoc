@@ -1,0 +1,34 @@
+---
+title: Support Pyth
+id: 57
+author: kmao (@kmaox), Egor (@egorsidelska)
+type: core-upgrade
+network: Solana
+status: Draft
+created: '2024-07-04'
+---
+# Proposal Summary
+
+XIP-57 proposes enabling support for the Pyth Network token.
+
+# Specification
+
+## Overview
+
+The Infinex Treasury is aiming to [drop] the users who opened crates in the first 24 hours of Craterun Pyth tokens. In order for users to withdraw their [dropped] PYTH, I propose that Infinex enables support of PYTH tokens.
+
+Infinex will need to update the UI to effectively reflect Pyth deposits and withdrawals, as well as the current market price of the asset. The value of Pyth will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+## Rationale
+
+Infinex's grand vision is to become the UX layer for all of Defi, which makes it important for the platform to support a variety of tokens. Infinex has already intergrated Pyth as a partner, and has used [Pyth Entropy](https://docs.pyth.network/entropy) for the recent [Craterun Campaign](https://proposals.infinex.xyz/xips/xip-34).
+
+## Technical Specification
+
+Infinex will add PYTH on the Solana network. The token address is HZ1JovNiVvGrGNiiYvEozEVgZ58xaU3RKwX8eACQBCt3
+
+The Infinex account currently does not block deposits from all Solana coins, which means to support SOL deposits, Infinex will simply just need to upgrade the backend infrastructure to track PYTH deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
