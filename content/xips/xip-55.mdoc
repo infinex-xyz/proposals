@@ -1,0 +1,40 @@
+---
+title: Support BlazeStake Staked Solana
+id: 55
+author: kmao (@kmaox), SolBlaze (@SolBlazeDev)
+type: core-upgrade
+network: Solana
+status: Draft
+created: '2024-07-04'
+---
+# Proposal Summary
+
+XIP-55 proposes enabling support for BlazeStake Staked SOL.
+
+# Specification
+
+## Overview
+
+Infinex already supports another Solana LST (JITOSOL), and aims to add additional one, being BSOL.
+
+Infinex will need to update the UI to effectively reflect BSOL deposits and withdrawals, as well as the current market price of the asset. The value of BSOL will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the upcoming [**Craterun**](https://proposals.infinex.xyz/xips/xip-34) campaign.
+
+Furthermore, BlazeStake has offered 70 MIL BLZ in Ecosystem Prizes for the Craterun Campaign. This will be split between 5 different prizes of 14 MIL BLZE each, and will take up 5 slots of the approved 69 ecosystem prizes, as per [XIP-34](https://proposals.infinex.xyz/xips/xip-34).
+
+## Rationale
+
+bSOL is one of the main LSTs on Solana with $300m+ in TVL. In addition, bSOL is used heavily throughout Solana DeFi, with over half of all bSOL tokens deployed in various lending and liquidity protocols across the Solana ecosystem including Kamino, Solend, Drift, marginfi, Hawksight, Meteora, Orca, and Raydium. Furthermore, bSOL features the widest validator set of any Solana stake pool, showcasing its commitment to decentralization.
+
+Creative incentive programs are at the core of bSOL's culture. bSOL pioneered many of the concepts behind liquid staking airdrops on Solana that have inspired other protocols across the ecosystem. Incentive mechanisms have also been used to harness the capabilities of bSOL to help bootstrap liquidity for more than a dozen new token launches on Solana, including the popular JUP token from Jupiter (the bSOL-JUP pair is the largest liquidity pool for JUP across all of Solana).
+
+Given its wide-ranging usage throughout the Solana DeFi ecosystem paired with an innovative incentives-driven culture, bSOL would be a perfect fit for an integration into Infinex, especially with the upcoming Craterun campaign.
+
+## Technical Specification
+
+Infinex will add BSOL on the Solana network. The token address is bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1
+
+The Infinex account currently does not block deposits from all Solana coins, which means to support SOL deposits, Infinex will simply just need to upgrade the backend infrastructure to track BSOL deposits.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
