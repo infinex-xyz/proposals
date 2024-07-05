@@ -28,7 +28,7 @@ const config: Config = {
       },
       colors: {
         infinexSlate,
-        brand: 'rgb(255, 155, 105)',
+        brand: '#FE6F39',
         'brand-darker': 'rgb(207, 116, 70)',
         'brand-lighter': 'rgb(255, 207, 182)',
         fill: {
