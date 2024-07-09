@@ -1,0 +1,53 @@
+---
+title: Support Wormhole Token
+id: 58
+author: Kvasir (@0xKvasir)
+type: core-upgrade
+network: Solana, Ethereum, Base, Arbitrum One
+status: Draft
+created: '2024-07-10'
+---
+# Proposal Summary
+
+XIP-58 proposes enabling support for Wormhole (W) token.
+
+# Specification
+
+## Overview
+
+Infinex launched with an integration for Wormhole enabling seamless multi-chain support. It would be great to add support for the Wormhole (W) token on the following chains:
+
+- Solana
+- Ethereum
+- Base
+- Arbitrum One
+
+## Rationale
+
+The Wormhole token is supported by major exchanges and available on both EVM chains and Solana. For future usage it might be good to have staking support in the interface, but for the short term just support for additional tokens.
+
+## Technical Specification
+
+Infinex already has support for EVM & Solana tokens, so it just needs to update the backend to support the new token.
+
+### Token contracts
+
+- Solana [85VBFQZC9TZkfaptBWjvUw7YbZjy52A6mjtPGjstQAmQ]
+- Ethereum [0xb0ffa8000886e57f86dd5264b9582b2ad87b2b91]
+- Base [0xb0ffa8000886e57f86dd5264b9582b2ad87b2b91]
+- Arbitrum One [0xb0ffa8000886e57f86dd5264b9582b2ad87b2b91]
+
+### Token Format
+
+Native ERC20 and SPL (using Wormhole’s Native Token Transfer framework)
+Token symbol: W
+Max supply: 10,000,000,000
+Initial circulating supply: 1,800,000,000
+
+[Additional information](https://wormhole.com/ecosystem/w-token)
+
+## Test Cases
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
