@@ -1,0 +1,43 @@
+---
+title: Support ZK token + ZKsync Era
+id: 59
+author: Kvasir (@0xKvasir)
+type: core-upgrade
+network: Zksync Era
+status: Draft
+created: '2024-07-12'
+---
+# Proposal Summary
+
+XIP-59 proposes enabling support for ZKsync and its token ZKsync (ZK).
+
+# Specification
+
+## Overview
+
+ZKsync Era is a Layer 2 ZK rollup, a trustless protocol that uses cryptographic validity proofs to provide scalable and low-cost transactions on Ethereum. In ZKsync Era, computation is performed off-chain and most data is stored off-chain as well. Transactions are bundled into batches before generating a validity proof. As all validity proofs are proven on Ethereum, users enjoy the same security warranties as in the L1.
+
+## Rationale
+There are quite a few projects building on ZK technology and its usage is increasing, therefor it would be a great addition for the broader Infinex ecosystem.
+
+## Technical Specification
+
+Infinex already has support for (L2) EVM tokens, so it just needs to update the backend to support the new token and chain structure.
+
+### Token contracts
+
+- Zksync [0x5a7d6b2f92c77fad6ccabd7ee0624e64907eaf3e]
+
+### Token Format
+
+Native ERC20
+Token symbol: ZK
+Max supply: 21,000,000,000
+
+[Additional information](https://blog.zknation.io/zk-token/)
+
+## Test Cases
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
