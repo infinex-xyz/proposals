@@ -21,33 +21,33 @@ type StatusColors = {
 };
 
 export const statusColors: StatusColors = {
+  DEFAULT: {
+    border: 'border-slate-700',
+    text: 'text-slate-400',
+  },
   Approved: {
     border: 'border-emerald-700',
     text: 'text-emerald-400',
   },
-  Implemented: {
-    border: 'border-[#3b82f6]',
-    text: 'text-[#3b82f6]',
-  },
   Rejected: {
-    border: 'border-red-600',
-    text: 'text-red-600',
+    border: 'border-red-700',
+    text: 'text-red-400',
   },
   Reverted: {
-    border: 'border-red-600',
-    text: 'text-red-600',
+    border: 'border-red-700',
+    text: 'text-red-400',
   },
   Dissolved: {
-    border: 'border-red-600',
-    text: 'text-red-600',
+    border: 'border-red-700',
+    text: 'text-red-400',
   },
   Superseded: {
-    border: 'border-yellow-500',
-    text: 'text-yellow-500',
+    border: 'border-amber-700',
+    text: 'text-amber-400',
   },  
-  DEFAULT: {
-    border: 'border-slate-700',
-    text: 'text-slate-400',
+  Implemented: {
+    border: 'border-cyan-700',
+    text: 'text-cyan-400',
   },
 };
 
