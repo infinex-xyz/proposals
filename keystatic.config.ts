@@ -47,19 +47,23 @@ export default config({
         }),
         network: fields.text({
           label: 'Network(s)',
-          description: 'e.g Base, Optimism, Ethereum, Solana, etc',
+          description: 'e.g xipnumber-32 (proposal.xip.io/12)',
+        }),
+        superseeded: fields.text({
+          label: 'Superseeded by',
+          description: 'e.g XIP-12',
         }),
         status: fields.select({
           label: 'Status',
           defaultValue: 'Draft',
           options: [
             { label: 'Draft', value: 'Draft' },
-            { label: 'Feasibility', value: 'Feasibility' },
-            { label: 'IC Review Pending', value: 'IC Review Pending' },
-            { label: 'Vote Pending', value: 'Vote Pending' },
+            { label: 'In Review', value: 'In Review' },
+            { label: 'Vote In Progress', value: 'Vote In Progress' },
             { label: 'Approved', value: 'Approved' },
             { label: 'Rejected', value: 'Rejected' },
             { label: 'Implemented', value: 'Implemented' },
+            { label: 'Superseded', value: 'Superseded' },
           ],
         }),
         created: fields.date({ label: 'Created' }),
