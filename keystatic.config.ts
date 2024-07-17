@@ -57,12 +57,12 @@ export default config({
             { label: 'In Review', value: 'In Review' },
             { label: 'Vote In Progress', value: 'Vote In Progress' },
             { label: 'Approved', value: 'Approved' },
+            { label: 'Superseded', value: 'Superseded' },
             { label: 'Rejected', value: 'Rejected' },
             { label: 'Implemented', value: 'Implemented' },
-            { label: 'Superseded', value: 'Superseded' },
           ],
         }),
-        superseded: fields.text({
+        supersededby: fields.text({
           label: 'Superseded by',
           description: 'e.g XIP-12',
         }),
