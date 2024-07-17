@@ -37,7 +37,6 @@ export default config({
           label: 'Type',
           defaultValue: '',
           options: [
-            { label: '', value: '' },
             { label: 'Core Upgrade', value: 'core-upgrade' },
             { label: 'Integration Upgrade', value: 'integration-upgrade' },
             { label: 'Governance', value: 'governance' },
@@ -47,11 +46,7 @@ export default config({
         }),
         network: fields.text({
           label: 'Network(s)',
-          description: 'e.g xipnumber-32 (proposal.xip.io/12)',
-        }),
-        superseded: fields.text({
-          label: 'Superseded by',
-          description: 'e.g XIP-12',
+          description: 'e.g Base, Optimism, Ethereum, Solana, etc',
         }),
         status: fields.select({
           label: 'Status',
@@ -65,6 +60,10 @@ export default config({
             { label: 'Implemented', value: 'Implemented' },
             { label: 'Superseded', value: 'Superseded' },
           ],
+        }),
+        superseded: fields.text({
+          label: 'Superseded by',
+          description: 'e.g XIP-12',
         }),
         created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Last Updated' }),
