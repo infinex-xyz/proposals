@@ -1,24 +1,33 @@
 ---
 title: Support more DeFi assets
 id: 60
-author: GUNBOATs (@gunboatsss)
+author: GUNBOATs (@gunboatsss), kmao (@kmaox)
 type: core-upgrade
 network: Arbitrum, Base, Ethereum, Optimism, Polygon, Solana
 status: Draft
+created: '2024-07-16'
+updated: '2024-07-17'
 ---
 # Proposal Summary
 
-XIP-60 proposed support for UNI, LINK, AAVE, SNX, MKR, AERO, VELO, CRV, CVX, ONDO, PENDLE, ENA, ZRO, JUP, RAY and JTO
+XIP-60 proposes support for UNI, LINK, AAVE, SNX, MKR, AERO, VELO, CRV, CVX, ONDO, PENDLE, ENA, ZRO, JUP, RAY and JTO
 
 # Specification
 
 ## Overview
 
-Infinex currently has variety of assets supported, but doesn't cover DeFi token yet, it is time to expand the offering.
+Infinex currently has a variety of assets supported, however, has not expanded support for DeFi assets. 
+
+To celebrate the addition of these new DeFi assets, Infinex will launch DeFi Week. Users who deposit and stake any of the below assets or the Wormhole token (assuming [XIP-58](https://proposals.infinex.xyz/xips/xip-58) is approved) will receive a 300% permanent boost on their deposit value. 
+
+- DeFi Week will run for 5 days, and official start and end dates will be announced in a later RC.
+- All assets included in this XIP (and W token) will be accepted on day 1 of DeFi Week, and will grant the user boosts.
+- Users who deposit their DeFi tokens after DeFi Week will not receive any boosts.
+- Every 24 hours, your boosts (from DeFi Week) will be re-calculated based on the current market value of your deposited assets.
 
 ## Rationale
 
-After Memecoin events, it is time to expand to general DeFi token across the ecosystem.
+After Infinex's expansion into LSTS, LRTS, and recently Memecoins, Infinex should aim to target another huge sector of the crypto market, which is DeFi. By enabling support for these DeFi assets, and also running a promotional campaign for their deposit, Infinex will be able to attract further TVL.
 
 ## Technical Specification
 
@@ -185,9 +194,9 @@ Infinex will add support for deposits and withdrawals for tokens on following ne
 - Solana
 - jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL
 ---
-## Test Cases
 
-N/A
+The Infinex account currently does not block deposits from EVM tokens or Solana coins, which means to support these new assets, Infinex will simply just need to upgrade the backend infrastructure to track these new assets.
+
 
 # Copyright
 
