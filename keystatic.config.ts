@@ -37,6 +37,7 @@ export default config({
           label: 'Type',
           defaultValue: '',
           options: [
+            { label: '', value: '' },
             { label: 'Core Upgrade', value: 'core-upgrade' },
             { label: 'Integration Upgrade', value: 'integration-upgrade' },
             { label: 'Governance', value: 'governance' },
