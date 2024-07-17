@@ -41,6 +41,10 @@ export const statusColors: StatusColors = {
     border: 'border-red-600',
     text: 'text-red-600',
   },
+  Superseded: {
+    border: 'border-yellow-500',
+    text: 'text-yellow-500',
+  },  
   DEFAULT: {
     border: 'border-slate-700',
     text: 'text-slate-400',
