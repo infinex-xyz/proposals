@@ -1,0 +1,60 @@
+---
+title: Support Rocket Pool ETH
+id: 61
+author: fleb (@fleb__)
+type: integration-upgrade
+network: Ethereum
+status: Draft
+created: '2024-07-17'
+---
+# Proposal Summary
+
+XIP-61 proposes enabling support for Rocket Pool ETH 
+
+# Specification
+
+## Overview
+Rocket Pool's $RETH is a decentralized liquid staking token for Ethereum (ETH). Rocket Pool lowers the entry barrier for Ethereum staking to as little as 0.01 ETH, making it accessible to more users. It utilizes decentralized node operators who need only 16 ETH to run a validator node, with the remaining 16 ETH pooled from other users' contributions.
+Users who contribute to the staking pool receive $RETH tokens, which represent their staked ETH and accrue value over time based on the staking rewards earned by node operators. This makes $RETH an appreciating asset relative to ETH.
+The protocol emphasizes security and decentralization, with measures including audits from ConsenSys Diligence and an insurance mechanism using its native RPL token. Rocket Pool also features a fully on-chain DAO for governance, enhancing its decentralized nature and flexibility in staking setups.
+Rocket Pool's approach not only increases participation in Ethereum's Proof-of-Stake system but also contributes to the network's security and decentralization.
+
+Infinex will need to update the UI to effectively reflect RETH  deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the Craterun campaign.
+
+## Rationale
+Infinex currently supports Solana LST Protocol Jito and their$JTOSOL (SOL), this gives an opportunity to support an Ethereum LST protocol Rocket Pool and their $RETH (ETH) token.
+
+## Technical Specification
+
+Infinex already has support for EVM tokens, so it just needs to update the backend to support the new token on Ethereum. The proposed token addresses are listed below.
+
+{% table %}
+- Coin
+- **Network**
+- **Token Address**
+---
+- RETH
+- Ethereum Mainnet
+- 0xae78736cd615f374d3085123a210448e74fc6393
+---
+- RETH
+- Optimism
+- 0x9bcef72be871e61ed4fbbc7630889bee758eb81d
+---
+- RETH
+- Base
+- 0xb6fe221fe9eef5aba221c348ba20a1bf5e73624c
+---
+- RETH
+- Arbitrum One
+- 0xec70dcb4a1efa46b8f2d97c310c9c4790ba5ffa8
+---
+- RETH
+- Polygon POS
+- 0x0266f4f08d82372cf0fcbccc0ff74309089c74d1
+{% /table %}
+
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
