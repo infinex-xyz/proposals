@@ -49,8 +49,8 @@ export default config({
           label: 'Network(s)',
           description: 'e.g xipnumber-32 (proposal.xip.io/12)',
         }),
-        superseeded: fields.text({
-          label: 'Superseeded by',
+        superseded: fields.text({
+          label: 'Superseded by',
           description: 'e.g XIP-12',
         }),
         status: fields.select({
