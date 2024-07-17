@@ -57,9 +57,9 @@ export default config({
             { label: 'In Review', value: 'In Review' },
             { label: 'Vote In Progress', value: 'Vote In Progress' },
             { label: 'Approved', value: 'Approved' },
-            { label: 'Superseded', value: 'Superseded' },
-            { label: 'Rejected', value: 'Rejected' },
             { label: 'Implemented', value: 'Implemented' },
+            { label: 'Rejected', value: 'Rejected' },
+            { label: 'Superseded', value: 'Superseded' },
           ],
         }),
         supersededby: fields.text({
