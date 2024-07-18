@@ -1,0 +1,112 @@
+---
+title: Support Large Caps
+id: 62
+author: fleb (@fleb__)
+type: integration-upgrade
+network: Ethereum
+status: Draft
+created: '2024-07-17'
+---
+# Proposal Summary
+
+XIP-62 proposes enabling support for the following tokens;
+
+L1/L2:
+- Injective $INJ
+- Mantle $MNT
+AI:
+- Render $RNDR
+Gaming:
+- Immutable $IMX
+- Beam $BEAM
+- Axie Infinity $AXS 
+Other:
+- ENS $ENS
+- Lido Finance $LDO 
+
+# Specification
+
+## Overview
+The proposed tokens are all ranked within the top 100 cryptocurrencies by market cap and would benefit Infinex TVL with more supported assets as we enter the final quarter of Craterun.
+
+$INJ: A decentralized layer-2 protocol focused on enabling cross-chain derivatives trading, prediction markets, and decentralized finance (DeFi) applications.
+$INJ is used for governance, staking, securing the network, and paying transaction fees on the Injective Protocol.
+
+$MNT: A layer-2 scaling solution designed to improve Ethereum's scalability and usability through rollups, which bundle multiple transactions into one. 
+$MNT is used for governance, securing the network, and paying for transaction fees within the Mantle ecosystem.
+
+$RNDR: A decentralized GPU rendering network that connects users in need of rendering services with GPU owners.
+$RNDR is used to compensate GPU providers for rendering services, facilitating transactions within the network.
+
+$IMX: A layer-2 scaling solution for NFTs on Ethereum, focusing on zero-gas fee transactions and instant trade confirmations.
+$IMX is used for staking, governance, and paying transaction fees within the Immutable X platform.
+
+$BEAM: A privacy-focused cryptocurrency utilizing the Mimblewimble protocol to ensure transaction confidentiality and scalability.
+$BEAM is used for confidential transactions, governance, and incentivizing network participants.
+
+$AXS:  A blockchain-based game where players collect, breed, and battle fantasy creatures called Axies.
+$AXS is used for governance, staking, and earning rewards within the Axie Infinity ecosystem.
+
+$ENS: A decentralized domain name service built on Ethereum, allowing users to map human-readable names to blockchain addresses.
+$ENS is used for governance and participating in the management of the Ethereum Name Service.
+
+$LDO: A liquid staking solution that allows users to stake their assets while retaining liquidity through derivative tokens.
+$LDO is used for governance and incentivizing participants within the Lido Finance ecosystem.
+
+Infinex will need to update the UI to effectively reflect deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed and will also be counted as TVL for the Craterun campaign.
+
+## Rationale
+Infinex currently supports a variety of assets which are dominated by LSTs, Stable coin and Memecoins, however, is missing large cap tokens with strong community presence. Infinex would capture the attention of more communities from different corners of crypto. 
+
+## Technical Specification
+
+A list of the supported token, network, and token address can be found below. Infinex will add support for deposit and withdrawals for all of the listed tokens.
+
+{% table %}
+- Token
+- Network
+- Token Address
+---
+- INJ
+- Ethereum
+- 0xe28b3b32b6c345a34ff64674606124dd5aceca30
+---
+- MNT
+- Ethereum
+- 0x3c3a81e81dc49a522a592e7622a7e711c06bf354
+---
+- RNDR
+- Ethereum
+- 0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24
+---
+- IMX
+- Ethereum
+- 0xf57e7e7c23978c3caec3c3548e3d615c346e79ff
+---
+- BEAM
+- Ethereum
+- 0x62D0A8458eD7719FDAF978fe5929C6D342B0bFcE
+---
+- AXS
+- Ethereum
+- 0xbb0e17ef65f82ab018d8edd776e8dd940327b28b
+---
+- ENS
+- Ethereum
+- 0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72
+---
+- LDO
+- Ethereum
+- 0x5a98fcbea516cf06857215779fd812ca3bef1b32
+---
+- LDO
+- Arbitrum
+- 0x13Ad51ed4F1B7e9Dc168d8a00cB3f4dDD85EfA60
+{% /table %}
+
+The Infinex account currently does not block deposits from all ERC-20 tokens, which means to support these deposits, Infinex will simply just need to upgrade the backend infrastructure to track those deposits.
+
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
