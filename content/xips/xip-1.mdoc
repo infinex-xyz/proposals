@@ -3,10 +3,10 @@ title: XIP Purpose and Guidelines
 id: 1
 author: Bilby (@bilb-y), kmao (@kmaox), Spinxho (@spinxho)
 type: governance
-network: Optimism
+network: Base
 status: Implemented
-created: '2023-11-02'
-updated: '2024-07-22'
+created: 2023-11-02
+updated: 2024-07-22
 ---
 ## What are XIPs?
 
@@ -19,29 +19,24 @@ Once the first Infinex Council is established, XIPs are proposed as the primary 
 ## XIP Work Flow
 
 Parties involved in the process include the Author, the Operations Seat, the Infinex Council, and the Infinex Community.
-
 - The Author is responsible for authoring and presenting XIPs.
 - The Operations Seat is responsible for the formatting of XIPs, as well as scheduling of the presentation and council vote.
 - The Infinex Council is responsible for voting on XIPs.
 - The Infinex Community is responsible for giving feedback and engaging with XIPs.
 
 Given the decentralized nature of the Infinex development process, anyone within the Infinex community is welcome to submit a XIP. However, to foster a collaborative environment, it is strongly encouraged that Authors engage in discussions within the [Infinex Discord community](https://discord.gg/infinex) before formally submitting their proposals. This preliminary discourse allows for the exchange of ideas, feedback, and refinement of concepts, ultimately leading to more robust and well-considered XIPs.
-
 The XIP workflow comprises three main stages:
 
 ###### 1.  Creation
 
 Once submitted, every XIP will begin as a `Draft`. It must then meet specific formatting criteria (largely, correct metadata in the header which will be discussed later), and be manually approved by the Operations Seat to be published to the [Proposals Website](https://proposals.infinex.xyz/) for further community discussion and consideration.
-
 The author of the XIP proposal is responsible for building consensus within the community and documenting dissenting opinions.
 
 ###### 2. Voting
 
 Once a XIP has been officially published on the Proposals Website, and marked as a `Draft`, for it to progress to the voting stage, the Author must:
-
 - Consult with the existing Operations Seat. They will analyse the XIP, and notify the CWG and the Infinex Council, whilst ensuring that the XIP is technically feasible. XIPs that are currently in review will be placed in the `In Review` status.
 - Once the review is concluded, and the Author is satisfied with the feedback gathered, the Author is required to present to the Infinex Council and community.
-
 If the Infinex Council is satisfied with the result of the presentation, they will inform the Operations Seat to put the XIP up for voting on [snapshot](https://vote.infinex.io/), where the council will vote on it. Once the XIP is being voted on, it will be moved to the `Vote In Progress` status. The Infinex Council may also send the XIP back to the `Draft` or `In Review` stage if they believe more edits or research is required.
 
 ###### 3. Approval
@@ -49,7 +44,6 @@ If the Infinex Council is satisfied with the result of the presentation, they wi
 XIPs will be voted on by the Infinex Council. Each council member has five days to vote on a XIP, however, once enough councillors have voted on a XIP, its status may progress. Proposals will be only passed under a majority decision. Approved XIPs are moved to `Approved`, and then `Implemented` once executed by the Infinex Council, the CWG, or community members. Otherwise, it is `Rejected`. A XIP that has been previously `Approved` but replaced with a later XIP can be assigned the `Superseded`status.
 
 ## XIP status terms
-
 - `Draft` – The initial state of a new XIP before the Infinex Council and CWG have assessed it.
 - `In Review` – a XIP that is being reviewed by a member of the CWG, or Infinex Council.
 - `Vote In Progress` – a XIP currently being voted on by the council.
@@ -61,19 +55,13 @@ XIPs will be voted on by the Infinex Council. Each council member has five days 
 ## What belongs in a successful XIP?
 
 Each XIP should have the following parts:
-
 - **Preamble** – RFC 822 style headers containing metadata about the XIP, including the XIP number, a short descriptive title (limited to a maximum of 44 characters), and the author details.
-
 - **Proposal Summary** – “If you can’t explain it simply, you don’t understand it well enough.” Provide a simplified and layman-accessible explanation of the XIP. Authors should aim for this summary to be one or two sentences.
-
 - **Specification** – The Specification should describe the syntax and semantics of any new feature.
-
   - **Overview**- An overview of the changes proposed. This section should include all the details of the proposed changes, without the technical specification. Authors can think of this section similar to how litepapers are written.
   - **Rationale** – The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community and should discuss important objections or concerns raised during discussion.
   - **Technical Specification**- Authors should explain the technical details of their XIP in this section. This can include technical architecture, pseudocode, function descriptions, etc.
-
 - **Test Cases** – Test cases may be added during the implementation phase but are required before implementation.
-
 - **Copyright Waiver** – All XIPs must be in the public domain. See the bottom of this XIP for an example copyright waiver.
 
 ## XIP Formats and Templates
@@ -83,23 +71,14 @@ XIPs should be written in markdoc (.mdoc) format. Image files should be included
 ## XIP Header Preamble
 
 Each XIP must begin with an [RFC 822](https://www.ietf.org/rfc/rfc822.txt) style header preamble, preceded and followed by three hyphens (`---`). This header is also termed ["front matter" by Jekyll](https://jekyllrb.com/docs/front-matter/). The headers must appear in the following order. Headers marked with "*" are optional, all other headers are required. Details about headers can be found below.
-
 `title:` <XIP title>
-
 `id:` <XIP number> (this is determined by the XIP editor)
-
 `author:` <a list of the author's or authors' name(s) and/or username(s), or name(s) and email(s). Details are below.>
-
 `*type:` <Core Upgrade | Integration Upgrade | Governance | Parameter Change | Community>
-
 `network:` <a list of the networks that this proposal is relevant to, e.g Ethereum Mainnet, Base, Solana>
-
-`status:` <Draft | I
-
+`*type:` <Core Upgrade | Integration Upgrade | Governance | Parameter Change | Community>
 `*supersededby:` <the proposals that supersede this XIP, if relevant>
-
 `created:` <date created on>
-
 `*updated:` <last updated date>
 
 - Headers that permit lists must separate elements with commas.
