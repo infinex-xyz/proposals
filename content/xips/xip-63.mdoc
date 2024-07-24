@@ -1,0 +1,38 @@
+---
+title: Display $DORGE Asset on Infinex
+id: 63
+author: Pstar
+type: core-upgrade
+network: Base
+status: Draft
+created: '2024-07-22'
+updated: '2024-07-23'
+---
+
+# Proposal Summary
+
+XIP-63 proposes enabling support for the $DORGE token on Infinex.
+
+# Specification
+
+## Overview
+
+$DORGE is a memecoin currently being developed by Grant Warwick. $DORGE was initially intended as an addition to Infinex’s Memecoin support as per XIP-51, to be included in the Infinex Craterun campaign. However, $DORGE was not strictly included in crates themselves and has instead been airdropped to certain crate holders randomly. This process will continue until all crates are distributed.
+
+Currently, $DORGE is not displayed on Infinex, rendering only technical users capable of seeing if they have been airdropped $DORGE. Accessibility to $DORGE should be more inclusive to its holders. However, as $DORGE currently does not have a price feed, it should be temporarily listed as “Other Assets” on Infinex.
+
+## Rationale
+
+Infinex wishes to support memecoins; $DORGE is and will continue to be a valuable addition to the Infinex memecoin ecosystem, and should be made as accessible as possible. Supporting $DORGE would allow users to withdraw and deposit the token, even though it currently does not have a price feed.
+
+## Technical Specification
+
+Infinex will add $DORGE on the Base network. The token address is *0xa51f512a2c4d6354691a2174cf5fe886b38c8160*.
+
+Infinex will need to upgrade the backend infrastructure to track $DORGE deposits and withdrawals.
+
+The UI will need to be updated to reflect $DORGE deposits and withdrawals. As $DORGE does not have a price feed, it will be listed under “Other Assets” until a reliable price feed is established after the $DORGE presale planned for Q3 2024.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
