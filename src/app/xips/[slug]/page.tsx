@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Params }) {
       <ID status={xip.status}>XIP-{number(xip.id!)}</ID>
       <PageTitle>{xip.title}</PageTitle>
       <Properties fields={fields} data={xip} />
-      <Renderer document={xip.content} />
+      <Renderer node={xip.content.node} />
     </PageContainer>
   );
 }

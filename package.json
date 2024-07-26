@@ -10,10 +10,11 @@
     "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
-    "@keystatic/core": "^0.2.9",
-    "@keystatic/next": "^2.0.1",
+    "@keystatic/core": "^0.5.29",
+    "@keystatic/next": "^5.0.1",
+    "@markdoc/markdoc": "^0.4.0",
     "dotenv": "^16.3.1",
-    "next": "14.1.1",
+    "next": "14.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zod": "^3.22.4"

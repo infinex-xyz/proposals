@@ -1,15 +1,24 @@
-import {
-  DocumentRenderer,
-  DocumentRendererProps,
-} from '@keystatic/core/renderer';
 import { getStatusColors, splitAuthors } from '@/lib/util';
+import Markdoc, { Config, Node } from '@markdoc/markdoc';
+import React, { Fragment } from 'react';
 
-export function Renderer({
-  document,
-}: Pick<DocumentRendererProps, 'document'>) {
+const markdocConfig: Config = {
+  nodes: {
+    document: { render: 'Fragment' },
+  },
+};
+
+export function Renderer({ node }: { node: Node }) {
+  const errors = Markdoc.validate(node, markdocConfig);
+  if (errors.length) {
+    throw new Error(errors.map((x) => x.error.message).join('\n'));
+  }
+  const transformed = Markdoc.transform(node, markdocConfig);
   return (
     <div className="prose prose-slate prose-invert max-w-3xl pb-10 hover:prose-a:text-blue-300 prose-td:border-y-slate-900">
-      <DocumentRenderer document={document} />
+      {Markdoc.renderers.react(transformed, React, {
+        components: { Fragment },
+      })}
     </div>
   );
 }

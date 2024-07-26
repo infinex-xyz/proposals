@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Params }) {
       <ID status={trf.status}>TRF-{number(trf.id!)}</ID>
       <PageTitle>{trf.title}</PageTitle>
       <Properties fields={fields} data={trf} />
-      <Renderer document={trf.content} />
+      <Renderer node={trf.content.node} />
     </PageContainer>
   );
 }
