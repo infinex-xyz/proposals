@@ -1,0 +1,46 @@
+---
+title: Implement Ethena Sats
+id: 64
+author: kmao (@kmaox)
+type: integration-upgrade
+network: 'Ethereum, Arbitrum '
+status: Draft
+created: '2024-07-26'
+---
+# Proposal Summary
+
+XIP-64 proposes enabling Ethena SATs for Infinex users and SATs bonuses for swapping from USDC into USDe in the Infinex platform. It also proposes the introduction of several new badges related to Ethena USDe holders.
+
+# Specification
+
+## Overview
+
+USDe deposited in Infinex currently earns weekly USDe rewards. This XIP proposes integrating Ethena SATs at a rate of 20x daily.
+
+Infinex is also planning an RC to implement [XIP-31](https://proposals.infinex.xyz/xips/xip-30), which will allow users to swap USDC to USDe on Ethereum Mainnet and Arbitrum.
+
+Users who swap to USDe will eligible for a one-time bonus of 200 SATs per USDe. Users who hold USDe at the start of the campaign will also receive this bonus.
+
+This campaign will run until the end of the Ethena Season two campaign.
+
+Users who withdraw USDe before the campaign ends will lose all SATs.
+
+Users who swap from USDC to USDe will receive a "Real Yield Maxi" badge, and users who  held USDe prior to 2026-07-25 08:00:00 UTC will receive an "OG Real Yield Maxi" badge.
+
+An example:
+
+**A user swaps 100,000 USDC for 100,000 USDe, and holds until the end of the campaign.**
+
+This user will receive 200,000,000 SATs swap bonus plus 20,000,000 SATs per day, as well as weekly distribution of USDe rewards.
+
+## Rationale
+
+USDe is one of the largest assets by deposit volume on Infinex, the current USDe incentives have been well received but the addition of SATs should increase the demand for holding USDe on Infinex.
+
+## Technical Specification
+
+The Infinex interface will be updated to implement swaps from USDC to USDe. An integration into the SATs API will also be made to allow users to see their SATs balance in their account.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
