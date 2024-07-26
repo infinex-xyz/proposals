@@ -68,15 +68,13 @@ export default config({
         }),
         created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Last Updated' }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          tables: true,
-          images: {
-            directory: 'public/assets/xips',
-            publicPath: '/assets/xips/',
+          options: {
+            image: {
+              directory: 'public/assets/xips',
+              publicPath: '/assets/xips/',
+            },
           },
         }),
       },
@@ -121,15 +119,13 @@ export default config({
         dependencies: fields.text({
           label: 'Dependencies',
         }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          tables: true,
-          images: {
-            directory: 'public/assets/irs',
-            publicPath: '/assets/irs/',
+          options: {
+            image: {
+              directory: 'public/assets/irs',
+              publicPath: '/assets/irs/',
+            },
           },
         }),
       },
@@ -194,15 +190,13 @@ export default config({
         created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Updated' }),
         established: fields.date({ label: 'Established' }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          tables: true,
-          images: {
-            directory: 'public/assets/wgcs',
-            publicPath: '/assets/wgcs/',
+          options: {
+            image: {
+              directory: 'public/assets/wgcs',
+              publicPath: '/assets/wgcs/',
+            },
           },
         }),
       },
@@ -250,15 +244,13 @@ export default config({
         created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Updated' }),
         implemented: fields.date({ label: 'Implemented' }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          tables: true,
-          images: {
-            directory: 'public/assets/rcs',
-            publicPath: '/assets/rcs/',
+          options: {
+            image: {
+              directory: 'public/assets/rcs',
+              publicPath: '/assets/rcs/',
+            },
           },
         }),
       },
@@ -299,15 +291,13 @@ export default config({
         }),
         created: fields.date({ label: 'Created' }),
         updated: fields.date({ label: 'Updated' }),
-        content: fields.document({
+        content: fields.markdoc({
           label: 'Content',
-          formatting: true,
-          dividers: true,
-          links: true,
-          tables: true,
-          images: {
-            directory: 'public/assets/wgcs',
-            publicPath: '/assets/wgcs/',
+          options: {
+            image: {
+              directory: 'public/assets/wgcs',
+              publicPath: '/assets/wgcs/',
+            },
           },
         }),
       },

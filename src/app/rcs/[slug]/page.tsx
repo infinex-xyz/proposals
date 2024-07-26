@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Params }) {
       <ID status={entry.status}>RC-{number(entry.id!)}</ID>
       <PageTitle>{entry.title}</PageTitle>
       <Properties fields={fields} data={entry} />
-      <Renderer document={entry.content} />
+      <Renderer node={entry.content.node} />
     </PageContainer>
   );
 }

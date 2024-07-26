@@ -36,7 +36,7 @@ export default async function Page({ params }: { params: Params }) {
       <ID status={ir.status}>IR-{number(ir.id!)}</ID>
       <PageTitle>{ir.title}</PageTitle>
       <Properties fields={fields} data={ir} />
-      <Renderer document={ir.content} />
+      <Renderer node={ir.content.node} />
     </PageContainer>
   );
 }
