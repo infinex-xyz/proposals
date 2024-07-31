@@ -1,0 +1,46 @@
+---
+title: Support JUPSOL & INF
+id: 66
+author: ablaiser, kmao (@kmaox)
+type: integration-upgrade
+network: Solana
+status: Draft
+created: '2024-07-31'
+---
+# Proposal Summary
+
+XIP-66 proposes enabling support for Jupiter Staked SOL and Sanctum Infinity.
+
+# Specification
+
+## Overview
+
+This proposal aims to integrate the JUPSOL and Infinity LSTs into the infinex ecosystem, allowing users to utilize staking APY while holding their funds in Infinex for future campaigns.
+
+JUPSOL is a Liquid Staking Token (LST) on Solana and has over 2 million SOL staked, second only to JITOSOL. Infinity is a pool of LSTs on Solana created by Sanctum and has over 1.5 million SOL staked.
+
+## Rationale
+
+Integrating JUPSOL and INF will enrich the Infinex ecosystem by leveraging the liquidity of sol staked with these LSTs. Users will feel more encouraged to move their Solana assets to infinex without promise of future campaigns because they are still earning APY. This integration will encourage broader adoption and enhance solana engagement.
+
+## Technical Specification
+
+{% table %}
+- CoinN
+- Network
+- Token Address
+---
+- JUPSOL
+- Solana
+- jupSoLaHXQiZZTSfEWMTRRgpnyFm8f6sZdosWBjx93v
+---
+- INF
+- Solana
+- 5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm
+{% /table %}
+
+The Infinex account currently does not block deposits from any Solana tokens, which means to support JUPSOL & INF deposits and withdrawals, Infinex will simply just need to upgrade the backend infrastructure to track them.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
