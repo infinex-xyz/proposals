@@ -1,0 +1,75 @@
+---
+title: Support for Synthetix V3 liquidity pools
+id: 67
+author: Kvasir (@0xKvasir)
+type: core-upgrade
+network: Base, Aribtrum One
+status: Draft
+created: '2024-08-03'
+
+---
+# Proposal Summary
+This proposal proposes support for TOROS sUSDCy (Option A) or enabling integration for Synthetix V3 liquidity pools (Options B) for the following tokens: USDC on Base & ARB / USDC / WETH / USDe on Arbitrum. This will give users direct access to yield based DEFI activities on the Synthetix V3 platform.
+
+# Specification
+
+## Overview
+Infinex has a good relationship with the Synthetix (SNX) team and it makes sense to have SNX V3 as one of the first integrations to be enabled for Infinex after the craterun campaign. Initial support can be limited to USDC & USDe for the Spartan pool on Arbitrum & Base but this is to be decided by the core workgroup.
+
+## Rationale
+Synthetix is an open source derivatives liquidity protocol on Ethereum, Arbitrum and Base. By integrating with decentralised oracle networks, it allows users to receive a loan of stablecoins against collateral on chain. Users may also provide liquidity to derivatives markets.
+
+After the craterun there is still a lot of TVL locked into the ecosystem (as of writing)(~ 48 mln$ USDC / 10 mln$ WETH / 6.7 mln$ USDe / 1 mln$ ARB) that can be used in SNX v3 pools and will drive value to users and keep assets in the Infinex ecosystem.
+
+Other protocols who have implemented an auto compound solution for SNX V3 that makes it very easy to use for end-users today and Infinex could implement something similar: [TOROS sUSDCy](https://toros.finance/synthetix-usdc-andromeda-yield). 
+
+For the purpose of balancing available developer resources to build the implementation while also looking at the actual benefits to end-users, this XIP would have two options which one can be chosen, or both over a longer time frame.
+
+### Option A: Implement Synthetix USDC Andromeda Yield (sUSDCy)
+Synthetix USDC Andromeda Yield (sUSDCy) is the auto compounding yield token from TOROS that allows Vault USDC flows into Synthetix V3. Yields are harvested from the fertile grounds of perp trading fees, liquidations, and token rewards then meticulously compounded for optimal returns with SNX accruing. Debt is vigilantly overseen and seamlessly closed. 
+
+Token contract: [0xC1E02884AF4A283cA25ab63C45360d220d69DA52](https://basescan.org/token/0xc1e02884af4a283ca25ab63c45360d220d69da52)
+More info: [https://toros.finance/synthetix-usdc-andromeda-yield](https://toros.finance/synthetix-usdc-andromeda-yield)
+
+Pro’s
+- Very quick implementation as its only adding support for a new token
+- Could be a great alternative for USDC holder to swap into besides USDe
+
+Con’s
+- Rely on a third party (TOROS) for their implementation
+- No support for other tokens in the SNX ecosystem (ARB/WETH/USDe)
+- Need clear description of Risks involved (Impermanent loss etc, no guaranteed gains, etc )
+
+
+### Option B: Implement native LP pool support for SNX v3
+Pro’s
+- Native integration, no additional party involved
+- More tokens supported (besides USDC), such as ARB/WETH/USDe
+- SNX & Infinex share a lot of common council members and supporters
+
+Con’s
+- Much more work from an integration standpoint (complexity)
+- Might be too complicated to target audience of Infinex (e.g. simple USDC staking like I do on a CEX)
+- Need clear description of Risks involved (Impermanent loss etc, no guaranteed gains, etc )
+
+## Technical Specification (for optin B)
+Infinex already has support for USDC / USDE / WETH / ARB on Arbitrum & Base, so the complexity is the actual interaction with the smart contract to “pool” the tokens. Some additional information below that can be used to determine compatibility with the new SNX V3 accounts and liquidity pools.
+
+### Delegating collateral
+Providing liquidity to pools involves two function calls, deposit and delegateCollateral. deposit transfers collateral to the Synthetix Core address and associates it with the relevant account. delegateCollateral assigns the collateral to a pool, creating or updating a [liquidity position](https://docs.synthetix.io/v/v3/for-liquidity-providers/liquidity-positions).
+
+### Retrieving Liquidity Position Data
+A position’s collateral, debt, and resulting C-Ratio can be retrieved with the getPositionCollateral, getPositionDebt, and getPositionCollateralRatio functions, respectively.
+
+### Liquidity pools & Preferred pool
+Preferred Pool (also referred to as the Spartan Council Pool) - This is the main pool managed by [governance](https://docs.synthetix.io/v/v3/for-governance-participants/synthetix-governance). This is the pool suggested by default for liquidity providers to participate in. This pool's ID can be retrieved by calling the getPreferredPool function.
+
+Some additional reading: 
+https://docs.synthetix.io/v/v3/for-liquidity-providers/base-lp-guide
+https://docs.synthetix.io/v/v3/for-liquidity-providers/liquidity-positions
+https://docs.synthetix.io/v/v3/for-liquidity-providers/delegating-collateral/liquidity-pools
+https://docs.synthetix.io/v/v3/for-developers/deployment-info
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
