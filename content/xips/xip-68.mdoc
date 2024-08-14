@@ -1,0 +1,48 @@
+---
+title: Support Dinero & Blaze Tokens
+id: 68
+author: kmao (@kmaox)
+type: core-upgrade
+network: Ethereum, Solana
+status: Draft
+created: '2024-08-14'
+---
+# Proposal Summary
+
+XIP-67 enables support for the Dinero and Blaze Tokens.
+
+# Specification
+
+## Overview
+
+Infinex will need to update the UI to effectively reflect Dinero and Blaze deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed.
+
+## Rationale
+
+Craterun's prize pool included both BTRFLY and Blaze rewards. After Craterun ended, BTRFLY underwent a migration to DINERO, at the ratio of 1:2000, which meant the 35 BTRFLY prize was changed to 70,000 DINERO.
+
+These assets are required to be supported by Infinex to ensure the Craterun winners are able to interact with their prizes.
+
+## Technical Specification
+
+Infinex will add support for deposits and withdrawals for tokens on following networks below.
+
+{% table %}
+- **Coin**
+- **Network**
+- **Token Address**
+---
+- DINERO
+- Ethereum Mainnet
+- 0x6df0e641fc9847c0c6fde39be6253045440c14d3
+---
+- BLZE
+- Solana
+- BLZEEuZUBVqFhj8adcCFPJvPVCiCyVmh3hkJMrU8KuJA
+{% /table %}
+
+The Infinex account currently does not block deposits from any Ethereum or Solana Token, which means to support these assets, Infinex will simply just need to upgrade the backend infrastructure to track them.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
