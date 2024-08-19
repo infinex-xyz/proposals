@@ -1,0 +1,59 @@
+---
+title: Initial Support for NFTs
+id: 69
+author: kmao (@kmaox), Jaynex (@0xjaynex)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-08-19'
+---
+# Proposal Summary
+
+XIP-69 proposes initial support for NFTs.
+
+# Specification
+
+## Overview
+
+This proposal aims to upgrade the Infinex Platform to provide initial support for NFTs. The Infinex Account can currently receive NFTs, however, lacks an interface for users to be able to smoothly deposit and withdraw their NFTs. The Infinex Platform will be updated to:
+
+- Reflect supported NFTs in a user's wallet.
+- Allow users to deposit and withdraw supported NFTs.
+
+Depending on CWG R&D, the Infinex platform should also be updated to reflect the rough price of NFT based on the last sale and collection floor price. Due to technical complexity, as well as low liquidity / rarity / and other concerns regarding showing NFT prices, this may be implemented subsequently to basic NFT custody.
+
+Due to the wide range of risks associated with accepting all NFTs, Infinex will only support a limited range of NFTs initially. These collections are part of the prizes associated with Craterun, and are:
+
+- [Sappy Seals](https://blur.io/eth/collection/sappy-seals)
+- [Lil Pudgies](https://blur.io/eth/collection/lilpudgys)
+
+## Rationale
+
+Infinex aims to become the UX layer for all of crypto, which includes supporting NFTs. Broader NFT support is planned in the future, however initially supporting a small collection makes it easier for Infinex to iterate on NFT support.
+
+Sappy Seals and Lil Pudgies were selected as the first collections to be supported as they are included in the Craterun Prizes, and are required to be supported in order for the winners to interact with their prizes.
+
+## **Technical Specification**
+
+Infinex will add functionality for users to view their Sappy Seals and Lil Pudgies in-app. Functionality to deposit and withdraw these assets will also be added. The token addresses for these collections are:
+
+{% table %}
+---
+- Collection
+- Network
+- Address
+---
+- Sappy Seals
+- Ethereum Mainnet
+- 0x364C828eE171616a39897688A831c2499aD972ec
+---
+- Lil Pudgies
+- Ethereum Mainnet
+- 0x524cAB2ec69124574082676e6F654a18df49A048
+{% /table %}
+
+In order to implement these upgrades, Infinex will simply need to upgrade the backend infrastructure to track these assets, and also reflect it in the UI.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
