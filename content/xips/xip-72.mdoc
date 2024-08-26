@@ -1,0 +1,34 @@
+---
+title: Support Renzo Token
+id: 72
+author: kmao (@kmaox)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-08-26'
+---
+# Proposal Summary
+
+XIP-68 enables support for the Renzo token, REZ.
+
+# Specification
+
+## Overview
+
+Infinex will need to update the UI to effectively reflect REZ deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed.
+
+## Rationale
+
+Renzo has recently concluded it's Season 2 campaign, which has resulted in the conversion of ezPoints to REZ tokens. In order to enable users to claim their tokens, Infinex must support the REZ token.
+
+## Technical Specification
+
+`The technical specification should outline the public API of the changes proposed. That is, changes to any of the interfaces Infinex currently exposes or the creations of new ones.`
+
+Infinex will add for the REZ token on the Mainnet network. The token address is `0x3b50805453023a91a8bf641e279401a0b23fa6f9`
+
+The Infinex account currently does not block deposits from any tokens, which means to support these assets, Infinex will simply just need to upgrade the backend infrastructure to track them.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
