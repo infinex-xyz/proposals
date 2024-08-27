@@ -1,0 +1,173 @@
+---
+title: Bullrun
+id: 74
+author: Kain (@kaiynne), kmao (@kmaox)
+type: integration-upgrade
+network: Blast
+status: Draft
+created: '2024-08-27'
+---
+# Proposal Summary
+
+This XIP proposes the next Infinex campaign named “Bullrun”.
+
+# Specification
+
+## Overview
+
+Bullrun is a new trading game where users earn and collect cards representing one of the top thirty assets by market cap. Each user picks five of their cards to play. Each card scores points based on the asset's daily performance. Each percentage represents 100 points. For example, if a user plays Bitcoin and it increases by 3%, the user will score 300 points on that card. Users can also lose points and go into negative scores. Every 50 points earned daily will be converted into “Bulls”.
+
+There are daily and weekly competitions where the top scorers win prizes. The exact start time of Bullrun will be confirmed in a future release candidate. It will run indefinitely until a future RC modifies the schedule.
+
+**Prize Pools**
+
+The prize pool will contain 500 Patrons. RCs will include details on the exact prize pool allocations for the daily competitions and weekly competitions.
+
+**Earning Packs & Cards**
+
+The top 100,000 accounts with more than $50 account balance will earn one pack daily. Each new user will receive two packs when they first join the game. Pack earning conditions may be modified in future RCs.
+
+Packs will contain five cards. The cards in a pack will be determined by [Pyth’s VRF](https://docs.pyth.network/entropy), with rarity being inversely correlated with Market Cap. For example, Bitcoin will be the most common asset, while a card like BNB will be rarer, and a card like Stellar will be rarest.
+
+**Playing Cards**
+
+Anyone with cards is allowed to play them. They do not need funds in their account to play them.
+
+Each day users are required to select a five card hand for the next day, out of their owned cards. Users can select multiples of the same card, and if they don’t select a hand, they are not eligible to participate in that day’s competition. Users who fail to select hands for the day will also be removed from the current weekly competition. Users who do not participate in all of the daily competitions will not be able to participate in the weekly competition.
+
+Daily competitions will start on midnight UTC time. User card choices will also be locked at this time, with any changes made to their hand reflected in the next day’s performance. During this time, winners of the previous day will also be selected, and user point balances will be finalised for the previous day.
+
+## Rationale
+
+Bullrun solves a variety of the problems that Infinex is currently facing:
+
+- How do we continue to grow Infinex’s TVL?
+- How do we engage with the wider crypto community and encourage more users to onboard to Infinex?
+- How do we have a wider distribution of Patron Tickets?
+
+This new campaign aims to be interactive and engaging, helping Infinex gain more exposure to the broader crypto community. It is one of the final campaigns leading up to the Patron Sale.
+
+## Technical Specification
+
+Infinex will deploy the Bullrun contract to Blast, using [Pyth Entropy](https://docs.pyth.network/entropy) to generate a random number for every card in a pack between 0 and 65,535. These numbers will be mapped in the Infinex Platform to a card based on the card distribution for that Season, with the first Season containing only the top 30 crypto assets. The exact odds for each card are published below:
+
+{% table %}
+- **Cards**
+- **Chance**
+---
+- Bitcoin
+- 4.88%
+---
+- Ethereum
+- 4.88%
+---
+- Tether
+- 4.88%
+---
+- BNB
+- 4.88%
+---
+- Solana
+- 4.88%
+---
+- XRP
+- 4.88%
+---
+- USDC
+- 4.88%
+---
+- Lido Staked Ether
+- 4.88%
+---
+- Toncoin
+- 4.88%
+---
+- Dogecoin
+- 4.88%
+---
+- Cardano
+- 4.88%
+---
+- TRON
+- 4.88%
+---
+- Wrapped Bitcoin
+- 4.88%
+---
+- Avalanche
+- 4.88%
+---
+- Shiba Inu
+- 4.88%
+---
+- Bitcoin Cash
+- 2.44%
+---
+- Polkadot
+- 2.44%
+---
+- Chainlink
+- 2.44%
+---
+- LEO Token
+- 2.44%
+---
+- Dai
+- 2.44%
+---
+- Uniswap
+- 2.44%
+---
+- Litecoin
+- 2.44%
+---
+- NEAR Protocol
+- 2.44%
+---
+- Kaspa
+- 2.44%
+---
+- Wrapped eETH
+- 2.44%
+---
+- Polygon
+- 0.49%
+---
+- Pepe
+- 0.49%
+---
+- Internet Computer
+- 0.49%
+---
+- Ethena USDe
+- 0.49%
+---
+- Stellar
+- 0.49%
+{% /table %}
+
+Pack opening will be requested via
+
+`function requestPackOpening(`
+
+`address _account,`
+
+`string calldata _collection,`
+
+`string calldata _packKey,`
+
+`bytes32 _idempotencyKey,`
+
+`uint256 _cardAmount,`
+
+`bytes32 _userRandomBytes`
+
+`) external returns (uint64 sequenceNumber);`
+
+Which triggers the Pyth VRF callback. A pack is opened after receiving the Pyth callback and generates a pack opening event.
+
+All requests are made by an Infinex platform managed Keeper.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
