@@ -1,0 +1,124 @@
+---
+title: 'Patron Sale '
+id: 75
+author: 'kmao (@kmaox), rambo '
+type: core-upgrade
+network: Ethereum, Solana, Arbitrum, Optimism, Polygon, Base
+status: Draft
+created: '2024-08-28'
+---
+# Proposal Summary
+
+This XIP proposes the mechanics of the Patron Sale.
+
+# Specification
+
+## Overview
+
+The following updates are proposed in this XIP:
+
+### **Conversion of Patron Tickets to Passes**
+
+Infinex accounts holding ten or fewer Patron Tickets will have these tickets converted to Patron Passes; this will allow ~2500 Infinex accounts to buy up to ten Patrons based on the number of tickets they received in Craterun. The conversion of the first ten Patron Tickets per account to Passes will ensure these Craterun participants are guaranteed a chance to purchase Patrons in the Patron Sale.
+
+13,369 Patron Tickets will be converted to Patron Passes. This results in 18,328 Patron Passes being distributed via Craterun. Some examples include:
+
+- User A, with five Patron Tickets, will now have five Passes.
+- User B, with 25 Patron Tickets, will now have 10 Passes.
+
+Any Patron Tickets a user holders over the first ten will be unaffected and used to gate entrance to later waves of the Community Mint (see below).
+
+### **Patron Community Mint Structure**
+
+As stated in[ XIP-33](https://proposals.infinex.xyz/xips/xip-33), Infinex is aiming to do a community mint, in which 50,000 Patron NFTs will be sold. Instead of a set number of Patrons being sold, this XIP proposes that up to 58,328 Patrons may be sold (at the discretion of the Treasury Seat), across four distinct waves. Each wave will allow a specific part of the community to purchase Patron NFTs. The exact times for waves are to be approved later via Release Candidate. Waves can overlap (*e.g.*, Wave 1 and Wave 2 can coincide).
+
+The supported assets for the sale are:
+
+- Any supported stablecoin (USDT, USDC, USDe, DAI)
+- Network Governance Tokens (OP & ARB)
+- SOL
+- ETH
+
+Infinex will allow the purchase of Patrons from the following supported chains:&nbsp;
+
+- Ethereum Mainnet
+- Solana
+- Arbitrum
+- Optimism
+- Polygon
+- Base
+
+#### Wave 1 (Strategics)
+
+**Allowed Participants**: Strategic Companies, foundations, DAOs, VCs and other entities.
+
+**Purchase Flow**: Wave 1 Participants can choose to directly purchase Patron NFTs from the Treasury or via the Infinex platform. If done through the platform, an early access code will be provided to them, granting access to the purchase interface (for Wave 1).
+
+**Purchase Limit**: Negotiated on a case-to-case basis with the Treasury Seat.
+
+**Total Supply**: Up to 35,000 Patrons, unsold supply will be returned to the Treasury.
+
+#### Wave 2 (Early Access)
+
+**Allowed Participants**: Angels
+
+**Purchase Flow**: Key members of the crypto community will be given Patron Passes. These participants will be allowed to purchase Patron NFTs via the platform. The distribution of these Patron Passes will be managed via the Infinex Treasury to ensure alignment.
+
+**Purchase Limit**: Limited by the amount of Patron Passes given to the individual. A maximum of 50 Patron Passes can be given to each individual.
+
+**Total Supply**: Up to 5,000 Patrons, unsold supply will be returned to the Treasury.
+
+#### Wave 3 (Patron Pass Holders)
+
+**Allowed Participants**: Users who hold a Patron Pass.
+
+**Purchase Flow**: Users with Patron Passes will access the sale platform to purchase Patron NFTs.
+
+**Purchase Limit**: Each Patron Pass allows the user to purchase one Patron NFT.
+
+**Total Supply**: Up to 18,328 Patrons, unsold supply (capped at 5,000 Patrons) rolls over to Wave 4. The excess is returned to the Treasury.
+
+#### Final Wave
+
+**Allowed Participants**: Users who hold a Patron Ticket.
+
+**Purchase Flow**: First come, first served access is open to all users with a Patron Ticket.
+
+**Purchase Limit**: One Patron Ticket allows the user to purchase up to three Patron NFTs. Users can purchase a maximum of three Patron NFTs.
+
+**Total Supply**: Up to 5,000 Patron NFTs, depending on the number of Patrons that roll over from Wave 3.
+
+Patrons will be distributed within 30 days of the final wave.
+
+## Rationale
+
+The mechanism allowing Patron Ticket holders to access the Patron sale was previously not defined to allow for optionality after the distribution via Craterun was finalised. Craterun attempted to maximise participation in the Patron NFT sale, via the distribution of Patron Tickets and Passes. Despite distributing ~200,000 Patron Tickets, fewer than 3,000 accounts received one. This has reduced the number of accounts that can participate in the sale, significantly, with less than 20% of Craterunners finding a ticket.
+
+Converting these tickets to passes will ensure users can participate in the community mint. Furthermore, Infinex aims to distribute more tickets in later campaigns to broaden participation from the crypto community, so converting prior tickets will offset ticket inflation.
+
+Many different mechanisms were iterated upon for the final structure of the community sale, finally settling on a staggered approach. Letting users purchase NFTs in this format ensures all parties will have a separate window to purchase NFTs and also makes the process smoother for participants. The last wave was chosen to be open to all ticket holders instead of a potential raffle or lottery approach, as Craterunners will have Patron Passes from the conversion of tickets
+
+## Technical Specification
+
+The Early Access sale will require the addition of new EVM smart contracts and Solana programs to successfully complete the sale.
+
+#### **Smart Contracts**
+
+- **Patron Purchase App**, deployed by the Infinex account, enables Infinex accounts to participate in the sale, through interacting with the Patron Point of Purchase contract.
+- **Patron Point of Purchase**contract, emits and stores a receipt of purchase and forwards funds to a delegated patron purchase vault / EOA / Multisig Safe.
+- **Patron Purchase Vault (optional)**, allows deposits of ERC20’s and Ether from the Patron Point of Purchase contract and allows withdraws to a funds destination address. Patron purchase vault’s are upgradable for future functionality e.g. Escrow. Optionally an EOA / Multisig Safe can be in place of this contract.
+
+![](/assets/xips/xip-75/570b4fc1-a102-42ba-be46-3eb7ad58cfb0.png)
+
+#### **Solana Programs**
+
+The Solana solution involves:
+
+- The addition of a Patron Purchase Program, which acts like the EVM 'Patron Point of Purchase'
+- An update to the Infinex Account Authorizer Program, which enables the Infinex Account to interaction with the Patron Purchase Program
+
+The Solana solution always forwards funds to configured external wallet addresses, which can be EOAs, multisigs, or other programs
+
+# Copyright
+
+Copyright and related rights waived via[ CC0](https://creativecommons.org/publicdomain/zero/1.0/).
