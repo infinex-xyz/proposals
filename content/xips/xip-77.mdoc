@@ -1,0 +1,48 @@
+---
+title: Jupiter Swaps
+id: 77
+author: Yamen (@yaminfinex)
+type: integration-upgrade
+network: Solana
+status: Draft
+created: '2024-08-29'
+---
+# Proposal Summary
+
+This XIP proposes the capability to perform swaps using Jupiter on Solana as part of the Infinex Account on Solana.
+
+# Specification
+
+## Overview
+
+Infinex currently supports very limited swap capability, with no swap capability at all on Solana. Now that the platform supports many additional tokens, it makes sense to enable swapping between these tokens without requiring users to withdraw and deposit back onto platform.
+
+Jupiter is the largest and most well known swapping destination on Solana, supporting 41 underlying DEX protocols through a single interface.
+
+The Infinex Account on Solana should be upgraded to allow atomic swaps using the Jupiter Swap v6 Program.
+
+The Infinex Platform will later use the Jupiter API to find appropriate route paths to submit to this functionality, including limiting which tokens or DEXes are allowed.
+
+## Rationale
+
+Enabling the ability to swap between assets is a core function of Infinex. Jupiter is proposed instead of other aggregators or individual DEXes because:
+
+- Integrating once with Jupiter Swap v6 is much simpler than integrating with all 41 DEXes on Solana.
+- Jupiter provides an API to find the best routes and therefore prices for Infinex users, which is never worse than direct DEX integration and often quite a bit better.
+- Jupiter is the main aggregator on Solana.
+- Jupiter Swap v6 does not take any fees (only does a passthrough of fees from underlying DEXes).
+
+## Technical Specification
+
+The proposed changes to the Infinex Account on Solana is to:
+
+- Change the Authorizer program to allow calling the Jupiter v6 Program (JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4).
+- Implement appropriate risk controls (using sub-accounts or temporary wallets) to limit the potential surface area of funds exposed to the program.
+
+Infinex users will need to trigger an account upgrade to receive this new functionality in their Solana account.
+
+The Infinex App will also require changes in order to deliver a seamless swap experience.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
