@@ -1,0 +1,82 @@
+---
+title: Infinex Account V3
+id: 76
+author: Yamen (@yaminfinex)
+type: core-upgrade
+network: Ethereum, Optimism, Base, Arbitrum, Polygon, Solana
+status: Draft
+created: '2024-08-29'
+---
+# **Proposal Summary**
+
+This XIP proposes the upgrade of the Infinex Account to the next version, enabling broader support for funds recovery, the ability to use CCTP for bridging directly (without Wormhole messaging) and predictable app account contract addresses.
+
+# **Specification**
+
+## **Overview**
+
+We propose three additional features to the main Infinex Account:
+
+- **Funds Recovery Sync with CCQ**: Enable the use of Wormhole CCQ to synchronise a users Funds Recovery Address from their contract on Base to their contracts on other EVM chains.
+- **DIrect CCTP Bridging**: Enable the use of CCTP to bridge official USDC between EVM chains without going through the Wormhole contracts.
+- **Predictable App Account Addresses**: Add functionality for deploying app accounts using the `create2` function to achieve predictable app account addresses.
+
+## **Rationale**
+
+The above features address feedback from users based on shortcomings in the current contracts.
+
+### Recovery of Any Asset on Any Chain
+
+The Infinex Account contracts are currently not deployed on all chains when users sign up. Only Base and Solana contracts are initially deployed, and other chain contracts are deployed just-in-time. This optimises for speed of sign-up and gas spend.
+
+This just-in-time deployment both deploys the contracts on the new chain, and sets the users Funds Recovery Address and Recovery Key. However, setting these values is a privileged operation controlled by the users Sudo Key, and requires user interactivity and signing.
+
+If a user loses access to their account, it is possible that they have funds on a chain that has not yet been just-in-time deployed. The only way to access their account would be via the Recovery App. However, they will not have their Funds Recovery Address set on that chain. The current version of contracts only provides a single recovery path in these scenarios: use CCTP to bridge funds from the chain with funds over to Base, and then recover the funds on Base. Unfortunately, this only works for CCTP supported assets ie USDC.
+
+The user will always have a Funds Recovery Address set on Base before they can deposit funds on any EVM chain (this is gated by the Infinex App). The proposed change adds the ability to sync this Funds Recovery Address from Base to on any EVM chain *without* the user signing the transaction.
+
+We propose using Wormhole CCQ to query the users Funds Recovery Address on Base, then sending the resulting signed query result to the target chain for setting on the users account.
+
+This then allows recovery on any EVM chain to the Funds Recovery Address even if the just-in-time deployment is occurring after the user has lost access to their account.
+
+### Faster USDC Bridging
+
+The current model for USDC bridging involves using Wormhole contracts to mediate interaction with the CCTP contracts. This creates an extra level of attestations that are required before a bridge can be completed. Our testing shows that this can add significant time (5+ minutes) to the end to end bridging experience.
+
+We propose allowing the CCTP contracts to be interacted with directly, removing the need for Wormhole attestation on top of the CCTP attestation. This is the model that is currently used for bridging between Solana and EVM chains. This will make this available for bridging between EVM chains as well.
+
+### Faster App Account Deployments
+
+We currently perform app account (see [XIP-47](https://proposals.infinex.xyz/xips/xip-47)) contract deployments just-in-time, to ensure a user is in control of what functionality they enable on their on-chain account.
+
+However, we these deployments do not have predictable app addresses. This means we cannot create a single transaction that does both a deployment *and* an action with that app from a single user signature (as the apps address is only known after the deployment). This limits the types of user experiences we can create associated with apps.
+
+We propose using the `create2` deployments for app contracts, as is used for the main Infinex Account contract. This allows predictable app account addresses, and allows the creation of single transactions that do both just-in-time deployments and app interactions.
+
+## **Technical Specification**
+
+We propose the following changes to the contracts.
+
+#### Base Module
+
+- `~` bump account version to 3
+
+#### Recovery Module
+
+- `+` `syncFundsRecoveryAddressWithCCQ()` - recover an ERC721 to the recovery address
+- `+` `bridgeUSDCToEVMChainForRecovery()` - bridge USDC to an EVM chain using CCTP
+
+#### App Module
+
+- `+` `predictAppAccountAddress(address _appBeacon, bytes32 _salt)` - predicts the address for an app account
+- `~` `deployAppAccount(address _appBeacon)` -> `deployAppAccount(address _appBeacon, bytes32 _salt)` - the `deployAppAccount` function requires a salt to be passed in.
+
+#### Bridging Module
+
+Bridging functions no longer check for the minimum bridging amount being met.
+
+- `+` `bridgeUSDCWithCCTPEVM()` - bridge USDC to an EVM chain using CCTP
+
+# **Copyright**
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
