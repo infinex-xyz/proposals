@@ -1,0 +1,38 @@
+---
+title: Blast Expansion
+id: 78
+author: kmao (@kmaox), Yamen (@yaminfinex)
+type: integration-upgrade
+network: Blast
+status: Draft
+created: '2024-09-09'
+---
+# **Proposal Summary**
+
+This XIP proposes integrating the Blast chain, and supporting a variety of Blast Assets.
+
+# **Specification**
+
+## **Overview**
+
+Infinex will deploy the AccountFactory contract onto the Blast network, thus enabling allowing users on Blast to deposit and withdraw supported tokens on Infinex. The only supported Blast token initially will be USDB.
+
+## **Rationale**
+
+Six major chains were supported at the launch of Infinex: Ethereum, Arbitrum, Optimism, Base, Polygon POS, and Solana. Integrating a new chain has several technical constraints. Blast was chosen because it satisfies almost all of these constraints. In addition, its focus on the gamified crypto experience aligns well with Infinex’s latest campaign, Bullrun. Bullrun’s contract architecture will be deployed to Blast, which makes expanding Infinex Accounts to Blast a logical second step.
+
+## **Technical Specification**
+
+To allow for deployment of infinex accounts on the Blast network, this would require the same deployment of smart contracts as the other supported chains, as specified in the O2 Cannon deployment.&nbsp;
+
+As there is no official USDC on Blast, certain platform features will be unavailable on Blast:
+
+- No bridging using CCTP
+
+All the supported assets on Blast are:
+
+USDB: 0x4300000000000000000000000000000000000003
+
+# **Copyright**
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
