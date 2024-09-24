@@ -1,0 +1,32 @@
+---
+title: Support Eigen Token
+id: 81
+author: kmao (@kmaox)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-09-24'
+---
+# Proposal Summary
+
+XIP-81 enables support for the EIGEN token.
+
+# Specification
+
+## Overview
+
+Infinex will need to update the UI to effectively reflect EIGEN deposits and withdrawals, as well as the current market price of the asset. The value of these assets will be denominated in USD and determined by a 3rd-party market price feed.
+
+## Rationale
+
+Eigen has recently concluded it's Season 2 campaign, which has resulted in the conversion of Eigenlayer points to EIGEN. In order to enable users to claim their tokens, Infinex must support the EIGEN token.
+
+## Technical Specification
+
+Infinex will add for the EIGEN token on the Mainnet network. The token address is `0xec53bF9167f50cDEB3Ae105f56099aaaB9061F83`
+
+The Infinex account currently does not block deposits from any tokens, which means to support these assets, Infinex will simply just need to upgrade the backend infrastructure to track them.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
