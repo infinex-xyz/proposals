@@ -1,0 +1,48 @@
+---
+title: Integrate Shape L2
+id: 84
+author: SonOfLasG (@sonoflasg)
+type: integration-upgrade
+network: Shape
+status: Draft
+created: '2024-10-14'
+---
+# Proposal Summary
+
+This proposal suggests integrating Shape L2 into the Infinex platform, focusing initially on NFT custody, along with fungible token support for ETH. Shape is built on the Optimism OP Stack, making it highly compatible with Infinex's existing infrastructure, which already supports other Optimism-based rollups like Base. This integration aims to position Infinex as a leading platform for collectors and creators.
+
+# Specification
+
+## Overview
+
+Shape is a creator-focused Layer 2 solution built on top of Ethereum using the Optimism OP Stack. It offers a scalable and secure environment for digital art, NFTs, and other creative applications. Shape's focus on art and culture, backed by prominent artists, makes it a key player in the NFT space. The proposed integration with Shape L2 will allow Infinex to support the custody of NFTs on Shape, along with fungible tokens like ETH. As Shape's ecosystem grows, integrating it into Infinex will enable users to securely manage, store, and eventually engage with NFT DeFi products.
+
+## Rationale
+
+Integrating Shape L2 into Infinex is a strategic move to tap into a growing market of digital art collectors and high-value NFT assets. Shape’s art-focused ecosystem, combined with its scalable infrastructure, is likely to attract a significant portion of NFT creators and collectors.
+
+- **Market Alignment**: Shape's focus on art and culture aligns with Infinex's goal of providing a secure, user-friendly platform for managing digital assets.
+- **Technical Compatibility**: Since Shape uses the Optimism OP Stack and is EVM-equivalent, integration should be straightforward, leveraging existing support for similar L2s like Base.
+- **First-Mover Advantage**: By integrating Shape early, Infinex can establish itself as a key player in the custody and management of high-value digital art and NFTs, laying the groundwork for future DeFi integrations around these assets.
+
+## Technical Specification
+
+**Integration Overview:**
+
+- **NFT Custody**: Enable Infinex users to store, manage, and transfer NFTs minted on Shape L2.
+- **ETH and Fungible Token Support**: Extend support to include ETH transactions and custody, leveraging Shape’s low transaction fees for asset transfers.
+- **Optimism OP Stack Compatibility**: Utilise existing infrastructure for Optimism rollups to integrate Shape, reducing development time and complexity.
+- **Shape Stacks Integration**: Enable Infinex users to participate in Shape’s on-chain reputation system, “Stacks,” the integration should include a mechanism for users to attest ownership of their Infinex wallet. This attestation will allow assets custodied through Infinex to be recognised as part of the user’s activity on Shape.
+- **Backend Requirements:** - **Smart Contract Compatibility**: Ensure that Infinex’s wallet infrastructure can interact with Shape’s EVM-equivalent contracts, particularly those related to NFT management.
+- **Bridge Integration**: Support bridging ETH between Shape L2 and other EVM-compatible chains, enabling seamless transfers for users.
+- **UI/UX Adjustments**: Update the Infinex app to display Shape as an available network for NFT custody and ETH transfers.
+- **Security Considerations** - **Auditing**: Conduct security audits of the smart contracts interacting with Shape’s ecosystem to ensure safety and integrity.
+- **Data Availability**: Utilise Shape’s reliance on Ethereum for L1 security to maintain high data availability and consistency across user transactions.
+- **Product Considerations** - **User Interface Updates**: Add options within the Infinex UI for users to interact with Shape, including viewing and managing their Shape-based NFTs.
+- **Cross-Network Transactions**: Allow users to bridge assets between Shape and other L2s supported by Infinex, providing a seamless experience for managing multi-chain assets.
+
+Integrating Shape L2 into Infinex positions the platform to meet the needs of the growing market for digital art and NFT custody, while providing future opportunities for NFT DeFi. The strategic focus on an art-centric chain with a strong community of creators ensures that Infinex remains a relevant and valuable player in the evolving landscape of digital assets.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
