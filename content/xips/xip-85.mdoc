@@ -1,0 +1,94 @@
+---
+title: Reward Campaigns
+id: 85
+author: Clem (@0xclem)
+type: integration-upgrade
+status: Draft
+created: '2024-10-21'
+---
+# Proposal Summary
+
+This XIP proposes a `RewardCampaign`\**** smart contract that enables Infinex and its partners to distribute tokens to users based on engagement in various campaigns on the platform. The contract allows tokens to either be given out right away or through schedules with lockup periods and gradual releases over time.
+
+# Specification
+
+## Overview
+
+Currently, Infinex and its partners lack an efficient way to distribute rewards to users directly on the platform. External third-party services that handle vesting and distribution often don't offer the flexibility needed for seamless integration with Infinex, limiting the ability of the protocol to offer tailored reward campaigns.
+
+To solve this issue, the `RewardCampaign` contract provides a fully customizable solution that allows partners to distribute tokens efficiently. Whether tokens are given out right away or through a vesting schedule with a lockup, the contract is built to handle everything within Infinex, making the process easier and more efficient.
+
+## Rationale
+
+Currently, Infinex and its partners face significant challenges when trying to reward users on the platform, as third-party services are either difficult or impossible to integrate with. These limitations have made it hard to implement seamless reward campaigns that fit the needs of the platform.
+
+The `RewardCampaign` contract is designed to be highly flexible, allowing the creation and the funding of a campaign for a specific token. The contract supports optional lockup and vesting periods, or no restrictions at all, making it adaptable to different campaign structures.
+
+A designated vesting entry manager, nominated by the contract owner, will have the ability to add or remove vesting entries for each campaign, specifying which users receive how many tokens.
+
+Rewards can be claimed in several ways:
+
+- Direct claim by the user to their main account or allowlisted withdrawal address
+- Authorized keepers can claim on behalf of users (if allowed by the campaign)
+- Recovery mechanisms for claims in case of account access issues
+
+The contract is built under a proxy, allowing the owner to upgrade and improve the logic as needed, ensuring that the reward system can evolve over time.
+
+## Technical Specification
+
+These are the main functions that external callers can use to interact with the contract:
+
+**Campaign Management**:
+
+- `createCampaign(address _rewarder, address _token, address _vestingEntryManager, bool _canUseKeeper, uint256 _lockup, uint256 _duration)`\
+  Allows the owner to create a new reward campaign.
+- `terminateCampaign(uint32 _campaignId)`\
+  Allows the owner to terminate an existing campaign, and claim all the campaign’s tokens back.
+- `fundCampaign(uint32 _campaignId, uint256 _amount)`\
+  Allows the nominated rewarder to fund a campaign with the required tokens.
+- `startCampaign(uint32 _campaignId)`\
+  Allows the owner to start a campaign, allowing users to begin claiming rewards.
+
+**Vesting Management**:
+
+- `addVestingEntry(uint32 _campaignId, address _account, uint256 _amount)`\
+  Allows a VestingEntryManager to add a vesting entry for a single account in a specific campaign.
+- `addVestingEntries(uint32 _campaignId, address[] calldata _accounts, uint256[] calldata _amounts)`\
+  Allows a VestingEntryManager to add vesting entries for multiple accounts in bulk.
+- `removeVestingEntry(uint32 _campaignId, address _account)`\
+  Allows a VestingEntryManager to remove a vesting entry from a campaign.
+
+**Admin Functions**:
+
+- `setKeeper(address _keeper, bool _active)`\
+  Allows the owner to add or remove a keeper, which can manage claims for users.
+- `setCampaignVestingEntryManager(uint32 _campaignId, address _vestingEntryManager)`\
+  Allows the owner to set or update the vesting entry manager for a specific campaign, who is responsible for adding/removing vesting entries.
+- `setCampaignRewarder(uint32 _campaignId, address _rewarder)`\
+  Allows the owner to update the rewarder (the party responsible for funding the campaign).
+
+**Claiming Rewards**:
+
+- `claim(uint32 _campaignId, address _account, bytes calldata _signature)`\
+  Allows users to directly claim their vested rewards.
+- `claimToAllowlistedWithdrawalAddress(uint32 _campaignId, address _account, address _withdrawalAddress, bytes calldata _signature)`\
+  Allows users to claim rewards to an allowlisted withdrawal address.
+- `claimFor(uint32 _campaignId, address _account)`\
+  Allows an authorized keeper to claim rewards on behalf of a user.
+- `recoverClaimToMainAccount(uint32 _campaignId, address _account)`\
+  Allows an authorized recovery party to claim rewards for an account to the main account.
+- `recoverClaimToRecoveryAddress(uint32 _campaignId, address _account)`\
+  Allows an authorized recovery party to claim rewards to a recovery address.
+
+**Upgradability**\
+The contract is designed using the UUPS proxy pattern, allowing the contract owner to upgrade the logic over time without disrupting the stored data or ongoing campaigns.
+
+**Security**
+
+- The contract uses `Ownable2StepUpgradeable` for secure ownership management.
+- `SafeERC20` ensures safe token transfers during campaign funding and reward claims.
+- Only authorized roles (like the vesting entry manager and recovery parties) can manage vesting entries or recover rewards.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
