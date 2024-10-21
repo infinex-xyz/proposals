@@ -1,0 +1,48 @@
+---
+title: ENS Integration
+id: 86
+author: Ben Hooper (0xbenhooper)
+type: integration-upgrade
+status: Draft
+created: '2024-10-21'
+---
+# Proposal Summary
+
+This XIP proposes a integration within the Infinex web app that would allow for management of ENS domain records.
+
+# Specification
+
+## Overview
+
+Currently, the infinex user names are a nice touch, but ENS still reigns supreme (see most infinex employees twitter handles).
+
+## Rationale
+
+I think that being able to manage and assign ENS usernames with the schmick UI that infinex offers could onboard a lot more volume if done correctly.
+
+If I can tell someone to send ETH to benhooper.eth and that's my infinex account, that's easy for everyone involved. If I can also manage my ENS records through my Infinex account, that'd be even better.
+
+## Technical Specification
+
+To make it incredibly easy for the user, I'd split this integration into 2 parts:
+
+- ens.infinex.xyz
+- ENS page within infinex app
+
+### ens.infinex.xyz
+
+ens.infinex.xyz would be a site where users can connect their existing wallets that own ENS records, and can easily transfer to their infinex username.
+
+### ENS page within infinex app
+
+To start with, this is where a user could see ENS domains owned by their infinex wallet, and then eventually could do all the same functionality as app.ens.domains for their existing records (set address owner, create subname, see expiry/extend, etc).
+
+> 🚨 Cool Bonus Idea - if a user opt's in (mainly to save on gas) set up their <username>.infinex.eth record too, i.e. mine would be ben.infinex.eth, which would map to my infinex smart account address
+
+**Security**
+
+I don't believe this model adds any new security risks to Infinex.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
