@@ -1,0 +1,73 @@
+---
+title: 'Enable Simple Asset Transfers and Chain-Agnostic Username NFTs'
+id: 88
+author: icodestuff
+type: core-upgrade
+network: Base
+status: Draft
+created: '2024-10-22'
+updated: '2024-10-22'
+---
+
+# Proposal Summary
+
+This XIP proposes enabling simple asset transfers between Infinex users via their usernames. It also introduces chain-agnostic usernames as NFTs on Base, allowing users to optionally mint and trade their unique usernames, creating a new marketplace with royalty fees for Infinex.
+
+# Specification
+
+## Overview
+
+- **Simple Transfers:** Users can transfer any supported asset to other Infinex users by entering their username, eliminating the need to specify chains, networks, or addresses.
+- **Chain-Agnostic Username NFTs:** Users can optionally mint their Infinex username as an NFT on Base for a fee, enabling trading and ownership transferability. 
+- **Marketplace:** A dedicated marketplace will allow users to trade username NFTs, with Infinex receiving 2% royalty fees from each sale. Users can also transfer username NFTs directly.
+
+## Key Features
+
+1. **Send Functionality:**  
+   - A "Send" button will be added to Infinex accounts for easy transfers. Users input a username, asset amount, and confirm the transaction. 
+   - Transfers work seamlessly across Solana, Ethereum, Base, Arbitrum, Optimism, Blast, and other supported networks.
+   - Users can opt-in to accept transfers automatically or require a manual claim action within 3 days, after which unclaimed funds are returned.
+
+2. **Username NFTs:**  
+   - Users can mint their Infinex username as an NFT on Base for a $5 USDC fee (or otherwise as voted on).
+   - Non-NFT usernames remain functional for transfers but can only be traded if minted as an NFT.
+   - Users can hold multiple username NFTs that map to their Infinex account, with the ability to set a default username for public display (e.g., on leaderboards and games).
+
+3. **Marketplace and Transfers:**  
+   - Username NFTs can be listed for sale in the Infinex marketplace or transferred directly between users.
+   - When a username NFT is sold or transferred, a randomly generated default username is assigned to the user's account (non-NFT).
+   - Infinex will receive a 2% royalty on all marketplace trades of username NFTs.
+   - Users can change or mint usernames (whether chosen or assigned after sale/transfer) as they wish.
+
+# Rationale
+
+This proposal improves the user experience by enabling simplified asset transfers, removing the complexity of specifying chain, network and addresses. Additionally, the introduction of username NFTs offers a new revenue stream for Infinex and allows users more flexibility and personalization on the platform through NFT trading and ownership of unique usernames.
+
+# Technical Specification
+
+{% table %}
+- **Item**
+- **Network**
+- **Mint Fee**
+- **Infinex Royalty**
+---
+- Username NFT
+- Base
+- $5 USDC
+- 2%
+{% /table %}
+
+## Security
+
+- The receiving username will be validated against the Infinex user base before transfers are executed.
+- Users cannot withdraw and trade their NFT outside of Infinex. This aims to prevent scams and also simplify integration. Of course this is up for discussion but considerations would be needed seeing as usernames are not required to be NFTs (so braintstorm binding/unbinding upon withdraw/deposit, contract lookups for new username registrations etc).
+
+## Username NFTs
+
+- Username NFTs will be minted on Base and linked to Infinex accounts.
+- Users can hold multiple NFTs, and one can be set as the default username for Infinex activities.
+- A marketplace will be implemented within the Infinex ecosystem for trading username NFTs.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
