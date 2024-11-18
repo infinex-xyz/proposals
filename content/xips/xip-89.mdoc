@@ -21,15 +21,14 @@ The Infinex Platform should be upgraded to support a broader range of assets. Su
 - Reflecting the price of the asset to the user.
 - Accepting withdrawals and deposits of the asset.
 
-While the CWG implements this, they may add additional assets that are listed on Coingecko. These assets should not require approval via XIP and can be released through a release candidate. For any assets the community wants to add, they may choose to draft an RC instead of a XIP.
-
+While the CWG implements this, they may add additional assets that are listed on Coingecko. These assets should not require approval via XIP or release candidate. For any new assets the CWG wants to add, they may just add it - assuming the asset is listed on Coingecko.
 ## **Rationale**
 
 Prior to this proposal, Infinex has operated on the basis that each new supported token requires specific approval. In the current state, Infinex believes that they are ready to update their framework to a more broad one, that allows more assets to be added automatically.
 
 ## **Technical Specification**
 
-Enabling broad support for more assets will involve the use of the [Coingecko API]([Coins List (ID Map)](https://docs.coingecko.com/reference/coins-list) ). Infinex will enable support for the top 500 tokens by Market Cap, assuming the token is on a supported network. The list of supported tokens will expand daily, and new tokens that enter the top 500 will also be supported, whilst assets that drop below top 500 ranking will also remain supported.
+Enabling broad support for more assets will involve the use of the [Coingecko API]([Coins List (ID Map)](https://docs.coingecko.com/reference/coins-list) ). Infinex will enable support for the top 2000 tokens by Market Cap, assuming the token is on a supported network. The list of supported tokens will expand daily, and new tokens that enter the top 2000 will also be supported, whilst assets that drop below top 2000 ranking will also remain supported.
 
 # **Copyright**
 
