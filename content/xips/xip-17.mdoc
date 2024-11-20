@@ -23,7 +23,7 @@ While it would have been possible to rely only on CCTP for USDC bridging, many m
 
 ## Technical Specification
 
-Building on from [XIP-6, ](https://proposals.infinex.io/xips/xip-6)the flow is expanded with the following:
+Building on from [XIP-6](https://proposals.infinex.xyz/xips/xip-6), the flow is expanded with the following:
 
 Instead of calling the Circle CCTP contracts, the deposit account now calls the Wormhole Circle integration. This takes an additional payload in which we specify the recipient of the token. The Wormhole contract transfers the tokens to itself, verifies the payload and parameters emits a message, and calls the Circle CCTP contract, which in turn burns the tokens, and emits a message.
 
