@@ -36,7 +36,7 @@ Infinex will then provide the UX benefit of cross-chain deposits. For now, Ether
 
 An alternative architecture using USDC pools and wormhole cross-chain queries was considered for managing the bridging of USDC, which may be proposed for future releases when tokens other than USDC need to be supported.
 
-This XIP proposes the use of the[ Circle CCTP bridge](https://www.circle.com/en/cross-chain-transfer-protocol) for the following reasons:
+This XIP proposes the use of the [Circle CCTP bridge](https://www.circle.com/en/cross-chain-transfer-protocol) for the following reasons:
 
 - It follows a trustless architecture with 3rd party (Circle) attestation across chain.
 - Supports a non-custodial Infinex architecture.
@@ -58,7 +58,7 @@ This means a `create2` salt must be stored off-chain by the contract creator (i.
 
 If a created account has a USDC balance on Ethereum, the keeper service will call a function on the Ethereum contract that will cause the contract to call the Circle CCTP bridge. This burns the tokens in exchange for a message that can be redeemed on the target chain: Base.
 
-Redemption of the message can be facilitated by anyone, and is secure as it will automatically mint USDC into the target address in the message. This can not be altered. Infinex will run a service that will, on receipt of the CCTP message, call the Circle attestation service. The Circle attestation is required for processing a message and protects against fraudulent message processing and replay protection. The Infinex service will process the message and attestation on Base, resulting in the funds being deposited into the user's Trading account. For more details on the Trading Account, please refer to [XIP-7: Infinex Accounts.](https://proposals.infinex.io/xips/xip-7)
+Redemption of the message can be facilitated by anyone, and is secure as it will automatically mint USDC into the target address in the message. This can not be altered. Infinex will run a service that will, on receipt of the CCTP message, call the Circle attestation service. The Circle attestation is required for processing a message and protects against fraudulent message processing and replay protection. The Infinex service will process the message and attestation on Base, resulting in the funds being deposited into the user's Trading account. For more details on the Trading Account, please refer to [XIP-7: Infinex Accounts](https://proposals.infinex.xyz/xips/xip-7).
 
 This diagram details the cross-chain flow for a deposit:
 
@@ -68,7 +68,7 @@ This diagram details the cross-chain flow for a deposit:
 
 A user initiates a withdrawal to a specified Ethereum address. On Base, this results in a call from their Base Trading Account to the CCTP bridge. Just like the deposit flow, the CCTP bridge burns the tokens in exchange for a message that can be attested by Circle and processed on Ethereum, resulting in the minting of USDC, this time into an address specified by the user.
 
-The amount that gets withdrawn will be the specified amount minus withdrawal fees. For more details on withdrawal fees, please see [XIP-7: Infinex Accounts.](https://proposals.infinex.io/xips/xip-7)
+The amount that gets withdrawn will be the specified amount minus withdrawal fees. For more details on withdrawal fees, please see [XIP-7: Infinex Accounts](https://proposals.infinex.xyz/xips/xip-7).
 
 This diagram details the cross-chain flow for a withdrawal:
 

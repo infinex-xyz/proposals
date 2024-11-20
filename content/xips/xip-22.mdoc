@@ -10,7 +10,7 @@ updated: '2024-05-14'
 ---
 # Proposal Summary
 
-XIP-22 is an update to [XIP-18: Speedrun the Waitlist](https://proposals.infinex.io/xips/xip-18).
+XIP-22 is an update to [XIP-18: Speedrun the Waitlist](https://proposals.infinex.xyz/xips/xip-18).
 
 # Specification
 
@@ -35,7 +35,7 @@ Infinex proposes some changes to the implementation of withdrawals and the Gover
 A new account implementation will be deployed to include withdrawal functionality, and will be set as the latest account implementation version by the council.
 Users will have to update to this version of the Infinex Smart Contract Account to be able to withdraw funds.
 
-Should the user opt out of upgrading their account, they will still be able to recover their funds to their specified Funds Recovery Address. Withdrawals will largely operate as specified in [XIP-6](https://proposals.infinex.io/xips/xip-6), with the exception that only sudo keys (the key directly linked to the user's passkey) will be able to enact withdrawals. This change was made to improve the security of user funds.
+Should the user opt out of upgrading their account, they will still be able to recover their funds to their specified Funds Recovery Address. Withdrawals will largely operate as specified in [XIP-6](https://proposals.infinex.xyz/xips/xip-6), with the exception that only sudo keys (the key directly linked to the user's passkey) will be able to enact withdrawals. This change was made to improve the security of user funds.
 
 Additional security may be added, including requiring a second factor that may include a signature by an EOA that the user controls.
 
