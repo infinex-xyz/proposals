@@ -5,7 +5,7 @@ import { reader } from '@/lib/reader';
 import keystatic from '@/../keystatic.config';
 import { number } from '@/lib/util';
 
-const statuses = keystatic.collections.trfs.schema.status.options;
+const statuses = keystatic.collections.tas.schema.status.options;
 
 export default async function TRFSs() {
   const entries = await reader.collections.trfs.all();
