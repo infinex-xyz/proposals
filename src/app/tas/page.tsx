@@ -18,7 +18,7 @@ export default async function TASs() {
   return (
     <PageContainer>
       <Header currentPage="TAs" className="mb-16" />
-      <PageTitle>Treasury Requests for Feedback</PageTitle>
+      <PageTitle>Treasury Annoucements</PageTitle>
       <PageIntro>
 A Treasury Annoucement (TA) is a document written by the Treasury Seat, which outlines a proposed initiative from the Infinex Treasury. TAs do not require to be voted on by the council.
       </PageIntro>
