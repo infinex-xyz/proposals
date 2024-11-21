@@ -7,8 +7,8 @@ import { number } from '@/lib/util';
 
 const statuses = keystatic.collections.tas.schema.status.options;
 
-export default async function TRFSs() {
-  const entries = await reader.collections.trfs.all();
+export default async function TASs() {
+  const entries = await reader.collections.tas.all();
   entries.sort((a, b) => (a.entry.id || 0) - (b.entry.id || 0));
   const byStatus = statuses.map((status) => {
     const matches = entries.filter((i) => i?.entry.status === status.value);
@@ -17,10 +17,10 @@ export default async function TRFSs() {
 
   return (
     <PageContainer>
-      <Header currentPage="TRFs" className="mb-16" />
+      <Header currentPage="TAs" className="mb-16" />
       <PageTitle>Treasury Requests for Feedback</PageTitle>
       <PageIntro>
-A TRF is a document written by the Treasury Seat, which outlines a proposed initiative from the Infinex Treasury.
+A Treasury Annoucement (TA) is a document written by the Treasury Seat, which outlines a proposed initiative from the Infinex Treasury. TAs do not require to be voted on by the council.
       </PageIntro>
 
       {byStatus.map((i) => {
@@ -34,8 +34,8 @@ A TRF is a document written by the Treasury Seat, which outlines a proposed init
                 <Entry
                   key={e.slug}
                   data={e}
-                  path="/trfs/"
-                  id={`TRF-${number(e.entry.id!)}`}
+                  path="/tas/"
+                  id={`TA-${number(e.entry.id!)}`}
                 />
               ))}
             </ul>
