@@ -255,10 +255,10 @@ export default config({
         }),
       },
     }),
-    trfs: collection({
-      label: 'TRFs',
+    tas: collection({
+      label: 'TAs',
       slugField: 'filename',
-      path: 'content/trfs/*',
+      path: 'content/tas/*',
       format: { contentField: 'content' },
       entryLayout: 'content',
       schema: {
@@ -267,7 +267,7 @@ export default config({
           validation: { length: { min: 1 } },
         }),
         id: fields.integer({
-          label: 'TRF Number',
+          label: 'TA Number',
           description: 'The ID of this proposal',
         }),
         title: fields.text({
@@ -283,9 +283,7 @@ export default config({
           label: 'Status',
           defaultValue: 'Draft',
           options: [
-            { label: 'Draft', value: 'Draft' },
-            { label: 'Feedback Open', value: 'Feedback Open' },
-            { label: 'Closed', value: 'Closed' },
+            { label: 'Pending', value: 'Draft' },
             { label: 'Implemented', value: 'Implemented' },
           ],
         }),
@@ -295,8 +293,8 @@ export default config({
           label: 'Content',
           options: {
             image: {
-              directory: 'public/assets/wgcs',
-              publicPath: '/assets/wgcs/',
+              directory: 'public/assets/tas',
+              publicPath: '/assets/tas/',
             },
           },
         }),
