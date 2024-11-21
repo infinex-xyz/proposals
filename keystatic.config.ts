@@ -283,7 +283,7 @@ export default config({
           label: 'Status',
           defaultValue: 'Draft',
           options: [
-            { label: 'Pending', value: 'Draft' },
+            { label: 'Draft', value: 'Draft' },
             { label: 'Implemented', value: 'Implemented' },
           ],
         }),
