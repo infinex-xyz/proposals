@@ -1,0 +1,36 @@
+---
+title: Patron Vesting Updates
+id: 92
+author: kmao (@kmaox), axe (@axefinaxe)
+type: core-upgrade
+network: Ethereum
+status: Draft
+created: '2024-12-02'
+---
+# **Proposal Summary**
+
+This XIP proposes various updates to the Patron NFT Vesting Contract.
+
+# **Specification**
+
+## **Overview**
+
+Infinex proposes the following additions to the Patron NFT Vesting contract:
+
+- The ability to allow the Treasury Seat to call a function that will claim on behalf of their strategic accounts, to their nominated address. This will only be for strategic purchaseres.
+- Enable CWG tier owners to allocate patrons to relevant CWG members, from the existing CWG supply, under the existing CWG lockup terms.
+
+## **Rationale**
+
+Some of Infinex's strategic partners have vesting patrons assigned to a CEX account, and are thus unable to claim their Patrons once vested. The additional functionality of allowing the Treasury Seat to claim on behalf of these users will allow these partners will receive their Patrons whilst not impacting the security of other users. Furthermore, Infinex needs to distribute additional CWG Patrons to members, which have been previously assigned to a null address. This function change will allow this to be done, whilst not affecting the previously approved unlock terms and allocation amount.
+
+## **Technical Specification**
+
+This XIP will include the following updates to the Patron Vesting Contract:
+
+- `allocateCWGTokens`: Enable tier owners to reallocate unclaimed CWG tokens from dead addresses to new recipients while maintaining vesting schedules.
+- `claimForStrategicTierType`: Allow tier owners to execute token claims on behalf of recipients in strategic tiers.
+
+# **Copyright**
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
