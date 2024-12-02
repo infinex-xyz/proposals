@@ -1,0 +1,63 @@
+---
+title: Infinex v2.0
+id: 93
+author: yamen (@yaminfinex), kmao (@kmaox)
+type: integration-upgrade
+network: Base, Optimism, Ethereum, Solana, Arbitrum, Polygon
+status: Draft
+created: '2024-12-02'
+---
+# Proposal Summary
+
+This XIP proposes the Infinex v2.0 Update.
+
+# Specification
+
+## Overview
+
+This XIP proposes the Infinex 2.0 update, which includes:
+
+- The addition of a second wallet on each Infinex account for simpler onboarding and integration:
+
+  - The new wallets will be controlled by Turnkey EOAs, and will be:
+
+    - An ERC-4337 standards based account on EVM.
+    - A regular EOA based wallet on Solana.
+
+  - The new wallets have their entire policy (what can be executed with them) entirely on platform, vs the vault accounts which have some of their policies on chain.
+
+- The ability to deposit, withdraw, swap and bridge will be enabled on this new wallet.
+
+  - Bridging and swapping will be via a combination of Lifi, Mayan and Jupiter.
+
+- The ability to recover funds in these accounts will be configured but enabled at a later date.
+
+- Original Infinex smart contract account now the Vault, which is enabled by users on a chain by chain basis.
+
+  - Vault accounts will have their existing bridge and swap functionality removed for the time being.
+
+## Rationale
+
+The Infinex platform was designed to be the safest place to hold crypto, Infinex is non-custodial and has robust recovery methods that are only accessible onchain. This approach is why the platform is trusted to store over $300m of cryptoassets. The initial design allowed for all functionality to be implemented onchain, however, after significant R&D several other integration pathways have been identified.
+
+These new approaches to integrations allow for must faster iteration than the onchain integrations. While ultimately both approaches will live in parallel, platform-based integrations will allow for much more functionality in the short term. One of the primary advantages of Infinex is the hybrid nature of the application. Infinex is not just a thin client, it is a stateful application and leveraging this design is a huge advantage when bringing new features to market. This will also allow for new features to be tested and if they prove desirable to then integrate them onchain as well as in the platform to allow for multiple different security postures depending on the preferences of each account holders.
+
+## Technical Specification
+
+The new wallet in each Infinex account will:
+
+- Be controlled via an EOA in the same Turnkey suborganisation as the users other wallets.
+- Be implemented using [Zerodev](https://zerodev.app/) account abstraction wallets on the EVM.
+- Be a directly addressable EOA on Solana.
+- Have no onchain recovery model (all recovery is offchain).
+- Have no onchain policies (all policies will be offchain).
+
+Recovery of these wallets will be possible for users that add verified email addresses to their Infinex account. Recovery will use Turnkey’s email authentication mechanism, and will be triggered by Infinex’s customer service team. The exact requirements for recovery will be provided at a later stage.
+
+Transactions for execution by this wallet are controlled by the Infinex platform, allowing more complex and adaptable security, risk and integration logic.
+
+The user is still required to approve these transactions by signing with the Passkey that controls their Infinex account. Infinex cannot execute these transactions without the users approval.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
