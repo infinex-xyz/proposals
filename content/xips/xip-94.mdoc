@@ -1,0 +1,56 @@
+---
+title: Gas Offset Accounts
+id: 94
+author: kmao (@kmaox), Egor (@egorsidelska)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Solana, Arbitrum, Polygon
+status: Draft
+created: '2024-12-10'
+---
+# Proposal Summary
+
+This XIP proposes the introduction of a Gas Offset Account. An activity fee of 1% will be applied, with discounts to Patron owners who hold Patrons in their Infinex Accounts.
+
+The Offset Account will collect fees in aggregate across all bridge and swap providers and be periodically moved into Infinex relayers to pay for gas.
+
+# Specification
+
+## Overview
+
+Based off XIP-93: Infinex v2.0, Infinex has now integrated the ability to swap and bridge via a combination of [Li.fi](http://Li.fi), Mayan and Jupiter on a user’s second wallet. Whilst Infinex **will continue to subsidize a user’s gas fees for the future**, we will implement a Gas Offset account owned by the council that will charge fees from user’s swapping and bridging actions.
+
+The fees from swapping and bridging will be used to offset the gas fees spent by users, for transparency, all fee accrual and usage remains onchain. The fees charged will be 1% on all swapping and bridge transactions. The Infinex fee includes fees charged by the directly integrating protocols (Lifi, Mayan, Jupiter), but excludes any fees charged by any underlying bridges or DEXes (such as swap fees in AMMs).
+
+3rd party fees are taken out of the 1% Infinex proposes to charge, should a service provider charge 0.10%, the Infinex Gas Offset Account will receive the remainder of 0.90% in this example.
+
+**Patron holders will receive a discount to the 1% fee charge:**
+
+- 1 Patrons: 40% discount to the 1% fee, making the effective fee of 0.60%.
+- 5 Patrons: 60% discount to the 1% fee, making the effective fee of 0.40%.
+- 10 Patrons: 80% discount to the 1% fee, making the effective fee of 0.20%.
+
+Locked patrons will count towards the discount percentages within the same Infinex account. Discounts are non-transferrable and will only apply to the same account as where Patron NFTs are present.
+
+*User bridging and swapping example:*
+
+*A user with no Patrons performs a $1,000 bridge from ETH Mainnet to Solana.*
+
+- *The user would first receive $990of Solana (before factoring in any underlying bridge or DEX fees), while Infinex charges a $10 fee (which is taken in ETH).*
+
+  - *If user had 1 Patron, they would receive $*994 (*before factoring in any underlying bridge or DEX fees*)*of Solana with an Offset Fee of $6.*
+  - *If user had 5 Patrons, they would receive $995 (before factoring in any underlying bridge or DEX fees*)*of Solana with an Offset Fee of $4.*
+  - *If user had 10 Patrons, they would receive $998 (before factoring in any underlying bridge or DEX fees*)*of Solana with an Offset Fee of $2.*
+
+## Rationale
+
+Infinex will continue to subsidise bridging and swapping irrespective of the balance of The Gas Offset account. This proposal gives Infinex the ability to recover some or all of the gas costs. The Infinex platform expects a significant amount of volume, as such there could be pressure on Treasury to continue funding swapping and bridging actions taken by users. In order to create sustainable equilibrium for hundreds of thousands of users and facilitating billions of dollars of swaps, the Treasury needs a way to offset some of the user activity.
+
+## Technical Specification
+
+Infinex will use a combination of EOAs operated by the platform as well as Safes/Squads controlled by the council to store and send out fees. On each swapping and bridge transaction, Infinex will pre-charge the user a fee and if the transaction fails, Infinex will refund the user the fee charged. All swapping and bridging fees will be charged based off the input token and stored in a Platform EOA.
+
+Since there may be fees charged in alternative assets to ETH/SOL/USDC/USDT, the platform EOA will also periodically swap those assets to ETH/SOL/USDC/USDT. Then once the EOAs accrue a significant balance, the balance will be sent to a multisig operated by the council.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
