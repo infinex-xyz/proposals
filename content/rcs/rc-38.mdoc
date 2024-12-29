@@ -1,0 +1,57 @@
+---
+title: Fee Update for Swaps
+id: 38
+wg: CWG
+author: kmao (@kmaox)
+status: Draft
+created: '2024-12-30'
+---
+# **Outcome**
+
+Update the fees taken on swaps.
+
+# **Overview**
+
+This RC proposes a new fee structure to be implemented for Swaps.
+
+- "Swap" here means from and to are on the same chain.
+- "Stable" here means the same underlying asset is the price driver (ie a nominal 1:1 and non volatile swap ratio), eg USDC and USDT are both `usd`, ETH, WETH and STETH are all `eth` etc.
+- "Swidge" refers to the swapping and bridging of an asset, i.e ETH → SOL.
+- Fees are all in bps
+
+{% table %}
+---
+- 
+- 0 Patrons
+- 1 Patron
+- 5 Patrons
+- 10 Patrons
+---
+- Stable Swap
+- 10
+- 6
+- 4
+- 2
+---
+- Stable Swidge
+- 12
+- 8
+- 6
+- 4
+---
+- Swap
+- 80
+- 48
+- 32
+- 16
+---
+- Swidge (no change in fees)
+- 100
+- 60
+- 40
+- 20
+{% /table %}
+
+# **Copyright**
+
+Copyright and related rights waived via [**CC0**](https://creativecommons.org/publicdomain/zero/1.0/).
