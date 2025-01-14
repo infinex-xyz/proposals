@@ -1,0 +1,40 @@
+---
+title: Support All Tokens
+id: 96
+author: kmao (@kmaox)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Solana, Arbitrum, Polygon
+status: Draft
+created: '2025-01-14'
+---
+# **Proposal Summary**
+
+This XIP proposes support for all tokens on Solana and EVM chains.
+
+# **Specification**
+
+## **Overview**
+
+The Infinex platform should be upgraded to support ALL assets on the chains where Infinex is supported on. Supporting an asset involves the following things:
+
+- Reflecting the asset in the user's balance and wallet.
+- Reflecting the price of the asset to the user.
+- Accepting withdrawals and deposits of the asset.
+- Allowing the asset to be Swidged (Swapped and/or bridged).
+
+## **Rationale**
+
+Infinex has currently expanded to support the top 2000 tokens by market cap, assuming the token is on a supported network. However, users often want to trade trending coins, which may not have been added to Infinex yet, which is what this proposal helps support.
+
+## **Technical Specification**
+
+For a token to be supported on Infinex, the token needs to have the following:
+
+- The token needs to be on a supported chain.
+- The token needs at least $10,000 of liquidity.
+
+Further details on what liquidity avenues are supported will be published in a future RC.
+
+# **Copyright**
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
