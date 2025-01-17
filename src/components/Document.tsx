@@ -8,6 +8,9 @@ const markdocConfig: Config = {
   },
 };
 
+const headingStyles =
+  'prose-h1:title-xl-medium prose-h2:title-base-medium prose-h3:title-sm-medium prose-h4:title-xs-medium prose-h5:title-2xs-medium prose-h6:title-3xs-medium';
+
 export function Renderer({ node }: { node: Node }) {
   const errors = Markdoc.validate(node, markdocConfig);
   if (errors.length) {
@@ -15,7 +18,9 @@ export function Renderer({ node }: { node: Node }) {
   }
   const transformed = Markdoc.transform(node, markdocConfig);
   return (
-    <div className="prose prose-slate prose-invert max-w-3xl pb-10 hover:prose-a:text-blue-300 prose-td:border-y-slate-900">
+    <div
+      className={`prose prose-slate prose-invert max-w-3xl pb-10 ${headingStyles}`}
+    >
       {Markdoc.renderers.react(transformed, React, {
         components: { Fragment },
       })}
@@ -63,14 +68,11 @@ export function Properties({ fields, data }: { fields: string[]; data: any }) {
           const value = data[key];
           if (!value || hiddenFields.includes(key)) return null;
           return (
-            <tr
-              key={key}
-              className="border-t border-t-slate-800 text-sm first:border-t-0"
-            >
-              <td className="py-2 capitalize text-slate-400">
+            <tr key={key} className="border-t text-sm first:border-t-0">
+              <td className="text-secondary py-2 capitalize">
                 {getFieldLabel(key)}
               </td>
-              <td className="py-2 text-slate-200">
+              <td className="py-2">
                 {key === 'author' ? <Authors authors={value} /> : value}
               </td>
             </tr>
