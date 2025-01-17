@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <PageContainer>
       <Header currentPage="WGCs" />
-      <div className="my-8 flex border-t border-slate-800">
+      <div className="my-8">
         <Back href="/wgcs">Back to all WGCs</Back>
       </div>
       <ID status={entry.status}>WGC-{number(entry.id!)}</ID>

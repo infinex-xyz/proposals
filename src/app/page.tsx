@@ -9,7 +9,7 @@ const statuses = keystatic.collections.xips.schema.status.options;
 
 export default async function Home() {
   const entries = await reader.collections.xips.all();
-  entries.sort((a, b) => (a.entry.id || 0) - (b.entry.id || 0));
+  entries.sort((a, b) => (b.entry.id || 0) - (a.entry.id || 0));
   const byStatus = statuses.map((status) => {
     const matches = entries.filter((i) => i?.entry.status === status.value);
     return matches.length ? { status, entries: matches } : null;
@@ -31,7 +31,7 @@ export default async function Home() {
         return (
           <div key={status.value} className="my-5">
             <Status status={status} count={entries.length} />
-            <ul>
+            <div className="bg-shark2 divide-onLight mt-4 flex flex-col divide-y rounded-lg border">
               {entries.map((e) => (
                 <Entry
                   key={e.slug}
@@ -40,7 +40,7 @@ export default async function Home() {
                   id={`XIP-${number(e.entry.id!)}`}
                 />
               ))}
-            </ul>
+            </div>
           </div>
         );
       })}

@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <PageContainer>
       <Header currentPage="XIPs" />
-      <div className="my-8 flex border-t border-slate-800">
+      <div className="my-8">
         <Back href="/">Back to all XIPs</Back>
       </div>
       <ID status={xip.status}>XIP-{number(xip.id!)}</ID>

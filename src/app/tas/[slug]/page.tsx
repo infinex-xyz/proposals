@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <PageContainer>
       <Header currentPage="TAs" />
-      <div className="my-8 flex border-t border-slate-800">
+      <div className="my-8">
         <Back href="/tas">Back to all TAs</Back>
       </div>
       <ID status={ta.status}>ta-{number(ta.id!)}</ID>

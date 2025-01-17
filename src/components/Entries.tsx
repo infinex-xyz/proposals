@@ -10,9 +10,7 @@ export function Status({
   const colors = getStatusColors(status.value);
   return (
     <h2 className="flex items-center gap-2">
-      <div className="text-base font-semibold text-slate-200">
-        {status.label}
-      </div>
+      <div className="title-sm-medium">{status.label}</div>
       <div className={`text-sm font-semibold ${colors.text}`}>({count})</div>
     </h2>
   );
@@ -44,23 +42,20 @@ export function Entry({
 }) {
   const colors = getStatusColors(data.entry.status);
   return (
-    <li className="my-2">
-      <a
-        href={`${path}${data.slug}`}
-        className="group -mx-1 my-2 block rounded-lg p-1 hover:bg-slate-900"
-      >
+    <a href={`${path}${data.slug}`} className="p-3">
+      <div className="group -mx-1 flex flex-col items-start gap-y-1 rounded-lg p-1 hover:bg-slate-900">
         <span
-          className={`mr-2 inline-block w-14 rounded border bg-slate-900 py-1 text-center text-sm font-bold ${colors.border} ${colors.text}`}
+          className={`title-sm-medium mr-2 inline-block rounded text-center ${colors.border} ${colors.text}`}
         >
           {id}
-        </span>{' '}
-        <strong className="mr-1 font-semibold">{data.entry.title}</strong>{' '}
+        </span>
+        <strong className="title-lg-medium mr-1">{data.entry.title}</strong>{' '}
         {data.entry.author ? (
-          <span className="text-sm text-slate-500">
+          <span className="text-secondary body-sm-normal text-sm">
             by <Authors authors={data.entry.author} />
           </span>
         ) : null}
-      </a>
-    </li>
+      </div>
+    </a>
   );
 }
