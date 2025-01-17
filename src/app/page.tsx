@@ -9,7 +9,7 @@ const statuses = keystatic.collections.xips.schema.status.options;
 
 export default async function Home() {
   const entries = await reader.collections.xips.all();
-  entries.sort((a, b) => (a.entry.id || 0) - (b.entry.id || 0));
+  entries.sort((a, b) => (b.entry.id || 0) - (a.entry.id || 0));
   const byStatus = statuses.map((status) => {
     const matches = entries.filter((i) => i?.entry.status === status.value);
     return matches.length ? { status, entries: matches } : null;
