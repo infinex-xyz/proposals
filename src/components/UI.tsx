@@ -6,7 +6,7 @@ export function PageContainer({ children }: { children: React.ReactNode }) {
   return (
     <main className="flex min-h-screen flex-col items-center p-12">
       <div className="flex w-full max-w-4xl flex-col">{children}</div>
-      <div className="mt-8 flex w-full max-w-4xl justify-around border-t border-t-slate-800 py-8">
+      <div className="mt-8 flex w-full max-w-4xl justify-around border-t py-8">
         <a
           className="flex items-center gap-2 text-sm text-slate-500 hover:text-slate-50"
           href="https://github.com/infinex-io/proposals"
@@ -21,16 +21,12 @@ export function PageContainer({ children }: { children: React.ReactNode }) {
 }
 
 export function PageTitle({ children }: { children: React.ReactNode }) {
-  return (
-    <h1 className="mb-8 text-5xl font-semibold text-slate-50">{children}</h1>
-  );
+  return <h1 className="title-4xl-medium mb-4">{children}</h1>;
 }
 
 export function PageIntro({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-8 max-w-xl text-base font-medium text-slate-300">
-      {children}
-    </p>
+    <p className="body-base-normal text-slate11 mb-8 max-w-xl">{children}</p>
   );
 }
 

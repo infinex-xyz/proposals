@@ -22,32 +22,32 @@ type StatusColors = {
 
 export const statusColors: StatusColors = {
   DEFAULT: {
-    border: 'border-slate-700',
-    text: 'text-slate-400',
+    border: 'border-DEFAULT',
+    text: 'text-slate11',
   },
   Approved: {
-    border: 'border-emerald-700',
-    text: 'text-emerald-400',
+    border: 'border-positive',
+    text: 'text-positive',
   },
   Rejected: {
-    border: 'border-red-700',
-    text: 'text-red-400',
+    border: 'border-ruby3',
+    text: 'text-critical',
   },
   Reverted: {
-    border: 'border-red-700',
-    text: 'text-red-400',
+    border: 'border-ruby3',
+    text: 'text-critical',
   },
   Dissolved: {
-    border: 'border-red-700',
-    text: 'text-red-400',
+    border: 'border-ruby3',
+    text: 'text-critical',
   },
   Superseded: {
-    border: 'border-amber-700',
-    text: 'text-amber-400',
-  },  
+    border: 'border-caution',
+    text: 'text-caution',
+  },
   Implemented: {
-    border: 'border-cyan-700',
-    text: 'text-cyan-400',
+    border: 'border-blue6',
+    text: 'text-blue11',
   },
 };
 

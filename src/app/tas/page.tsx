@@ -20,7 +20,9 @@ export default async function TASs() {
       <Header currentPage="TAs" className="mb-16" />
       <PageTitle>Treasury Annoucements</PageTitle>
       <PageIntro>
-A Treasury Annoucement (TA) is a document written by the Treasury Seat, which outlines a proposed initiative from the Infinex Treasury. TAs do not require to be voted on by the council.
+        A Treasury Annoucement (TA) is a document written by the Treasury Seat,
+        which outlines a proposed initiative from the Infinex Treasury. TAs do
+        not require to be voted on by the council.
       </PageIntro>
 
       {byStatus.map((i) => {
@@ -29,7 +31,7 @@ A Treasury Annoucement (TA) is a document written by the Treasury Seat, which ou
         return (
           <div key={status.value} className="my-5">
             <Status status={status} count={entries.length} />
-            <ul>
+            <div className="bg-shark2 divide-onLight mt-4 flex flex-col divide-y rounded-lg border">
               {entries.map((e) => (
                 <Entry
                   key={e.slug}
@@ -38,7 +40,7 @@ A Treasury Annoucement (TA) is a document written by the Treasury Seat, which ou
                   id={`TA-${number(e.entry.id!)}`}
                 />
               ))}
-            </ul>
+            </div>
           </div>
         );
       })}

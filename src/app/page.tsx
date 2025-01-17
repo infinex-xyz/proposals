@@ -31,7 +31,7 @@ export default async function Home() {
         return (
           <div key={status.value} className="my-5">
             <Status status={status} count={entries.length} />
-            <ul>
+            <div className="bg-shark2 divide-onLight mt-4 flex flex-col divide-y rounded-lg border">
               {entries.map((e) => (
                 <Entry
                   key={e.slug}
@@ -40,7 +40,7 @@ export default async function Home() {
                   id={`XIP-${number(e.entry.id!)}`}
                 />
               ))}
-            </ul>
+            </div>
           </div>
         );
       })}

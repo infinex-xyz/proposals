@@ -1,16 +1,11 @@
 import type { Config } from 'tailwindcss';
-
-const infinexSlate = {
-  0: 'rgba(230, 234, 247)',
-  100: 'rgba(159, 168, 198)',
-  200: 'rgba(45, 55, 83)',
-  300: 'rgba(29, 35, 52)',
-  400: 'rgba(22, 25, 39)',
-  450: 'rgba(18, 21, 33)',
-  500: 'rgba(14, 16, 27)',
-  600: 'rgba(12, 14, 24)',
-  700: 'rgba(4, 5, 11)',
-};
+import tokens from './styles/tokens';
+import defaultTheme from 'tailwindcss/defaultTheme';
+import {
+  addTypographyClassesPlugin,
+  extendedFontSizes,
+  typography,
+} from './styles/typography';
 
 const config: Config = {
   content: [
@@ -20,31 +15,56 @@ const config: Config = {
     './src/lib/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    // Colors
+    borderColor: tokens.borderColor,
+    outlineColor: tokens.outlineColor,
+    textColor: tokens.textColor,
+    divideColor: tokens.dividerColor,
+    backgroundColor: tokens.backgroundColor,
+    ringColor: tokens.ringColor,
+    ringOpacity: {
+      DEFAULT: '1',
+    },
+    ringOffsetColor: tokens.ringOffsetColor,
+    fill: tokens.fill,
+    caretColor: tokens.borderColor,
+    textDecorationColor: tokens.textColor,
+    gradientColorStops: tokens.backgroundColor,
+
+    fontFamily: {
+      // Infinex brand fonts
+      DEFAULT: [typography.fontFamily.body, ...defaultTheme.fontFamily.sans],
+      sans: [typography.fontFamily.body, ...defaultTheme.fontFamily.sans],
+      mono: [typography.fontFamily.mono, ...defaultTheme.fontFamily.mono],
+      condensed: [typography.fontFamily.title, ...defaultTheme.fontFamily.sans],
+      // Campaign specific fonts
+      barlow: ['var(--font-barlow, "Barlow")', ...defaultTheme.fontFamily.sans],
+      'bai-jamjuree': [
+        'var(--font-bai-jamjuree, "Bai Jamjuree")',
+        ...defaultTheme.fontFamily.sans,
+      ],
+      kanit: ['var(--font-kanit, "Kanit")', ...defaultTheme.fontFamily.sans],
+    },
+
     extend: {
+      fontSize: {
+        // Generates `text-2xs` class (11px):
+        '2xs': [
+          extendedFontSizes['2xs'].fontSize,
+          extendedFontSizes['2xs'].lineHeight,
+        ],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      colors: {
-        infinexSlate,
-        brand: '#FE6F39',
-        'brand-darker': 'rgb(207, 116, 70)',
-        'brand-lighter': 'rgb(255, 207, 182)',
-        fill: {
-          page: infinexSlate[700],
-          block: infinexSlate[600],
-          element: infinexSlate[300],
-          'element-hovered': infinexSlate[200],
-          'element-pressed': infinexSlate[450],
-        },
-        stroke: {
-          block: infinexSlate[400],
-        },
-      },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'), // Generates custom `body-` and `title-` typography classes:
+    addTypographyClassesPlugin(),
+  ],
 };
 
 export default config;
