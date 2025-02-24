@@ -1,7 +1,7 @@
 ---
 title: Infinex Faucet
 id: 99
-author: kmao (@kmaox)
+author: kmao (@kmaox), rambo
 type: core-upgrade
 network: Base, Optimism, Ethereum, Arbitrum, Polygon, Unichain, Berachain
 status: Draft
@@ -29,15 +29,13 @@ The faucet is a necessary deployment in order to allow Infinex to further improv
 
 ### Key Components
 
-#### Constants
+EIP-712 typehash for claim request signatures.
 
 ```
-bytes32 internal constant _CLAIM_REQUEST_TYPEHASH = keccak256(
-    "ClaimRequest(address recipientAddress,uint256 claimAmount,address tokenAddress,uint256 tokenAmount,uint256 nonce,uint256 timestamp)"
+bytes32 internal constant _CLAIM_REQUEST_TYPEHASH = keccak256(
+    "ClaimRequest(address recipientAddress,uint256 claimAmount,address tokenAddress,uint256 tokenAmount,uint256 nonce,uint256 timestamp)"
 );
 ```
-
-EIP-712 typehash for claim request signatures.
 
 Struct for the request to claim ETH, passed to the claim ETH function.
 
@@ -57,7 +55,7 @@ Struct for the request to claim ETH, passed to the claim ETH function.
 #### ETH Claiming Process
 
 ```
-function claimEth(ClaimRequest calldata _request, bytes calldata _claimSignature) external
+function claimEth(ClaimRequest calldata _request, bytes calldata _claimSignature) external
 ```
 
 Core claiming functionality with the following checks:
@@ -73,12 +71,12 @@ Core claiming functionality with the following checks:
 #### Initialization
 
 ```
-function initialize(
-    address _claimSigner,
-    uint256 _maxEthPerClaim,
-    uint256 _signatureExpiryTime,
-    address _feeCollector
-) external initializer
+function initialize(
+    address _claimSigner,
+    uint256 _maxEthPerClaim,
+    uint256 _signatureExpiryTime,
+    address _feeCollector
+) external initializer
 ```
 
 Initializes the contract with required parameters:
@@ -90,10 +88,10 @@ Initializes the contract with required parameters:
 #### Signature Verification
 
 ```
-function recoverClaimSigner(
-    ClaimRequest calldata _request,
-    bytes calldata _claimRequestSignature
-) public view returns (address)
+function recoverClaimSigner(
+    ClaimRequest calldata _request,
+    bytes calldata _claimRequestSignature
+) public view returns (address)
 ```
 
 Recovers the signer of a claim request using EIP-712 typed data hashing and ECDSA recovery.
@@ -103,10 +101,10 @@ Recovers the signer of a claim request using EIP-712 typed data hashing and ECDS
 #### Claim Configuration
 
 ```
-function setClaimSigner(address _newClaimSigner) external onlyOwner
-function setMaxEthPerClaim(uint256 _newMaxEthPerClaim) external onlyOwner
-function setFeeCollector(address _newFeeCollector) external onlyOwner
-function setSignatureExpiryTime(uint256 _newExpiryTime) external onlyOwner
+function setClaimSigner(address _newClaimSigner) external onlyOwner
+function setMaxEthPerClaim(uint256 _newMaxEthPerClaim) external onlyOwner
+function setFeeCollector(address _newFeeCollector) external onlyOwner
+function setSignatureExpiryTime(uint256 _newExpiryTime) external onlyOwner
 ```
 
 Owner-only functions to configure:
@@ -119,8 +117,8 @@ Owner-only functions to configure:
 #### Asset Management
 
 ```
-function withdrawEthToOwner(uint256 _amount) external onlyOwner
-function withdrawERC20ToOwner(address _tokenAddress, uint256 _amount) external onlyOwner
+function withdrawEthToOwner(uint256 _amount) external onlyOwner
+function withdrawERC20ToOwner(address _tokenAddress, uint256 _amount) external onlyOwner
 ```
 
 Allows owner to withdraw:
@@ -131,7 +129,7 @@ Allows owner to withdraw:
 #### Contract Upgradeability
 
 ```
-function upgradeTo(address _newImplementation) external onlyOwner
+function upgradeTo(address _newImplementation) external onlyOwner
 ```
 
 Enables contract upgrades through UUPS pattern (owner-only).
@@ -139,11 +137,11 @@ Enables contract upgrades through UUPS pattern (owner-only).
 #### View Functions
 
 ```
-function getClaimSigner() external view returns (address)
-function getMaxEthPerClaim() external view returns (uint256)
-function getFeeCollector() external view returns (address)
-function isClaimedNonce(uint256 _nonce) external view returns (bool)
-function getSignatureExpiryTime() external view returns (uint256)
+function getClaimSigner() external view returns (address)
+function getMaxEthPerClaim() external view returns (uint256)
+function getFeeCollector() external view returns (address)
+function isClaimedNonce(uint256 _nonce) external view returns (bool)
+function getSignatureExpiryTime() external view returns (uint256)
 ```
 
 Provides access to current contract configuration and state.
@@ -151,57 +149,10 @@ Provides access to current contract configuration and state.
 #### ETH Reception
 
 ```
-receive() external payable
+receive() external payable
 ```
 
 Allows the contract to receive ETH deposits and emits a Deposit event.
-
-### Security Features
-
-- **Signature Verification**
-- EIP-712 compliant signatures
-- Timestamp validation
-- Nonce tracking to prevent replay attacks
-- **Access Control**
-- Owner-only administrative functions
-- Signature-based claim authorization
-- **Safety Checks**
-- Balance verification
-- Zero-address validation
-- Non-zero amount validation
-- Token allowance verification
-- **Token Handling**
-- Safe ERC20 token transfers
-- Optional token fee collection
-
-### Events
-
-The contract emits events for all significant state changes and operations:
-
-- ClaimSuccessful: When ETH is claimed
-- ClaimSignerSet: When claim signer is updated
-- MaxEthPerClaimSet: When maximum claim amount changes
-- FeeCollectorSet: When fee collector is updated
-- SignatureExpiryTimeSet: When signature expiry time changes
-- WithdrawEth: When ETH is withdrawn
-- WithdrawERC20: When tokens are withdrawn
-- Deposit: When ETH is received
-
-### Error Conditions
-
-The contract includes comprehensive error handling:
-
-- EtherTransferFailed: ETH transfer issues
-- InvalidClaimAmount: Claim amount validation
-- InvalidTokenAllowance: Token fee issues
-- InvalidTimestamp: Timestamp validation
-- InvalidNonce: Nonce validation
-- InvalidBalance: Balance checks
-- RequestExpired: Signature expiry
-- InvalidSignature: Signature validation
-- ZeroExpiry: Configuration validation
-- ZeroAmount: Amount validation
-- ZeroAddress: Address validation
 
 ## Copyright
 
