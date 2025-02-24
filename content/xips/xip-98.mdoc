@@ -1,0 +1,67 @@
+---
+title: Intergrate NEAR Intents
+id: 98
+author: kmao
+type: integration-upgrade
+network: Bitcoin, Ripple, Doge
+status: Draft
+created: '2025-02-24'
+---
+# Proposal Summary
+
+This XIP proposes integrating NEAR Intents, which will allow Infinex to support “boomer” assets such as BTC, XRP and DOGE.
+
+# Specification
+
+## Overview
+
+By intergrating NEAR Intents, Infinex users will have the ability to deposit, withdrawal, send and swidge any “boomer” assets. The initial rollout of assets will be limited to purely BTC, DOGE & XRP, however additional assets may be proposed in a future RC.
+
+Each user will have their EVM's Operations key mapped to a specific asset deposit address. When the user wants to perform actions, like swidging, or sending tokens externally, the app signs and publishes intents that instruct the protocol to move the funds accordingly. This is powered by NEAR Intents, which is a cross-chain protocol that lets you hold and move non-NEAR assets on NEAR.
+
+This XIP does not include the implementation of any Vaults for these assets.
+
+## Rationale
+
+Up until this point, DeFi has been unable to access the liquidity in other blockchains such as BTC, XRP & Doge. By enabling Infinex users to not only store, but also swap to and from BTC, it enables an entirely new vertical for TVL growth and user adoption, which makes it an incredible important feature for Infinex.
+
+## Technical Specification
+
+NEAR Intents is a cross-bridge protocol that lets you hold and move assets (like BTC, DOGE, XRP, etc.) on the NEAR network. Only withdrawals and deposits happen on the asset’s native chain. Once deposited, the NEAR Intents protocol will sweep the funds and credit your fungible token balance in a NEAR smart contract. From that point onwards, all the swapping logic happens using “wrapped” representatives of the deposited tokens inside the contract. This is so that users have access to cheap and quick swaps. It is only when they want to withdraw the funds that the funds are debited from the user’s balance and then sent to the destination address on the asset’s native chain.
+
+To enable NEAR intents wallets, Infinex will first expose deposit addresses for the supported [NEAR Intents defuse chains](https://infinex-app.atlassian.net/wiki/spaces/eng/pages/348749873/NEAR+Intents+Wallet+Terminology#NEAR-Intents-Defuse-Chain-ID). These deposit addresses are derived from the user’s [NEAR intents wallet address](https://infinex-app.atlassian.net/wiki/spaces/eng/pages/348749873/NEAR+Intents+Wallet+Terminology#NEAR-Intents-Wallet-Address) (i.e their EVM operations key address). When the user want to perform actions—like swidging, or sending tokens externally—the EVM ops key signs the intent and it is published to the Intents protocol.
+
+## **Key Points**
+
+**NEAR Intents Wallet Address Derivation**
+
+- Each user has an **EVM Operation Key Address** handled by Turnkey which is considered their NEAR Intents Wallet Address. We use this address as the `fromAddress` anytime the user sends or swaps using NEAR intents.
+
+**Wallet Address Derivation**
+
+- We use the user’s [NEAR intents wallet address](https://infinex-app.atlassian.net/wiki/spaces/eng/pages/348749873/NEAR+Intents+Wallet+Terminology#NEAR-Intents-Wallet-Address) to derive a unique deposit address for each [defuse chain ID](https://infinex-app.atlassian.net/wiki/spaces/eng/pages/348749873/NEAR+Intents+Wallet+Terminology#NEAR-Intents-Defuse-Chain-ID) that a supported asset lives on (i.e `btc:mainnet` for bitcoin, `doge:mainnet` for DOGE, `xrp:mainnet` for XRP, etc.).
+- These addresses are stored in a new `near_intents_deposit_address` table that is set upon user signup and backfilled when the deposit modal opens (for legacy users).
+- These deposit addresses are then fetched on the frontend using a custom `useNearIntentsDepositAddressesQuery`.
+
+**Showing Wallet Balances**
+
+- The NEAR Intents protocol tracks each user’s asset balances in the`intents.near` smart contract. When Infinex displays the user’s balance, a view call is made to the NEAR network to fetch the balances for a given Asset Address (i.e `nep141:btc.omft.near`).
+
+Whenever the user deposits (e.g., sending BTC to the deposit address), the bridging mechanism credits their NEAR Intents balance **only** **once the deposit is finalised and swept**. By querying their contract balance, the platform guarantees that it is showing confirmed funds that are spendable.
+
+**Showing Pending Balances**
+
+- When a user deposits funds into Intents, they aren’t immediately swept. There is an intermediate stage where the funds are waiting to be swept and are living in the user’s deposit address.
+- While the deposit is waiting to be swept, we show a pending banner explaining to the user that their deposit has been detected and is currently being processed. This is done by querying the native chain for the deposit address’ balance. If the address has **any** funds, they are considered pending.
+
+**Signing Intents and Sending Funds**
+
+- To move or withdraw funds, the user signs and publishes an “intent” describing the action (e.g. sending BTC to an external address).
+- The user’s EVM Ops Key is used to sign that intent (via Turnkey).
+- The NEAR Intents APIs picks up the signature, confirms its validity, and executes the bridging steps to move the asset.
+
+# Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
+
+&nbsp;
