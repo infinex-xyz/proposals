@@ -1,0 +1,208 @@
+---
+title: Infinex Faucet
+id: 99
+author: kmao (@kmaox)
+type: core-upgrade
+network: Base, Optimism, Ethereum, Arbitrum, Polygon, Unichain, Berachain
+status: Draft
+created: '2025-02-24'
+---
+# Proposal Summary
+
+This XIP proposes the deployment of an Infinex Faucet, which aims at unblocking the integration of additional Swidge Providers
+
+# Specification
+
+## Overview
+
+The InfinexFaucet is a smart contract that implements a secure ETH faucet system with signature-based claims, fee collection capabilities, and administrative controls.
+
+For some future swidge providers, such as Stargate, the provider requires the user's smart contract account to have gas in their account. The Infinex Faucet will be used here, so when a Swidge requires a native fee in ETH, a signature gets signed with a payload to dispense that exact amount for the Swidge fee.
+
+Optionally, a token amount can be approved to this contract, so that when an ETH claim is called, it takes a fee in the from token to cover the native fee of the protocol, which gets sent to the fee collector.
+
+## Rationale
+
+The faucet is a necessary deployment in order to allow Infinex to further improve it's swidge aggregation and ensure users have the fastest, and cheapest Swidges.
+
+## Technical Specification
+
+### Key Components
+
+#### Constants
+
+```
+bytes32 internal constant _CLAIM_REQUEST_TYPEHASH = keccak256(
+    "ClaimRequest(address recipientAddress,uint256 claimAmount,address tokenAddress,uint256 tokenAmount,uint256 nonce,uint256 timestamp)"
+);
+```
+
+EIP-712 typehash for claim request signatures.
+
+Struct for the request to claim ETH, passed to the claim ETH function.
+
+```
+    struct ClaimRequest {
+        address recipientAddress;
+        uint256 claimAmount;
+        address tokenAddress;
+        uint256 tokenAmount;
+        uint256 nonce;
+        uint256 timestamp;
+    }
+```
+
+### Core Functionality
+
+#### ETH Claiming Process
+
+```
+function claimEth(ClaimRequest calldata _request, bytes calldata _claimSignature) external
+```
+
+Core claiming functionality with the following checks:
+
+- Validates claim amount against maximum limit
+- Verifies nonce hasn't been used
+- Checks contract has sufficient ETH balance
+- Validates timestamp and signature expiry
+- Verifies signature authenticity
+- Handles optional token fee collection
+- Transfers ETH to recipient
+
+#### Initialization
+
+```
+function initialize(
+    address _claimSigner,
+    uint256 _maxEthPerClaim,
+    uint256 _signatureExpiryTime,
+    address _feeCollector
+) external initializer
+```
+
+Initializes the contract with required parameters:
+
+- Sets up EIP-712 domain separator
+- Configures claim signer, maximum claim amount, signature expiry, and fee collector
+- Can only be called once due to initializer modifier
+
+#### Signature Verification
+
+```
+function recoverClaimSigner(
+    ClaimRequest calldata _request,
+    bytes calldata _claimRequestSignature
+) public view returns (address)
+```
+
+Recovers the signer of a claim request using EIP-712 typed data hashing and ECDSA recovery.
+
+### Administrative Functions
+
+#### Claim Configuration
+
+```
+function setClaimSigner(address _newClaimSigner) external onlyOwner
+function setMaxEthPerClaim(uint256 _newMaxEthPerClaim) external onlyOwner
+function setFeeCollector(address _newFeeCollector) external onlyOwner
+function setSignatureExpiryTime(uint256 _newExpiryTime) external onlyOwner
+```
+
+Owner-only functions to configure:
+
+- Authorized claim signer
+- Maximum ETH per claim
+- Fee collector address
+- Signature expiry duration
+
+#### Asset Management
+
+```
+function withdrawEthToOwner(uint256 _amount) external onlyOwner
+function withdrawERC20ToOwner(address _tokenAddress, uint256 _amount) external onlyOwner
+```
+
+Allows owner to withdraw:
+
+- ETH from the contract
+- ERC20 tokens from the contract
+
+#### Contract Upgradeability
+
+```
+function upgradeTo(address _newImplementation) external onlyOwner
+```
+
+Enables contract upgrades through UUPS pattern (owner-only).
+
+#### View Functions
+
+```
+function getClaimSigner() external view returns (address)
+function getMaxEthPerClaim() external view returns (uint256)
+function getFeeCollector() external view returns (address)
+function isClaimedNonce(uint256 _nonce) external view returns (bool)
+function getSignatureExpiryTime() external view returns (uint256)
+```
+
+Provides access to current contract configuration and state.
+
+#### ETH Reception
+
+```
+receive() external payable
+```
+
+Allows the contract to receive ETH deposits and emits a Deposit event.
+
+### Security Features
+
+- **Signature Verification**
+- EIP-712 compliant signatures
+- Timestamp validation
+- Nonce tracking to prevent replay attacks
+- **Access Control**
+- Owner-only administrative functions
+- Signature-based claim authorization
+- **Safety Checks**
+- Balance verification
+- Zero-address validation
+- Non-zero amount validation
+- Token allowance verification
+- **Token Handling**
+- Safe ERC20 token transfers
+- Optional token fee collection
+
+### Events
+
+The contract emits events for all significant state changes and operations:
+
+- ClaimSuccessful: When ETH is claimed
+- ClaimSignerSet: When claim signer is updated
+- MaxEthPerClaimSet: When maximum claim amount changes
+- FeeCollectorSet: When fee collector is updated
+- SignatureExpiryTimeSet: When signature expiry time changes
+- WithdrawEth: When ETH is withdrawn
+- WithdrawERC20: When tokens are withdrawn
+- Deposit: When ETH is received
+
+### Error Conditions
+
+The contract includes comprehensive error handling:
+
+- EtherTransferFailed: ETH transfer issues
+- InvalidClaimAmount: Claim amount validation
+- InvalidTokenAllowance: Token fee issues
+- InvalidTimestamp: Timestamp validation
+- InvalidNonce: Nonce validation
+- InvalidBalance: Balance checks
+- RequestExpired: Signature expiry
+- InvalidSignature: Signature validation
+- ZeroExpiry: Configuration validation
+- ZeroAmount: Amount validation
+- ZeroAddress: Address validation
+
+## Copyright
+
+Copyright and related rights waived via [CC0](https://creativecommons.org/publicdomain/zero/1.0/).
