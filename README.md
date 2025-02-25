@@ -6,7 +6,7 @@ The new home for Infinex XIPs and IRs. View at [proposals.infinex.xyz](https://p
 
 ### Contributing
 
-Before contributors begin writing their proposals, clearly identify what type of proposal you intend to make: [XIP](https://proposals.infinex.xyz/xips/xip-1), [IR](https://proposals.infinex.xyz/irs/ir-1-purpose-and-guidelines) or [WGC](https://proposals.infinex.xyz/wgcs/wgc-1). Contributors should follow their respective proposal templates, which are the first proposal of each category that specifically highlight their use-case and function. 
+Before contributors begin writing their proposals, clearly identify what type of proposal you intend to make: [XIP](https://proposals.infinex.xyz/xips/xip-1), [IR](https://proposals.infinex.xyz/irs/ir-1) or [WGC](https://proposals.infinex.xyz/wgcs/wgc-1). Contributors should follow their respective proposal templates, which are the first proposal of each category that specifically highlight their use-case and function. 
 
 Contributors should then look to make a fork of this repository where they will write their proposal. Your first PR should be a final draft of the final proposal. It must then meet the correct formatting criteria enforced by the build (largely, correct metadata in the header).
 
