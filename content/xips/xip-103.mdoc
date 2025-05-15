@@ -1,0 +1,51 @@
+# XIP-103: Transition Factory Ownership from Gnosis Safe to Trezor
+
+**author**: yingli 
+**type**: ownership-transfer
+**network**: Blast 
+**status**: In Review  
+**created**: 2024-05-15  
+
+---
+
+## Proposal Summary
+
+XIP-103 proposes changing the ownership of the Factory contract currently secured by a Gnosis Safe multisig on the Blast network. Due to the deprecation of Gnosis Safe on Blast, ownership will be transferred to a single Trezor hardware wallet. Additionally, this proposal outlines the intention to migrate the **Bullrun** contract/system to another chain, to be specified in a future proposal.
+
+---
+
+## Specification
+
+### Overview
+
+- Transfer ownership of the Factory contract to a single Trezor wallet.  
+- Decommission the use of Gnosis Safe multisig on the Blast network.  
+
+---
+
+## Rationale
+
+### Security & Operational Stability
+
+With Gnosis Safe deprecated on the Blast network, retaining critical contract ownership in a multisig becomes a risk. To ensure continued access and administrative control, migrating ownership to a single hardware-secured wallet (Trezor) is a necessary interim measure.
+
+---
+
+## Technical Specification
+
+- Execute `transferOwnership()` (or equivalent) from the Gnosis Safe multisig to the designated Trezor address.  
+- Update internal documentation and access control registry to reflect the new owner.  
+- Freeze multisig operations on Blast post-transfer for audit and finality.  
+- Start evaluation and scoping for Bullrun's migration.
+
+---
+
+## Product Considerations
+
+This move ensures uninterrupted operational control while Gnosis Safe sunsets support. Although this reduces multisig-based decentralization temporarily, it preserves asset safety and administrative access.  
+
+---
+
+**Copyright**
+
+Copyright and related rights waived via [**CC0**](https://creativecommons.org/publicdomain/zero/1.0/).
