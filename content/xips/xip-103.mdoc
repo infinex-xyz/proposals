@@ -1,0 +1,57 @@
+# XIP-103: Transition Contract Ownership from Gnosis Safe to Trezor
+
+**Author**: yingli  
+**Type**: Ownership Transfer  
+**Network**: Blast  
+**Status**: In Review  
+**Created**: 2024-05-15  
+
+---
+
+## Proposal Summary
+
+XIP-103 proposes transferring ownership of all critical on-chain contracts on the Blast network—including the **AccountFactory**, **InfinexProtocolConfigBeacon**, **InfinexFaucet**, and any **auxiliary contracts**—from the current Gnosis Safe multisig to a single Trezor hardware wallet. This change is necessitated by the deprecation of Gnosis Safe support on the Blast network.
+
+---
+
+## Specification
+
+### Scope of Ownership Transfer
+
+- Migrate ownership of the following contracts to a designated Trezor hardware wallet address:
+  - `AccountFactory`
+  - `InfinexProtocolConfigBeacon`
+  - `InfinexFaucet`
+  - Any auxiliary or dependency contracts currently owned by the Gnosis Safe multisig.
+- Decommission the use of Gnosis Safe multisig on Blast.
+
+---
+
+## Rationale
+
+### Security & Operational Continuity
+
+With Gnosis Safe no longer supporting the Blast network, maintaining ownership via the multisig becomes a security and availability risk. Migrating ownership to a hardware wallet ensures that Infinex can retain control and administrative authority without disruption.
+
+Though this reduces the decentralization afforded by a multisig setup, it is a pragmatic interim step until a more robust and supported custody arrangement is re-established.
+
+---
+
+## Technical Implementation
+
+- For each contract, invoke `transferOwnership(newOwner)` or its contract-specific equivalent, transferring authority from the current Gnosis Safe multisig to the Trezor wallet.
+- Update internal ownership registries and documentation systems to reflect the new administrator.
+- Freeze or formally deprecate the Gnosis Safe multisig post-transfer to ensure auditability and reduce operational ambiguity.
+- Begin scoping and chain analysis for the migration of the **Bullrun** system in a separate proposal.
+
+---
+
+## Product and Governance Considerations
+
+This proposal maintains Infinex’s ability to manage its Blast-based infrastructure securely, while ensuring the path forward includes eventual re-decentralization and platform migration where necessary. Stakeholders will be informed of the Bullrun migration plan as a follow-up initiative.
+
+---
+
+## Copyright
+
+This proposal and all associated intellectual property are released under [**CC0**](https://creativecommons.org/publicdomain/zero/1.0/).
