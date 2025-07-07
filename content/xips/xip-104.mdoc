@@ -1,0 +1,135 @@
+---
+title: LOOTRUN - Putting Pieces Together for User Adoption
+id: 104
+author: LC
+type: integration-upgrade
+network: Ethereum, Solana, Base, Optimism, Arbitrum, Polygon, BNB Smart Chain
+status: Draft
+created: '2025-07-07'
+updated: '2025-07-07'
+---
+
+#Proposal Summary
+
+LOOTRUN is a gamified token acquisition mechanism that combines proven elements from Infinex's existing products: Craterun's randomization, Bullrun's visual presentation, and Swidge's cross-chain capabilities. Users purchase fixed-price "loot boxes" ($20, $50, $100, $500, $1000) containing randomized bundles of tokens distributed across multiple chains through a single purchase point.
+The system uses curated token selection across three market cap tiers (Small: $10M-$100M, Mid: $100M-$1B, Large: $1B+) with risk-adjusted exposure ratios. Smaller boxes favor high-risk small caps, while larger boxes provide diversified exposure to established assets. Sophisticated randomization determines token selection, quantities, and value distribution patterns.
+A 3% fee structure funds operations (1%) and a community "Free Parking" reward pool (2%) that redistributes value through lottery mechanics. Users pay with USDC on any supported chain and receive tokens across multiple blockchains via Swidge execution, with visual reveals showing performance-driven effects.
+The product serves as an onboarding gateway to Infinex's ecosystem, abstracting multi-chain complexity while showcasing technical capabilities. Success metrics include user retention, purchase frequency, Swidge success rates, and progression to direct platform usage. LOOTRUN transforms complex DeFi into an accessible, entertaining experience that drives adoption through gamification.
+
+#Specification
+
+##Overview
+LOOTRUN implements a mystery box system where users purchase randomized cryptocurrency bundles at fixed price points. The system leverages existing Infinex experience: Pyth's randomization engine for token selection and distribution, Swidge for cross-chain execution, and Bullrun's visual framework for gamified presentation.
+Core mechanics include tiered token curation based on market cap and liquidity thresholds, weighted randomization across multiple dimensions (token selection, value distribution, bonus rewards), and seamless multi-chain execution through Swidge infrastructure. The fee structure creates revenue while funding community rewards.
+
+##Rationale
+Current DeFi interfaces present complexity barriers that limit mainstream adoption. LOOTRUN addresses this by combining familiar gaming mechanics (mystery boxes) with sophisticated financial infrastructure, making multi-chain token acquisition accessible and entertaining.
+The design leverages Infinex's existing technical capabilities rather than building from scratch. Craterun proved randomization mechanics work, Bullrun demonstrated effective gamification, and Swidge enables seamless cross-chain execution. LOOTRUN synthesizes these proven elements into a cohesive user acquisition tool.
+The tiered approach serves different user archetypes: small purchases attract risk-seeking users exploring emerging projects, while large purchases cater to serious investors building diversified portfolios. This progression naturally guides users toward becoming power users of Infinex's broader ecosystem.
+Fee justification centers on value delivery: users pay for curation, entertainment, randomization, and reward potential rather than basic swaps. The "Free Parking" mechanism transforms fees from pure cost into potential upside, creating positive psychological association with the purchase decision.
+
+##Technical Specification
+
+##Core Architecture
+
+Purchase Interface: Accept USDC payments on any supported chain
+Randomization Engine: Integrate with Pyth infrastructure for provably fair selection
+Token Curation System: Automated screening based on market cap ($10M minimum), liquidity ($250K minimum), and security criteria
+Swidge Integration: Parallel execution of multiple cross-chain swaps with fallback handling
+Visual Framework: Extend Bullrun's card-based UI with performance-driven effects to replace "rarity" effects of game systems
+
+###Token Selection Logic
+Box Tiers and Allocation Percentages:
+$20 Box (3 tokens): 80% small, 15% mid, 5% large cap
+$50 Box (4 tokens): 70% small, 20% mid, 10% large cap  
+$100 Box (6 tokens): 60% small, 25% mid, 15% large cap
+$500 Box (8 tokens): 20% small, 35% mid, 45% large cap
+$1000 Box (10 tokens): 10% small, 15% mid, 75% large cap
+
+###Randomization Parameters
+
+Token Selection: Weighted random based on tier allocations
+Value Distribution: Random selection from patterns (Concentrated: 40/30/20/10%, Balanced: 35/25/25/15%, Equal: 25/25/25/25%)
+Reward Probability: Scales with purchase amount, includes protocol points, airdrops, NFTs, and Free Parking allocations
+
+###Fee Structure and Distribution
+
+3% total fee on purchases
+1% allocated to platform development/operations
+2% allocated to Free Parking community reward pool
+Pool distribution prize chances range from 5-90% of current pool balance
+
+###Execution Flow
+
+User selects box tier and pays USDC
+System determines token selection via randomization
+Multiple Swidge operations execute in parallel
+Tokens arrive in Infinex Wallet across chains
+Visual reveal displays results with performance effects
+
+###Failure Handling
+
+Complete all possible swaps on partial execution failures
+Return unused USDC minus proportional fees
+Transparent communication of actual vs. intended tokens received
+Maintain minimum value guarantees (purchase amount minus fees)
+
+###User Protection Mechanisms
+
+Streak Protection: Invisible odds boosting after extended periods without rewards (implementation details to be determined based on existing reward mechanism feasibility)
+Value Guarantees: Every box delivers face value in liquid tokens minus stated fees
+Slippage Controls: Maximum slippage limits to ensure execution reliability
+
+##Visual Effects and Performance-Driven "Rarity" System
+LOOTRUN replaces traditional rarity mechanics with real market performance data to create dynamic visual feedback:
+
+###Performance-Driven Card Effects:
+
+30-day performance drives base glow intensity
+7-day performance determines color temperature (green/red spectrum)
+24-hour price spikes trigger special particle effects
+Market cap influences card styling and perceived rarity
+
+###Opening Experience Timeline:
+
+Initial animation establishes anticipation
+Loading phase masks transaction confirmation time
+Sequential token reveals create multiple dopamine hits
+Final gamefied incentives reward reveal provides climactic moment
+
+This approach transforms market data into visceral visual feedback, helping users instantly understand token performance without parsing numbers while maintaining the psychological appeal of traditional rarity systems.
+
+##Partnership Integration Framework
+
+###For Token Projects:
+
+Guaranteed distribution to active DeFi users
+Performance data on user retention and trading behavior
+Brand exposure through visual card system
+Contribution opportunities through native token allocations, protocol points, NFTs
+
+###Partner Reward Contributions:
+Projects seeking inclusion can contribute value through:
+
+Native token allocations for airdrops
+Protocol points for user engagement
+NFT rewards (including potential Patron NFTs)
+Direct incentives funding without touching fee structure
+
+Partners benefit from aligned incentives - projects seeking distribution through Swidge mechanics while users receive enhanced value through partner-funded rewards.
+
+##Author Note:
+This proposal comes from the perspective of an Infinex user who has participated through all platform phases - speed run the waitlist, engaging with Craterun, Bullrun, and utilizing Swidge for various trades. As a user rather than a technical implementer, I do not have insights into how the team has handled the backend implementation of Bullrun and Craterun reward mechanisms.
+However, I strongly believe that a randomized token purchase system with gamified additional incentives represents a powerful showcase of Infinex's capabilities. This approach would:
+
+Indirectly demonstrate the platform's multi-chain technical prowess
+Drive user deposits and trading activity on Infinex
+Create a scalable flow of trades that, if successful in growing usage, becomes a powerful tool for future incentives and partnerships
+Establish Infinex as a premier destination for token distribution to active Swidgers
+
+The loot box trade flow, if it achieves meaningful adoption, could become a key pipeline for partner projects seeking distribution to engaged DeFi users, creating sustainable business development opportunities while providing enhanced value to the Infinex community.
+Specific implementation details for reward mechanisms, streak protection systems, and partner integration require further technical review to determine feasibility based on existing Infinex infrastructure capabilities.
+
+
+##Copyright
+Copyright and related rights waived via CC0.
