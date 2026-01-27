@@ -36,7 +36,7 @@ export default async function Page() {
                   key={e.slug}
                   data={e}
                   path="/rcs/"
-                  id={`RC-${number(e.entry.id || 0)}`}
+                  id={e.entry.id ? `RC-${number(e.entry.id)}` : undefined}
                 />
               ))}
             </div>
